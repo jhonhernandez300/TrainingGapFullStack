@@ -1,0 +1,2334 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang22538{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fswiss\fprq2\fcharset0 Calibri;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red255\green0\blue0;\red255\green192\blue0;\red0\green112\blue192;\red0\green32\blue96;\red0\green176\blue80;\red0\green176\blue240;\red146\green208\blue80;\red0\green0\blue255;\red255\green255\blue0;\red0\green0\blue0;\red112\green48\blue160;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl240\slmult1\qc\b\f0\fs22\lang10 NOTAS DE JAVASCRIPT\par
+
+\pard\sl240\slmult1\b0\par
+//////////////////////////////////////////                     /\par
+\par
+What was wrong\par
+fix\par
+error\par
+solution\par
+debugging exercise\par
+what\par
+how do you\par
+explain\par
+bug\par
+can you find\par
+in this code\par
+\par
+///////////////////////////////////////////////         /\par
+\par
+\b IIFE\b0\par
+Immediately Invoked Function Expression\par
+\par
+(function() \{\par
+  (function() \{\par
+    console.log('Hello')\par
+  \})();\par
+\par
+  (function() \{\par
+    console.log('World!')\par
+  \})()\par
+\})()\par
+Without that semicolon, the last function is interpreted as an argument to a function call\par
+\par
+///////////////////////////////////////////////            /\par
+\par
+\b ===\b0\par
+function addIfEven(num)\{\par
+    if(num % 2 = 0)\{\par
+        return num + 5\par
+    \}\par
+    return num;\par
+\}\par
+\par
+FIX\par
+function addIfEven(num)\{\par
+    if(num % 2 === 0)\{\par
+        return num + 5\par
+    \}\par
+    return num;\par
+\}\par
+\par
+///////////////////////////////////////////////             /\par
+\par
+\b Throw \par
+\b0 Allows you to return an error/exception of your choice\par
+\par
+\b TypeErrors \par
+\b0 Occur when JavaScript is unable to perform a certain operation on a data type (invoking something that is not a function, accessing properties on something that is not an object)\par
+\par
+\b ReferenceErrors \par
+\b0 Occur when JavaScript does not have a reference to the variable in memory (accessing a variable that is not defined or not in the current or outer scope)\par
+\par
+////////////////////////////////////////////////////              /\par
+\par
+try \{\par
+   undefined()\par
+\} catch(e)\{\par
+\tab console.log("We just made a TypeError, we can learn more using the error object returned to us:", e);\par
+\}\par
+\par
+///////////////////////////////////////////////           /\par
+\par
+person;\par
+Type of error - ReferenceError\par
+Because we are accessing a variable that has not been defined\par
+\par
+///////////////////////////////////////////              /\par
+\par
+var data = \{\};\par
+data.displayInfo();\par
+Type of error - TypeError \par
+The value of data.displayInfo is undefined, so we are invoking undefined which we can not do. Undefined is not a function\par
+\par
+//////////////////////////////////////////                  /\par
+\par
+var data = \{\};\par
+data.displayInfo.foo = "bar";\par
+Type of error - TypeError \par
+We are trying to assign a property of foo on undefined. Undefined is not an object so we can not do that\par
+\par
+/////////////////////////////////////                      /\par
+\par
+function data()\{\par
+    var \ul thing \ulnone = "foo";\par
+\}\par
+data()\par
+\ul thing\ulnone ;\par
+Type of error - ReferenceError \par
+The \ul thing \ulnone variable is only available in the scope of the data function. We are trying to access it out of scope and JavaScript does not have a reference to it\par
+\par
+///////////////////////////////////////////////                /\par
+\par
+\b Destructuring\par
+\b0 [a, b] = [10, 20];\par
+//a -> 10\par
+\par
+[a, b, ...rest] = [10, 20, \ul 30, 40, 50\ulnone ];\par
+//rest -> [\ul 30,40,50\ulnone ]\par
+\par
+(\{ a, b \} = \{ a: 10, b: 20 \});\par
+console.log(a); // 10\par
+\par
+const x = [1, 2, 3, 4, 5];\par
+const [y, z] = x;\par
+console.log(y); // 1\par
+\par
+///////////////////////////////////////////////                 /\par
+\par
+\b Cadenas\par
+\b0 const string4 = new String("Un objeto String");   //Es un O\par
+\par
+return 'cat'.charAt(1)\par
+// "a"\par
+\par
+function isEqual(\b str1\b0 , \ul str2\ulnone )\par
+\{\par
+    return \b str1\b0 .toUpperCase() === \ul str2\ulnone .toUpperCase()\par
+\}\par
+\par
+let \cf1 s1\cf0  = '2 + 2'              // crea una string primitiva\par
+console.log(eval(\cf1 s1\cf0 ))         \par
+// 4\par
+\par
+let \cf2\b s2\cf0\b0  = new String('2 + 2')  // crea un objeto String\par
+console.log(eval(\cf2\b s2\cf0\b0 ))         \par
+// "2 + 2"\par
+\par
+/////////////////////////////////////////                 /\par
+\par
+Convertir O a primitiva\par
+console.log(eval(s2.valueOf()))\par
+\par
+let browserType = 'mozilla';\par
+browserType[0];   // extraer un elemento\par
+browserType.indexOf('zilla');  //2\par
+\par
+browserType.slice(0,3);  //moz\par
+radData.toLowerCase();\par
+\par
+browserType.replace('moz','van');\par
+\par
+//////////////////////////////////////////////                     /\par
+\par
+\b Array\par
+\b0 let frutas = ["Manzana", "Banana"]\par
+\par
+frutas.forEach(function(elemento, indice, array) \{\par
+    console.log(elemento, indice);\par
+\})\par
+\par
+let nuevaLongitud = frutas.push('Naranja') // A\'f1ade "Naranja" al final\par
+\par
+let ultimo = frutas.pop() // Elimina "Naranja" del final\par
+\par
+let nuevaLongitud = frutas.unshift('Fresa') // A\'f1ade "Fresa" al inicio\par
+\par
+let primero = frutas.shift() // Elimina "Fresa" del inicio\par
+\par
+let position = frutas.indexOf('Banana') \par
+\par
+let elementoEliminado = frutas.splice(pos, 1) //eliminar, posici\'f3n, cantidad de elementos a eliminar\par
+\par
+let copiaArray = vegetales.slice();  //Copiar un array\par
+\par
+/////////////////////////////////////////////////////                              /\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx2085\f1\lang1033 const months = ['Jan', 'March', 'April', 'June'];\par
+months.\cf1\b splice\cf0\b0 (1, 0, \b 'Feb'\b0 );\par
+// ["Jan", "\b Feb\b0 ", "March", "April", "June"]\par
+\lang11274 Cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos\par
+\lang1033 inserts at index 1\par
+\par
+months.\cf1\b splice\cf0\b0 (4, 1, \ul 'May'\ulnone );\par
+// ["Jan", "Feb", "March", "April", "\ul May\ulnone "]\par
+replaces 1 element at index 4\par
+\par
+/////////////////////////////////////////////                          /\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\ul Find object by id in an array\ulnone\b\par
+\b0 myArray = [\{'id':'73','foo':'bar'\},\{'id':'45','foo':'bar'\}, etc.]\par
+myArray.find(x => x.id === '45').foo;\par
+\par
+If you want to find its index instead, use findIndex():\par
+myArray.findIndex(x => x.id === '45');\par
+\par
+If you want to get an array of matching elements, use the filter() method instead:\par
+myArray.filter(x => x.id === '45');\par
+\par
+This will return an array of objects\par
+If you want to get an array of foo properties, you can do this with the map() method:\par
+myArray.filter(x => x.id === '45').map(x => x.foo);\par
+\par
+methods like find() or filter(), and arrow functions are not supported by older browsers (like IE)\par
+If you want to support these browsers, you should transpile your code using Babel (with the polyfill)\par
+
+\pard\sl240\slmult1\f0\lang10\par
+\ul Remove a specific item\par
+\ulnone const array = [2, 5, 9];\par
+const index = array.indexOf(5);\par
+if (index > -1) \{\par
+  array.splice(index, 1);\par
+\}\par
+\par
+// array = [2, 9]\par
+\par
+///////////////////////////////////////////////////////                           /\par
+\par
+var rating = watchList.map(function(e)\{\par
+  return (\{title: e.Title,\par
+  rating: e.imdbRating\})\par
+\});\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 ///////////////////////////////////////                             /\par
+\par
+\b JavaScript class \par
+\b0 Is not an object.\par
+If you do not define a constructor method, JavaScript will add an empty one \par
+\par
+class \b Car\b0  \{\par
+  constructor(name, year) \{\par
+    this.name = name;\par
+    this.year = year;\par
+  \}\par
+  \cf3 age\cf0 () \{\par
+    let date = new Date();\par
+    return date.getFullYear() - this.year;\par
+  \}\par
+\}\par
+\par
+let \ul myCar\ulnone  = new \b Car\b0 ("Ford", 2014);\par
+document.getElementById("demo").innerHTML = \par
+               "My car is " + \ul myCar\ulnone .\cf3 age\cf0 () + " years old.";\par
+\par
+///////////////////////////////                               \par
+\par
+In "strict mode" you will get an error if you use a variable without declaring it\par
+date = new Date();  // This will not work\par
+\par
+class \cf4\b Car\b0  \cf0\{\par
+  constructor(\ul brand\ulnone ) \{\par
+    this.carname = \ul brand\ulnone ;\par
+  \}\par
+  present() \{\par
+    return 'I have a ' + this.carname;\par
+  \}\par
+\}\par
+\par
+class Model extends \cf4\b Car\b0  \cf0\{\par
+  constructor(\ul brand\ulnone , mod) \{\par
+    super(\ul brand\ulnone );\par
+    this.model = mod;\par
+  \}\par
+  show() \{\par
+    return this.present() + ', it is a ' + this.model;\par
+  \}\par
+\}\par
+\par
+let myCar = new Model("Ford", "Mustang");\par
+document.getElementById("demo").innerHTML = myCar.show();\par
+\par
+/////////////////////////////////\par
+\par
+class declarations are not hoisted\par
+That means that you must declare a class before you can use it\par
+\par
+class \b Car\b0  \{\par
+  constructor(name) \{\par
+    this.name = name;\par
+  \}\par
+  static hello(x) \{\par
+    return "Hello " + x.name;\par
+  \}\par
+\}\par
+\par
+let myCar = new \b Car\b0 ("Ford");\par
+document.getElementById("demo").innerHTML = \b Car\b0 .hello(myCar);\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 var \ul greet\ulnone  = "Hello", \b who\b0  = "World";\par
+\cf1\b console\cf0\b0 .log("%s, %s!", \ul greet\ulnone , \b who\b0 );\par
+
+\pard\sl240\slmult1\f0\lang10\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 By default, JavaScript will use the browser's time zone and display a date as a full text string:\par
+var \b d\b0  = new \cf1\b Date\cf0\b0 ();\par
+document.getElementById("demo").innerHTML = \b d\b0 .toUTCString();\par
+\lang11274 S:\par
+\lang9226 Tue Nov 24 2020 17:44:35 GMT-0500 (hora est\'e1ndar de Colombia)\par
+\par
+\lang1033 new \cf1\b Date\cf0\b0 (year, month, day, hours, minutes, seconds, milliseconds)\par
+\lang11274 Puede variar la cantidad de argumentos\par
+\par
+\lang1033 var d = new \cf1\b Date\cf0\b0 (2018, 11, 24, 10, 33, 30, 0);\par
+You cannot omit month. If you supply only one parameter it will be treated as milliseconds.\par
+\par
+new \cf1\b Date\cf0\b0 (milliseconds)\par
+new \cf1\b Date\cf0\b0 (date string)\par
+\par
+/////////////////////////\par
+\par
+Date objects are static\par
+The computer time is ticking, but date objects are not\par
+One and two digit years will be interpreted as 19xx\par
+\par
+new Date(dateString) creates a new date object from a date string:\par
+var d = new Date("October 13, 2014 11:13:00");\par
+JavaScript stores dates as number of milliseconds since January 01, 1970, 00:00:00 UTC (Universal Time Coordinated)\par
+\par
+When you display a date object in HTML, it is automatically converted to a string, with the toString() method.\par
+d = new Date();\par
+document.getElementById("demo").innerHTML = d;\par
+\par
+///////////////////////////////\par
+\par
+myDate.toDateString();\par
+//Wed Dec 09 2020\par
+\par
+d.toISOString();\par
+ISO standard format:\par
+2020-12-09T20:44:51.741Z\par
+\par
+/////////////////////////////////\par
+\par
+d = new Date();\par
+document.getElementById("demo").innerHTML = d;\par
+\par
+document.getElementById("demo").innerHTML = d.toDateString();\par
+S: Mon Feb 01 2021\par
+\par
+document.getElementById("demo").innerHTML = d.toISOString();\par
+S: 2021-02-01T17:34:35.507Z\par
+\par
+/////////////////////////////////\par
+\par
+getDate()\tab Get the day as a number (1-31)\par
+getTime()\tab Get the time (milliseconds since January 1, 1970)\par
+\par
+\par
+\cf1\b                                                            \lang11274 //////////////////           .parse         /////////////////////\par
+\cf0\b0\par
+Transforma una cadena con la representaci\'f3n de una fecha y hora, y devuelve el n\'famero de milisegundos desde las 00:00:00 del 1 de enero de 1970, hora local\par
+Si IPOfecha es un objeto existente Date, entonces usted puede asignarlo a 9 de agosto de 1995 de la manera siguiente:\par
+\lang1033 IPOfecha.setTime(Date.parse("Aug 9, 1995")) ;\par
+\par
+///////////////////\par
+
+\pard\sl240\slmult1\f0\lang10\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 The eval() function evaluates or executes an argument.\par
+\par
+If the argument is an expression, eval() evaluates the expression. If the argument is one or more JavaScript statements, eval() executes the statements\par
+\par
+\lang3082 var x = 10;\par
+var y = 20;\par
+\cf1\b eval\cf0\b0 ("x * y")\par
+S: 200\par
+///////////////////////////////\par
+\par
+Si el argumento de eval() no es una cadena de caracteres, eval() devuelve el argumento sin cambio\par
+\cf1\b eval\cf0\b0 (new String("2 + 2"));\par
+Devuelve un objeto String que contiene "2 + 2"\par
+Puede trabajar sobre esta limitaci\'f3n de una manera gen\'e9rica utilizando toString().\par
+\lang1033 var expresion = new String("2 + 2");\par
+\cf1\b eval\cf0\b0 (expresion.toString());\par
+\par
+\lang3082 /////////////////////////////////\par
+\par
+\lang1033 function test() \{\par
+  var x = 2, y = 4;\par
+  \lang3082 console.log(\cf1\b eval\cf0\b0 ("x + y"));  // Llamada directa, utiliza el \'e1mbito local, el resultado es 6\par
+  var geval = \cf1\b eval\cf0\b0 ;\par
+  console.log(geval("x + y")); // Llamada indirecta, utiliza el \'e1mbito global, atrav\'e9s de ReferenceError por que `x` es indefinida\par
+\}\par
+\par
+/////////////////////////////////\par
+
+\pard\sl240\slmult1\f0\lang10\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 Pattern provides an interface which shields clients from complex functionality in one or more subsystems\par
+It is often present in systems that are built around a multi-layer architecture.\par
+The intent of the Fa\'e7ade is to provide a high-level interface (properties and methods) that makes a subsystem or toolkit easy to use for the client.\par
+\par
+On the server, in a multi-layer web application you frequently have a presentation layer which is a client to a service layer. Communication between these two layers takes place via a well-defined API. This API, or fa\'e7ade, hides the complexities of the business objects and their interactions from the presentation layer.\par
+\par
+Another area where Fa\'e7ades are used is in refactoring. Suppose you have a confusing or messy set of legacy objects that the client should not be concerned about. You can hide this code behind a Fa\'e7ade. The Fa\'e7ade exposes only what is necessary and presents a cleaner and easy-to-use interface.\par
+\par
+The Mortgage object is the \cf1\b Fa\'e7ade\cf0\b0 , It presents a simple interface to the client with only a single method: \cf5\b applyFor\cf0\b0\par
+var \cf6 Mortgage \cf0 = function(name) \{\par
+    this.name = name;\par
+\}\par
+ \par
+\cf6 Mortgage\cf0 .prototype = \{\par
+ \par
+    \cf5\b applyFor\cf0\b0 : function(amount) \{\par
+        // access multiple subsystems...\par
+        var result = "approved";\par
+\par
+        if (!new \b Bank\b0 ().verify(this.name, amount)) \{\par
+            result = "denied";\par
+        \} else if (!new \ul Credit\ulnone ().get(this.name)) \{\par
+            result = "denied";\par
+        \} else if (!new \cf7 Background\cf0 ().check(this.name)) \{\par
+            result = "denied";\par
+        \}\par
+        return this.name + " has been " + result +\par
+               " for a " + amount + " mortgage";\par
+    \}\par
+\}\par
+ \par
+var \b Bank\b0  = function() \{\par
+    this.verify = function(name, amount) \{\par
+        // complex logic ...\par
+        return true;\par
+    \}\par
+\}\par
+ \par
+var \ul Credit\ulnone  = function() \{\par
+    this.get = function(name) \{\par
+        // complex logic ...\par
+        return true;\par
+    \}\par
+\}\par
+ \par
+var \cf7 Background \cf0 = function() \{\par
+    this.check = function(name) \{\par
+        // complex logic ...\par
+        return true;\par
+    \}\par
+\}\par
+ \par
+function run() \{\par
+    var mortgage = new \cf6 Mortgage\cf0 ("Joan Templeton");\par
+    var result = mortgage.applyFor("$100,000");\par
+ \par
+    alert(result);\par
+\}\par
+\par
+///////////////////////////////\par
+
+\pard\sl240\slmult1\f0\lang10\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 function myFunction(a, b) \{\par
+  return a * b;\par
+\}\par
+\par
+Expression:\par
+var x = function (a, b) \{return a * b\};\par
+\par
+After a function expression has been stored in a variable, the variable can be used as a function:\par
+var x = function (a, b) \{return a * b\};\par
+var z = x(4, 3);\par
+The function above ends with a semicolon because it is a part of an executable statement\par
+\par
+///////////////////////////////\par
+\par
+Functions can also be defined with a built-in JavaScript function constructor called Function().\par
+var myFunction = new Function("a", "b", "return a * b");\par
+var x = myFunction(4, 3);\par
+\par
+Functions defined using an expression are not hoisted\par
+(function () \{\par
+  var x = "Hello!!";  // I will invoke myself\par
+\})();\par
+\par
+/////////////////////////////////\par
+\par
+A function designed to create new objects, is called an object constructor\par
+var x = function(x, y) \{\par
+  return x * y;\par
+\}\par
+\par
+En arrow function:\par
+\lang11274 const x = (x, y) => x * y;\par
+\par
+\lang1033 Arrow functions are not hoisted. They must be defined before they are used\par
+Using const is safer than using var, because a function expression is always a constant value\par
+\par
+/////////////////////////////////\par
+\par
+A JavaScript function:\par
+Does not perform any checking on parameter values\par
+Do not specify data types for parameters\par
+Do not check the number of arguments received\par
+The missing arguments are set to undefined\par
+\par
+Default parameter values in the function declaration:\par
+function (x, y = 2) \{\par
+\}\par
+\par
+/////////////////////////////////\par
+\par
+JavaScript functions have a built-in object called the arguments object.\par
+The arguments object contains an array of the arguments used when the function was called (invoked)\par
+\par
+x = \ul findMax\ulnone (1, 123, 500, 115, 44, 88);\par
+\par
+function \ul findMax\ulnone () \{\par
+  var i;\par
+  var max = -Infinity;\par
+  for (i = 0; i < \b arguments\b0 .length; i++) \{\par
+    if (\b arguments\b0 [i] > max) \{\par
+      max = \b arguments\b0 [i];\par
+    \}\par
+  \}\par
+  return max;\par
+\}\par
+\par
+Highest value in a list of numbers\par
+\par
+/////////////////////////////////\par
+\par
+If a function is called with too many arguments (more than declared), these arguments can be reached using the arguments object\par
+In JavaScript, object references are values.\par
+\par
+Because of this, objects will behave like they are passed by reference:\par
+If a function changes an object property, it changes the original value\par
+\par
+When a function is called without an owner object, the value of this becomes the global object\par
+Invoking a function as a global function, causes the value of this to be the global object\par
+\par
+Using the window object as a variable can easily crash your program\par
+Invoking a function as an object method, causes the value of this to be the object itself\par
+\par
+var \b myObject\b0  = \{\par
+  firstName:"John",\par
+  lastName: "Doe",\par
+\par
+  \ul fullName\ulnone : function () \{\par
+    return this;\par
+  \}\par
+\}\par
+\par
+\b myObject\b0 .\ul fullName\ulnone ();          // Will return [object Object] (the owner object)\par
+\par
+/////////////////////////////////\par
+\par
+With \cf6\b call\cf0\b0 (), an object can use a method belonging to another object\par
+\par
+var \ul person\ulnone  = \{\par
+  \cf3\b fullName\cf0\b0 : function() \{\par
+    return this.firstName + " " + this.lastName;\par
+  \}\par
+\}\par
+\par
+var \b person1\b0  = \{\par
+  firstName:"John",\par
+  lastName: "Doe"\par
+\}\par
+\par
+var person2 = \{\par
+  firstName:"Mary",\par
+  lastName: "Doe"\par
+\}\par
+\par
+\ul person\ulnone .\cf3\b fullName\cf0\b0 .\cf6\b call\cf0\b0 (\b person1\b0 );  // Will return "John Doe"\par
+\par
+The \cf6\b call\cf0\b0 () method takes arguments separately.\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx2085 /////////////////////////////////\tab\par
+\par
+With the \b apply\b0 () method, you can write a method that can be used on different objects\par
+The \b apply\b0 () method takes arguments as an array\par
+The \b apply\b0 () method is very handy if you want to use an array instead of an argument list\par
+\par
+Find the largest number (in a list of numbers)\par
+Math.max.\b apply\b0 (null, [1,2,3]); // Will also return 3\par
+\par
+In JavaScript strict mode, if the first argument of the \b apply\b0 () method is not an object, it becomes the owner (object) of the invoked function. In "non-strict" mode, it becomes the global object\par
+\par
+Global variables can be made local (private) with closures\par
+Global and local variables with the same name are different variables\par
+\par
+Variables created without a declaration keyword (var, let, or const) are always global, even if they are created inside a function\par
+\par
+/////////////////////////////////\tab\par
+\par
+var add = (function () \{\par
+  var counter = 0;\par
+  return function () \{counter += 1; return counter\}\par
+\})();\par
+\par
+add();\par
+add();\par
+add();\par
+// the counter is now 3\par
+\par
+This is called a JavaScript closure. It makes it possible for a function to have "private" variables\par
+The counter is protected by the scope of the anonymous function, and can only be changed using the add function.\par
+\par
+A closure is a function having access to the parent scope, even after the parent function has closed\par
+
+\pard\sl240\slmult1\f0\lang10\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang11274 Obtener el valor de un \cf1\b dropdownlist\cf0\b0\par
+var e = document.getElementById("elementId");\par
+\lang1033 var value = e.options[e.selectedIndex].value;\par
+\par
+\lang11274 Obtener el texto\par
+var text = e.options[e.selectedIndex].text;\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang9226 JavaScript Object Notation (JSON) es un formato basado en texto est\'e1ndar para representar datos estructurados en la sintaxis de objetos de JavaScript.\par
+Puede ser utilizado independientemente de JavaScript\par
+\par
+Muchos entornos de programaci\'f3n poseen la capacidad de leer (convertir; parsear) y generar JSON\par
+Los JSON son cadenas - \'fatiles cuando se quiere transmitir datos a trav\'e9s de una red\par
+\par
+Debe ser convertido a un objeto nativo de JavaScript cuando se requiera acceder a sus datos \par
+\'c9sto no es un problema, dado que JavaScript posee un objeto global JSON que tiene los m\'e9todos disponibles para convertir entre ellos\par
+\par
+Convertir una cadena a un objeto nativo se denomina parsing\par
+Convertir un objeto nativo a una cadena para que pueda ser transferido a trav\'e9s de la red se denomina stringification\par
+\par
+Accceder a los datos:\par
+superHeroes.homeTown\par
+\lang1033 superHeroes['active']\par
+superHeroes['members'][1]['powers'][2]\par
+\par
+\lang9226 Un arreglo es tambi\'e9n un JSON v\'e1lido:\par
+\lang1033 [\par
+  \{\par
+    "name": "Molecule Man",\par
+    "age": 29,\par
+    "secretIdentity": "Dan Jukes",\par
+    "powers": [\par
+      "Radiation resistance",\par
+      "Turning tiny",\par
+      "Radiation blast"\par
+    ]\par
+  \},\par
+  \{\par
+    "name": "Madame Uppercut",\par
+    "age": 39,\par
+    "secretIdentity": "Jane Wilson",\par
+    "powers": [\par
+      "Million tonne punch",\par
+      "Damage resistance",\par
+      \lang9226 "Superhuman reflexes"\par
+    ]\par
+  \}\par
+]\par
+\par
+Requiere usar comillas dobles para las cadenas y los nombres de propiedades\par
+Validar un json online:\par
+{{\field{\*\fldinst{HYPERLINK https://jsonlint.com/ }}{\fldrslt{https://jsonlint.com/\ul0\cf0}}}}\f1\fs22\par
+Una cadena o un n\'famero \'fanico podr\'edan ser objetos JSON v\'e1lidos\par
+\par
+\lang1033 //////////////////////////////////////\par
+\par
+const header = document.querySelector('header');\par
+\par
+\lang9226 Para obtener el JSON se utilizar\'e1 un API llamado XMLHttpRequest (a menudo llamado XHR)\par
+\'c9ste en un objeto JavaScript muy \'fatil que permite realizar solicitudes de red para recuperar recursos desde un servidor v\'eda JavaScript (por ejemplo: im\'e1genes, texto, JSON, incluso c\'f3digo HTML)\par
+\par
+Almacenar la URL del JSON que se quiere recuperar en una variable:\par
+\lang1033 const \b requestURL\b0  = '{{\field{\*\fldinst{HYPERLINK https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json }}{\fldrslt{https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json\ul0\cf0}}}}\f1\fs22 ';\par
+\par
+\lang9226 const \ul request\ulnone  = new XMLHttpRequest();\par
+\par
+Abrir una nueva solicitud:\par
+\ul request\ulnone .open('GET', \b requestURL\b0 );\par
+\par
+Establecemos el responseType a \highlight9 JSON\highlight0 , de esta forma ese XHR sabe que el servidor estar\'e1 retornando JSON y que esto deber\'eda ser convertido en segundo plano en un objeto JavaScript:\par
+\ul\lang1033 request\ulnone .responseType = \highlight9 'json'\highlight0 ;\par
+\ul request\ulnone .send();\par
+\par
+\ul request\ulnone .onload = function() \{\par
+  const \cf3\b superHeroes\b0  \cf0 = \ul request\ulnone .response;\par
+  \cf7\lang9226 populateHeader\cf0 (\cf3\b superHeroes\cf0\b0 );\par
+  \cf4\b showHeroes\cf0\b0 (\cf3\b superHeroes\cf0\b0 );\par
+\}\par
+\par
+onload el evento de carga se dispara cuando la respuesta ha sido retornada de forma exitosa\par
+\lang1033 function \cf7 populateHeader\cf0 (\cf6 jsonObj\cf0 ) \{\par
+  const myH1 = document.createElement('h1');\par
+  myH1.textContent = \cf6 jsonObj\cf0 ['squadName'];\par
+  header.appendChild(myH1);\par
+\par
+  const myPara = document.createElement('p');\par
+  myPara.textContent = 'Hometown: ' + \cf6 jsonObj\cf0 ['homeTown'] + ' // Formed: ' + \cf6 jsonObj\cf0 ['formed'];\par
+  header.appendChild(myPara);\par
+\}\par
+\par
+function \cf4\b showHeroes\cf0\b0 (jsonObj) \{\par
+  const heroes = jsonObj['members'];\par
+      \par
+  for (var i = 0; i < heroes.length; i++) \{\par
+    const myArticle = document.createElement('article');\par
+    const myH2 = document.createElement('h2');\par
+    const myPara1 = document.createElement('p');\par
+    const myPara2 = document.createElement('p');\par
+    const myPara3 = document.createElement('p');\par
+    const myList = document.createElement('ul');\par
+\par
+    myH2.textContent = heroes[i].name;\par
+    myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;\par
+    myPara2.textContent = 'Age: ' + heroes[i].age;\par
+    myPara3.textContent = 'Superpowers:';\par
+        \par
+    const superPowers = heroes[i].powers;\par
+    for (var j = 0; j < superPowers.length; j++) \{\par
+      const listItem = document.createElement('li');\par
+      listItem.textContent = superPowers[j];\par
+      myList.appendChild(listItem);\par
+    \}\par
+\par
+    myArticle.appendChild(myH2);\par
+    myArticle.appendChild(myPara1);\par
+    myArticle.appendChild(myPara2);\par
+    myArticle.appendChild(myPara3);\par
+    myArticle.appendChild(myList);\par
+\par
+    section.appendChild(myArticle);\par
+  \lang9226\}\par
+\}\par
+\par
+/////////////////////////////////////////////\par
+\par
+En algunas ocasiones, se recibir\'e1 una cadena JSON sin procesar, y ser\'e1 necesario convertirla en un objeto\par
+Cuando sea necesario enviar un objeto Javascript a trav\'e9s de la red, ser\'e1 necesario convertirlo a un JSON\par
+parse(): Acepta un json y devuelve el objeto JavaScript\par
+stringify(): Acepta un objeto como par\'e1metro, y devuelve la forma de cadena JSON equivalente\par
+\par
+request.open('GET', requestURL);\par
+request.responseType = 'text'; // recibimos una cadena de tipo "string"\par
+\lang1033 request.send();\par
+\par
+request.onload = function() \{\par
+  \lang9226 const \ul superHeroesText\ulnone  = request.response; // cogemos la cadena de response\par
+  const \b superHeroes\b0  = \cf1\b JSON\cf0\b0 .parse(\ul superHeroesText\ulnone ); // la convertimos a objeto\par
+  \lang1033 populateHeader(\b superHeroes\b0 );\par
+  showHeroes(\b superHeroes\b0 );\par
+\}\par
+\par
+const myJSON = \{ "name": "Chris", "age": "38" \};\par
+myJSON\par
+const myString = \cf1\b JSON\cf0\b0 .stringify(myJSON);\par
+myString\par
+
+\pard\widctlpar\fi720\li-1418\ri-1510\par
+
+\pard\widctlpar\li-1418\ri-1510 //////////////////////////////////\par
+\par
+JSON is \par
+Language independent \par
+"self-describing" and easy to understand\par
+\par
+JSON names require double quotes. JavaScript names do not\par
+\par
+var \ul text\ulnone  = '\{ "employees" : [' +\par
+'\{ "firstName":"John" , "lastName":"Doe" \},' +\par
+'\{ "firstName":"Anna" , "lastName":"Smith" \},' +\par
+'\{ "firstName":"Peter" , "lastName":"Jones" \} ]\}';\par
+\par
+Convert the string into a JavaScript object:\par
+\lang11274 var obj = JSON.parse(\ul text\ulnone );\par
+\par
+\lang1033 //////////////////////////////////\par
+\par
+var myObj = \{name: "John", age: 31, city: "New York"\};\par
+var myJSON = JSON.stringify(myObj);\par
+window.location = "demo_json.php?x=" + myJSON;\par
+\par
+var myJSON = '\{"name":"John", "age":31, "city":"New York"\}';\par
+\lang11274 var myObj = JSON.parse(myJSON);\par
+\lang1033 document.getElementById("demo").innerHTML = myObj.name;\par
+\par
+//////////////////////////////////\par
+\par
+// Storing data:\par
+myObj = \{name: "John", age: 31, city: "New York"\};\par
+myJSON = JSON.stringify(myObj);\par
+localStorage.setItem("testJSON", myJSON);\par
+\par
+// Retrieving data:\par
+text = localStorage.getItem("testJSON");\par
+obj = JSON.parse(text);\par
+document.getElementById("demo").innerHTML = obj.name;\par
+\par
+//////////////////////////////////\par
+\par
+In JSON, values must be one of the following data types:\par
+a string\par
+a number\par
+an object (JSON object)\par
+an array\par
+a boolean\par
+null\par
+\par
+The MIME type for JSON text is "application/json"\par
+When using the JSON.parse() on a JSON derived from an array, the method will return a JavaScript array, instead of a JavaScript object\par
+\par
+var myArr = JSON.parse(this.responseText);\par
+document.getElementById("demo").innerHTML = myArr[0]\par
+\par
+//////////////////////////////////\par
+\par
+In JSON, date objects are not allowed\par
+\par
+Convert your functions into strings before running the JSON.stringify() function:\par
+\par
+var obj = \{ name: "John", age: function () \{return 30;\}, city: "New York" \};\par
+obj.age = obj.age.toString();\par
+var myJSON = JSON.stringify(obj);\par
+\par
+document.getElementById("demo").innerHTML = myJSON;\par
+\par
+JSON objects are surrounded by curly braces \{\}.\par
+JSON objects are written in key/value pairs.\par
+\par
+Keys must be strings, and values must be a valid JSON data type (string, number, object, array, boolean or null).\par
+\par
+//////////////////////////////////\par
+\par
+myObj = \{ "name":"John", "age":30, "car":null \};\par
+x = myObj.name;\par
+x = myObj["name"];\par
+\par
+for (x in myObj) \{\par
+  document.getElementById("demo").innerHTML += x;\par
+\}\par
+\par
+  "name":"John",\par
+  "age":30,\par
+  "cars": \{\par
+    "car1":"Ford",\par
+    "car2":"BMW",\par
+    "car3":"Fiat"\par
+  \}\par
+ \}\par
+\par
+x = myObj.cars.car2;\par
+x = myObj.cars["car2"];\par
+\par
+\lang11274 delete myObj.cars.car2;\par
+\par
+//////////////////////////////////\par
+\par
+\lang1033 In JSON, array values must be of type string, number, object, array, boolean or null\par
+\par
+\{\par
+"name":"John",\par
+"age":30,\par
+"cars":[ "Ford", "BMW", "Fiat" ]\par
+\}\par
+\par
+x = myObj.cars[0];\par
+\par
+for (i in myObj.cars) \{\par
+  x += myObj.cars[i];\par
+\}\par
+\par
+myObj = \{\par
+  "name":"John",\par
+  "age":30,\par
+  "cars": [\par
+    \{ "name":"Ford", "models":[ "Fiesta", "Focus", "Mustang" ] \},\par
+    \{ "name":"BMW", "models":[ "320", "X3", "X5" ] \},\par
+    \{ "name":"Fiat", "models":[ "500", "Panda" ] \}\par
+  ]\par
+ \}\par
+\par
+for (i in myObj.cars) \{\par
+  x += "<h1>" + myObj.cars[i].name + "</h1>";\par
+  for (j in myObj.cars[i].models) \{\par
+    x += myObj.cars[i].models[j];\par
+  \}\par
+\}\par
+\par
+\lang11274 //////////////////////////////////\par
+\par
+\lang1033 Make an HTML drop down list with data received as JSON:\par
+\par
+obj = \{ table: "customers", limit: 20 \};\par
+dbParam = JSON.stringify(obj);\par
+xmlhttp = new XMLHttpRequest();\par
+xmlhttp.onreadystatechange = function() \{\par
+  if (this.readyState == 4 && this.status == 200) \{\par
+    myObj = JSON.parse(this.responseText);\par
+    txt += "<select>"\par
+    for (x in myObj) \{\par
+      txt += "<option>" + myObj[x].name;\par
+    \}\par
+    txt += "</select>"\par
+    document.getElementById("demo").innerHTML = txt;\par
+  \}\par
+\}\par
+xmlhttp.open("POST", "json_demo_html_table.php", true);\par
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");\par
+\lang11274 xmlhttp.send("x=" + dbParam);\par
+
+\pard\sl240\slmult1\f0\lang10\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx945\b\f1\lang1033 Object.keys equivalent lodash method\par
+\b0 _.keys(object)\par
+Creates an array of the own enumerable property names of object.\par
+\par
+console.log(_.\cf1\b keys\cf0\b0 (\{ "tab1": "1" , tab2: "2"\}));\par
+console.log(Object.keys(\{ "tab1": "1" , tab2: "2"\}));\par
+\lang11274 Salida:\par
+// ["tab1", "tab2"]\par
+// ["tab1", "tab2"]\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\nowidctlpar\li-1560\b\f1\lang1033 concat\par
+\b0 const letters = ['a', 'b', 'c'];\par
+const numbers = [1, 2, 3];\par
+letters.\cf1 concat\cf0 (numbers);\par
+S:\par
+['a', 'b', 'c', 1, 2, 3]\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://stackoverflow.com/search?q=javascript+%22.concat%22 }}{\fldrslt{https://stackoverflow.com/search?q=javascript+%22.concat%22\ul0\cf0}}}}\f1\fs22\par
+\par
+\b dispatch\par
+\b0\lang9226 Acepta una acci\'f3n o una acci\'f3n as\'edncrona; entonces puede o no despachar una o m\'e1s acciones al store\par
+\par
+\lang1033 import \{API\} from '../backend';\par
+import axios from 'axios';\par
+export const getdata = (todo) => \{\par
+    return (dispatch) => \{\par
+        axios.post(`$\{API\}addtodo`)\par
+        .then(res => \{\par
+            console.log(res)\par
+            \cf1 dispatch\cf0 (\{\par
+                type : 'FETCH_TODO',\par
+                payload : todo\par
+            \})\par
+        \})\par
+        .catch(err =>\{\par
+            console.log(err);\par
+        \})\par
+    \}\par
+\}\par
+\par
+That is because doing .dispatch() after .then() would mean you are calling the dispatch method on the Promise returned by axios.\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://www.google.com/search?q=javascript+%22.dispatch%22&sxsrf=ALeKk01YWljI6yviwIiZpw0HifN0ZVeJxQ%3A1617815552358&ei=AOhtYKm0FYyDwbkPsoq7sAs&oq=javascript+%22.dispatch%22&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEAcQHjIGCAAQBxAeMgQIABAeMgYIABAKEB4yBAgAEB4yBAgAEB4yBAgAEB4yBAgAEB4yBAgAEB4yBAgAEB46CQgAELADEAcQHjoJCAAQsAMQChAeOgcIABCwAxAeOggIABAHEAoQHlC1zRNYutsTYIbgE2gCcAB4AIABuQKIAY0QkgEIMC4xMC4xLjGYAQCgAQGqAQdnd3Mtd2l6yAEKwAEB&sclient=gws-wiz&ved=0ahUKEwiptL3K0OzvAhWMQTABHTLFDrYQ4dUDCA0&uact=5 }}{\fldrslt{https://www.google.com/search?q=javascript+%22.dispatch%22&sxsrf=ALeKk01YWljI6yviwIiZpw0HifN0ZVeJxQ%3A1617815552358&ei=AOhtYKm0FYyDwbkPsoq7sAs&oq=javascript+%22.dispatch%22&gs_lcp=Cgdnd3Mtd2l6EAMyBggAEAcQHjIGCAAQBxAeMgQIABAeMgYIABAKEB4yBAgAEB4yBAgAEB4yBAgAEB4yBAgAEB4yBAgAEB4yBAgAEB46CQgAELADEAcQHjoJCAAQsAMQChAeOgcIABCwAxAeOggIABAHEAoQHlC1zRNYutsTYIbgE2gCcAB4AIABuQKIAY0QkgEIMC4xMC4xLjGYAQCgAQGqAQdnd3Mtd2l6yAEKwAEB&sclient=gws-wiz&ved=0ahUKEwiptL3K0OzvAhWMQTABHTLFDrYQ4dUDCA0&uact=5\ul0\cf0}}}}\f1\fs22\par
+\par
+\lang9226 Nada en stack\par
+\par
+\b Fetch\par
+\b0 Acceder y manipular partes del canal HTTP, tales como peticiones y respuestas\par
+\par
+\cf1 fetch\cf0 ('{{\field{\*\fldinst{HYPERLINK https://httpbin.org/post }}{\fldrslt{https://httpbin.org/post\ul0\cf0}}}}\f1\fs22 ', \{\par
+  \lang1033 method: 'post',\par
+  headers: \{\par
+    'Accept': 'application/json, text/plain, */*',\par
+    'Content-Type': 'application/json'\par
+  \},\par
+  body: JSON.stringify(\{a: 7, str: 'Some string: &=&'\})\par
+\lang9226\}).then(res => res.json())\par
+\lang1033   .then(res => console.log(res));\par
+\par
+{\lang9226{\field{\*\fldinst{HYPERLINK https://stackoverflow.com/search?q=javascript+%22fetch%22 }}{\fldrslt{https://stackoverflow.com/search?q=javascript+%22fetch%22\ul0\cf0}}}}\f1\fs22\lang9226\par
+\par
+\par
+\b\lang1033 getState\par
+\b0 In JavaScript a string literal primitive and the String class are not the same type\par
+ \par
+A string literal is not an instance of a String:\par
+\par
+console.log("test" instanceof String) // false\par
+console.log(new String("test") instanceof String) // true\par
+\par
+Alt: \cf10 getState\cf0 () doesn't return class instance\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://stackoverflow.com/search?q=javascript+%22.getState%22 }}{\fldrslt{https://stackoverflow.com/search?q=javascript+%22.getState%22\ul0\cf0}}}}\f1\fs22\par
+\par
+\b JSON.stringify\par
+\b0\lang9226 Convierte un objeto o valor de JavaScript en una cadena de texto JSON, opcionalmente reemplaza valores si se indica una funci\'f3n de reemplazo\par
+\par
+\lang1033 Serialize cyclic structures\par
+\par
+const getCircularReplacer = () => \{\par
+    const seen = new WeakSet();\par
+    return (key, value) => \{\par
+    if (typeof value === "object" && value !== null) \{\par
+        if (seen.has(value)) \{\par
+            return;\par
+        \}\par
+        seen.add(value);\par
+    \}\par
+    return value;\par
+    \};\par
+\};\par
+\par
+\cf1 JSON.stringify\cf0 (circularReference, getCircularReplacer());\par
+// \{"otherData":123\}\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://stackoverflow.com/search?q=react+%22JSON.stringify%22 }}{\fldrslt{https://stackoverflow.com/search?q=react+%22JSON.stringify%22\ul0\cf0}}}}\f1\fs22\par
+\par
+\par
+\b localStorage\par
+\b0\lang9226 Los datos almacenados en localStorage no tienen fecha de expiraci\'f3n\par
+\par
+\lang1033 You need to perform the local storage update and then return the new state object:\par
+\par
+switchoff: function()\{\par
+    \cf1 localStorage\cf0 .setItem('state', 'off');\par
+    this.setState(\{lights: 'off'\}); \par
+\},\par
+\par
+Using LocalStorage with React?\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://stackoverflow.com/search?q=react+%22localStorage%22 }}{\fldrslt{https://stackoverflow.com/search?q=react+%22localStorage%22\ul0\cf0}}}}\f1\fs22\par
+\par
+\b\lang9226 Template String\par
+\b0 Cadenas literales de texto incrustadas en el c\'f3digo fuente que permiten su interpolaci\'f3n mediante expresiones\par
+\par
+var \ul nombre\ulnone ="cecilio";\par
+var \b plantilla\b0 = `hola que tal estas $\{\ul nombre\ulnone\}`;\par
+console.log(\b plantilla\b0 );\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 var \ul numbers\ulnone  = [1, 5, 10, 15];\par
+var doubles = \ul numbers\ulnone .\cf1\b map\cf0\b0 (function(x) \{\par
+   \lang11274 return x * 2;\par
+\});\par
+Crea un nuevo array con los resultados\par
+\lang1033 S:\par
+\lang11274 doubles is now [2, 10, 20, 30]\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 Math.\cf1\b round\cf0\b0 (4.7);    \par
+S: 5\par
+Math.\cf1\b round\cf0\b0 (4.4);    \par
+S: 4\par
+\par
+Math.\cf1\b pow\cf0\b0 (8, 2);      \par
+S: 64\par
+Math.\cf1\b sqrt\cf0\b0 (64);      \par
+S: 8\par
+\par
+Math.\cf1\b abs\cf0\b0 (-4.7);    \par
+S: 4.7\par
+Math.\cf1\b ceil\cf0\b0 (4.4);     \par
+S: 5\par
+\par
+///////////////////////////////\par
+\par
+Math.\cf1\b floor\cf0\b0 (4.7);    \par
+S: 4\par
+Math.\cf1\b min\cf0\b0 (0, 150, 30, 20, -8, -200);  \par
+S: -200\par
+\par
+Math.\cf1\b random\cf0\b0 ()\par
+returns a random number between 0 and 1:\par
+S: 0.4975640238649919\par
+\par
+The Math object has no constructor. Methods and properties are static\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 JSON Serializer\par
+LINQ to JSON. Create, parse, query and modify JSON using Json.NET's JObject, JArray and JValue objects\par
+JSON Path. Query JSON with an XPath-like syntax\par
+\par
+JsonTextReader and JsonTextWriter are used to read and write JSON text\par
+StringBuilder \cf5 sb \cf0 = new StringBuilder();\par
+StringWriter \cf11\b sw\b0  \cf0 = new StringWriter(\cf5 sb\cf0 );\par
+\par
+using (JsonWriter \ul writer\ulnone  = new JsonTextWriter(\cf11\b sw\cf0\b0 ))\par
+\{\par
+    writer.Formatting = Formatting.Indented;\par
+\par
+    \ul writer\ulnone .WriteStartObject();\par
+    \ul writer\ulnone .WritePropertyName("CPU");\par
+    \ul writer\ulnone .WriteValue("Intel");\par
+    writer.WritePropertyName("PSU");\par
+    writer.WriteValue("500W");\par
+    writer.WritePropertyName("Drives");\par
+    writer.WriteStartArray();\par
+    writer.WriteValue("DVD read/writer");\par
+    writer.WriteComment("(broken)");\par
+    writer.WriteValue("500 gigabyte hard drive");\par
+    writer.WriteValue("200 gigabyte hard drive");\par
+    writer.WriteEnd();\par
+    writer.WriteEndObject();\par
+\}\par
+\par
+\lang11274 Salida:\par
+\{\par
+  "CPU": "Intel",\par
+  "PSU": "500W",\par
+\lang1033   "Drives": [\par
+    "DVD read/writer"\par
+    /*(broken)*/,\par
+    "500 gigabyte hard drive",\par
+    "200 gigabyte hard drive"\par
+  ]\par
+\}\par
+\par
+////////////////////////////////\par
+\par
+string \ul json\ulnone  = @"\{\par
+   'CPU': 'Intel',\par
+   'PSU': '500W',\par
+   'Drives': [\par
+     'DVD read/writer'\par
+     /*(broken)*/,\par
+     '500 gigabyte hard drive',\par
+     '200 gigabyte hard drive'\par
+   ]\par
+\}";\par
+\par
+JsonTextReader \cf6 reader \cf0 = new JsonTextReader(new StringReader(\ul json\ulnone ));\par
+while (\cf6 reader\cf0 .Read())\par
+\{\par
+    if (\cf6 reader\cf0 .Value != null)\par
+    \{\par
+        Console.WriteLine("Token: \{0\}, Value: \{1\}", \cf6 reader\cf0 .TokenType, \cf6 reader\cf0 .Value);\par
+    \}\par
+    else\par
+    \{\par
+        Console.WriteLine("Token: \{0\}", \cf6 reader\cf0 .TokenType);\par
+    \}\par
+\}\par
+\par
+Salida:\par
+ Token: StartObject\par
+ Token: PropertyName, Value: CPU\par
+ Token: String, Value: Intel\par
+ Token: PropertyName, Value: PSU\par
+ Token: String, Value: 500W\par
+ Token: PropertyName, Value: Drives\par
+ Token: StartArray\par
+ Token: String, Value: DVD read/writer\par
+ Token: Comment, Value: (broken)\par
+ Token: String, Value: 500 gigabyte hard drive\par
+ Token: String, Value: 200 gigabyte hard drive\par
+ Token: EndArray\par
+ Token: EndObject\par
+\par
+///////////////////////\par
+///////////////////////\par
+///////////////////////\par
+///////////////////////\par
+///////////////////////\par
+///////////////////////\par
+///////////////////////\par
+///////////////////////\par
+\par
+Voy en\par
+JTokenReader and JtokenWriter\par
+{{\field{\*\fldinst{HYPERLINK https://www.newtonsoft.com/json/help/html/ReadingWritingJSON.htm }}{\fldrslt{https://www.newtonsoft.com/json/help/html/ReadingWritingJSON.htm\ul0\cf0}}}}\f1\fs22\par
+\par
+\par
+\par
+\par
+                                                 \cf1\b ///////////////////////////////    .Json          ////////////////////\par
+\cf0\b0\par
+\par
+\par
+/////////////////////////////////\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://www.google.com/search?sxsrf=ALeKk02HyYgUJvHiFQVp656g3Z4F3feRvg%3A1607272727521&ei=FwnNX7egH8um_QbLsrLABg&q=%22Newtonsoft.Json%22+example&oq=%22Newtonsoft.Json%22+example&gs_lcp=CgZwc3ktYWIQAzIFCAAQywEyBQgAEMsBMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjoECAAQRzoECCMQJzoCCAA6BAgAEEM6BggAEAcQHjoFCCEQoAE6BAgAEA06BggAEA0QHjoICAAQDRAFEB46CAgAEAgQDRAeUM25DViD-A1guPsNaANwAngAgAGvAYgBnBOSAQQwLjE4mAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwj3h-y_5bntAhVLU98KHUuZDGgQ4dUDCA0&uact=5 }}{\fldrslt{https://www.google.com/search?sxsrf=ALeKk02HyYgUJvHiFQVp656g3Z4F3feRvg%3A1607272727521&ei=FwnNX7egH8um_QbLsrLABg&q=%22Newtonsoft.Json%22+example&oq=%22Newtonsoft.Json%22+example&gs_lcp=CgZwc3ktYWIQAzIFCAAQywEyBQgAEMsBMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjoECAAQRzoECCMQJzoCCAA6BAgAEEM6BggAEAcQHjoFCCEQoAE6BAgAEA06BggAEA0QHjoICAAQDRAFEB46CAgAEAgQDRAeUM25DViD-A1guPsNaANwAngAgAGvAYgBnBOSAQQwLjE4mAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwj3h-y_5bntAhVLU98KHUuZDGgQ4dUDCA0&uact=5\ul0\cf0}}}}\f1\fs22\par
+\par
+\par
+                                    \cf1\b\lang11274 /////////////////////////////////         Json.JsonConvert          ////////////////////////////\par
+\cf0\b0\par
+\par
+\par
+/////////////////////////////////\par
+\par
+{{\field{\*\fldinst{HYPERLINK https://www.google.com/search?sxsrf=ALeKk008PfCfoKxPqGJivN3xHlL73q6VSQ%3A1607272957125&ei=_QnNX9GWB4Lj_Abn2YPgAQ&q=%22Newtonsoft.Json.JsonConvert%22+example&oq=%22Newtonsoft.Json.JsonConvert%22+example&gs_lcp=CgZwc3ktYWIQAzIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeOgQIABBHUIMZWJgzYI03aABwAngAgAGwAYgBqA2SAQQwLjEymAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwiRiaqt5rntAhWCMd8KHefsABwQ4dUDCA0&uact=5 }}{\fldrslt{https://www.google.com/search?sxsrf=ALeKk008PfCfoKxPqGJivN3xHlL73q6VSQ%3A1607272957125&ei=_QnNX9GWB4Lj_Abn2YPgAQ&q=%22Newtonsoft.Json.JsonConvert%22+example&oq=%22Newtonsoft.Json.JsonConvert%22+example&gs_lcp=CgZwc3ktYWIQAzIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeOgQIABBHUIMZWJgzYI03aABwAngAgAGwAYgBqA2SAQQwLjEymAEAoAEBqgEHZ3dzLXdpesgBCMABAQ&sclient=psy-ab&ved=0ahUKEwiRiaqt5rntAhWCMd8KHefsABwQ4dUDCA0&uact=5\ul0\cf0}}}}\f1\fs22\par
+\par
+\cf1\b                     \lang1033 /////////////////////////////////            .Json.JsonConvert.DeserializeObject      ////////////////////////\par
+\cf0\b0\par
+Product product = new Product();\par
+\par
+product.Name = "Apple";\par
+product.ExpiryDate = new DateTime(2008, 12, 28);\par
+product.Price = 3.99M;\par
+product.Sizes = new string[] \{ "Small", "Medium", "Large" \};\par
+\par
+string output = JsonConvert.SerializeObject(product);\par
+//\{\par
+//  "Name": "Apple",\par
+//  "ExpiryDate": "2008-12-28T00:00:00",\par
+//  "Price": 3.99,\par
+//  "Sizes": [\par
+//    "Small",\par
+//    "Medium",\par
+//    "Large"\par
+//  ]\par
+//\}\par
+\par
+Product deserializedProduct = JsonConvert.DeserializeObject<Product>(output);\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 JavaScript object is a standalone entity that holds multiple values in terms of properties and methods.\par
+Object property stores a literal value and method represents function\par
+\par
+An object can be created using object literal or object constructor syntax\par
+Object literal:\par
+\par
+var \ul person\ulnone  = \{ \par
+    firstName: "James", \par
+    lastName: "Bond", \par
+    age: 25, \par
+    getFullName: function () \{ \par
+        return this.firstName + ' ' + this.lastName \par
+        \} \par
+\};\par
+\par
+Object constructor:\par
+var \ul person\ulnone  = new \cf1\b Object\cf0\b0 ();                   \par
+\ul person\ulnone .firstName = "James";\par
+\ul person\ulnone ["lastName"] = "Bond"; \par
+\ul person\ulnone .age = 25;\par
+\ul person\ulnone .getFullName = function () \{\par
+        return this.firstName + ' ' + this.lastName;\par
+\};\par
+\par
+Object properties and methods can be accessed using dot notation or [ ] bracket.\par
+An object is passed by reference from one function to another.\par
+\par
+An object can include another object as a property\par
+\par
+///////////////////////////////\par
+\par
+In Javascript is an object:\par
+Dates\par
+Maths\par
+Regular expressions\par
+Arrays\par
+Functions\par
+Values, except primitives, are objects\par
+\par
+A primitive value is a value that has no properties or methods.\par
+A primitive data type is data that has a primitive value.\par
+\par
+JavaScript defines 5 types of primitive data types:\par
+string\par
+number\par
+boolean\par
+null\par
+undefined\par
+\par
+Primitive values are immutable (they are hardcoded and therefore cannot be changed)\par
+\par
+/////////////////////////////////\par
+\par
+Objects are mutable: They are addressed by reference, not by value.\par
+If person is an object, the following statement will not create a copy of person:\par
+\par
+var x = person;  // This will not create a copy of person\par
+\par
+The object x is not a copy of person. It is person. Both x and person are the same object.\par
+Any changes to x will also change person, because x and person are the same object\par
+\par
+person.firstname\par
+person["firstname"]\par
+\par
+var person = \{fname:"John", lname:"Doe", age:25\};\par
+for (x in person) \{\par
+  txt += person[x];\par
+\}\par
+\par
+/////////////////////////////////\par
+\par
+You can add new properties to an existing object by simply giving it a value\par
+person.nationality = "English";\par
+\par
+delete person.age;\par
+The delete operator should not be used on predefined JavaScript object properties. It can crash your application\par
+\par
+Other attributes are: enumerable, configurable, and writable\par
+All attributes can be read, but only the value attribute can be changed (and only if the property is writable)\par
+\par
+JavaScript objects inherit the properties of their prototype.\par
+The delete keyword does not delete inherited properties, but if you delete a prototype property, it will affect all objects inherited from the prototype\par
+\par
+/////////////////////////////////\par
+\par
+Methods are functions stored as object properties\par
+\par
+Adding a new method to an object is easy:\par
+\par
+person.name = function () \{\par
+  return this.firstName + " " + this.lastName;\par
+\};\par
+\par
+var person = \{name:"John", age:30, city: "New York"\};\par
+var myString = JSON.stringify(person);\par
+document.getElementById("demo").innerHTML = myString;\par
+S:\par
+\{"name":"John","age":50,"city":"New York"\}\par
+\par
+/////////////////////////////////\par
+\par
+get lang() \{\par
+    return this.language;\par
+  \}\par
+\par
+set lang(lang) \{\par
+    this.language = lang;\par
+  \}\par
+\par
+Object.defineProperty(obj, "decrement", \{\par
+  get : function () \{this.counter--;\}\par
+\});\par
+\par
+All JavaScript objects inherit properties and methods from a prototype, Date objects inherit from Date.prototype\par
+\par
+/////////////////////////////////\par
+\par
+To add a new property to a constructor, you must add it to the constructor function:\par
+\par
+Example\par
+function Person(first, last, age, eyecolor) \{\par
+  this.firstName = first;\par
+  this.lastName = last;\par
+  this.age = age;\par
+  this.eyeColor = eyecolor;\par
+\b   this.nationality = "English";\par
+\b0\}\par
+\par
+Adding Properties and Methods to Objects\par
+\par
+function Person(first, last, age, eyecolor) \{\par
+  this.firstName = first;\par
+  this.lastName = last;\par
+  this.age = age;\par
+  this.eyeColor = eyecolor;\par
+\}\par
+\par
+Person.prototype.nationality = "English";\par
+\par
+/////////////////////////////////\par
+\par
+function Person(first, last, age, eyecolor) \{\par
+  this.firstName = first;\par
+  this.lastName = last;\par
+  this.age = age;\par
+  this.eyeColor = eyecolor;\par
+\}\par
+\par
+Person.prototype.name = function() \{\par
+  return this.firstName + " " + this.lastName;\par
+\};\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\qc\b\f1\fs24\lang11274 Programaci\'f3n funcional\par
+
+\pard\widctlpar\li-1418\ri-1510\b0\fs22\par
+\par
+Un estilo de construir la estructura y elementos de una aplicaci\'f3n, viendo la computaci\'f3n como la evaluaci\'f3n de funciones matem\'e1ticas, huyendo de aquellas pr\'e1cticas que provocan cambios de estado y mutaci\'f3n de los datos\par
+\par
+\lang1033 Esto:\par
+const numbers = [1, 2, 3, 4];\par
+let doubled = [];\par
+\par
+for(let i=0; i<numbers.length; i++)\{\par
+  doubled.push(numbers[i]*2);\par
+\}\par
+\par
+Se cambia por:\par
+const numbers = [1, 2, 3, 4];\par
+const doubled = numbers.map(n => n*2);\par
+\par
+\lang11274 En la primera versi\'f3n imperativa, usamos un contador que es nuestro estado de recorrido del primer array para saber d\'f3nde insertar el doble de cada valor en el segundo array.\par
+\par
+Con la manera declarativa nos olvidamos del contador y nos centramos en especificar la funci\'f3n que queremos aplicar. Es decir, cuando usamos programaci\'f3n declarativa, las sentencias declaran QU\'c9 hacer, delegando en otra funci\'f3n, pero no C\'d3MO hacerlo, a diferencia de la programaci\'f3n imperativa\par
+\par
+///////////////////////////////\par
+\par
+Pr\'e1cticas:\par
+Asegurar inmutabilidad de los datos con los que trabaja tu aplicaci\'f3n.\par
+Usar funciones puras.\par
+Uso de funciones de orden superior.  \par
+Uso del currying.\par
+Composici\'f3n de funciones.\par
+\par
+Cuando usamos el paradigma funcional queremos siempre evitar modificar el valor de nuestras variables y trabajar con datos inmutables. Para ello se utilizan las siguientes t\'e1cticas:\par
+Reducir / eliminar las asignaciones en la medida de lo posible. (Algunos lenguajes funcionales ni siquiera tienen operador de asignaci\'f3n '=')\par
+Usar estructuras de datos inmutables: Para esto existen librer\'edas como immutable.js de Facebook y mori. \par
+Usar las funciones freeze y seal: freeze convierte un objeto en inmutable, de manera que no es posible cambiar las propiedades que tiene definidas, a menos que \'e9stas sean objetos, y seal impide a\'f1adir nuevas propiedades pero permite reasignar el valor de las existentes (ojo si queremos 'congelar' todos lo niveles de propiedades de un objeto podemos usar helpers como deepfreeze).\par
+Hacer uso de librer\'edas que ponen a disposici\'f3n funciones que respetan el paradigma funcional como Ramda o Lodash/fp.\par
+\par
+\lang1033 let foo = [1, 2, 3];\par
+let bar = foo;\par
+bar.push(10000);\par
+console.log(foo) // ==> [1, 2, 3, 10000]\par
+Mejor usar:\par
+import \{ append \} from 'ramda';\par
+const foo = [1, 2, 3];\par
+const bar = append(4, foo);\par
+\lang11274 console.log(foo); // ==> [1, 2, 3]\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\b\f1\lang1033 Use catch to set a default value instead of a try/catch\par
+\b0\par
+const result = await new \cf1\b Promise\cf0\b0 ((resolve, reject) => reject("Because Stone Cold said so"))\par
+.catch(() => 100);\par
+\par
+///////////////////////////////\par
+\par
+let \ul myPromise\ulnone  = new \cf1\b Promise\cf0\b0 (function(myResolve, myReject) \{\par
+// "Producing Code" (May take some time)\par
+\par
+  myResolve(); // when successful\par
+  myReject();  // when error\par
+\});\par
+\par
+// "Consuming Code" (Must wait for a fulfilled Promise)\par
+\ul myPromise\ulnone .then(\par
+  function(value) \{ /* code if successful */ \},\par
+  function(error) \{ /* code if some error */ \}\par
+);\par
+\par
+/////////////////////////////////\par
+\par
+A JavaScript Promise object can be:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent1058{\pntxtb\'B7}}\fi-360\li-698\ri-1510 Pending\par
+{\pntext\f2\'B7\tab}Fulfilled\par
+{\pntext\f2\'B7\tab}Rejected\par
+
+\pard\widctlpar\li-1418\ri-1510\par
+The Promise object supports two properties: \par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent1058{\pntxtb\'B7}}\fi-360\li-698\ri-1510 State\par
+{\pntext\f2\'B7\tab}Result\par
+
+\pard\widctlpar\li-1418\ri-1510\par
+While a Promise object is "pending" (working), the result is undefined\par
+\par
+/////////////////////////////////\par
+\par
+function \b get\b0 (url) \{\par
+  // Return a new promise.\par
+  return new \cf1\b Promise\cf0\b0 (function(resolve, reject) \{\par
+    var \ul req\ulnone  = new XMLHttpRequest();\par
+    \ul req\ulnone .open('GET', url);\par
+\par
+    \ul req\ulnone .onload = function() \{\par
+      // This is called even on 404 etc so check the status\par
+      if (\ul req\ulnone .status == 200) \{\par
+        resolve(req.response);\par
+      \}\par
+      else \{\par
+        reject(Error(\ul req\ulnone .statusText));\par
+      \}\par
+    \};\par
+\par
+    \ul req\ulnone .onerror = function() \{\par
+      reject(Error("Network Error"));\par
+    \};\par
+\par
+    \ul req\ulnone .send();\par
+  \});\par
+\}\par
+\par
+\b get\b0 ('story.json').then(function(\ul response\ulnone ) \{\par
+  console.log("Success!", \ul response\ulnone );\par
+\}, function(\cf2 error\cf0 ) \{\par
+  console.error("Failed!", \cf2 error\cf0 );\par
+\});\par
+\par
+/////////////////////////////////\par
+\par
+var userCache = \{\};\par
+\par
+function getUserDetail(\cf7\b username\cf0\b0 ) \{\par
+  // In both cases, cached or not, a promise will be returned\par
+\par
+  if (userCache[\cf7\b username\cf0\b0 ]) \{\par
+  \tab // Return a promise without the "new" keyword\par
+    \tab return \cf1\b Promise\cf0\b0 .resolve(userCache[\cf7\b username\cf0\b0 ]);\par
+  \}\par
+\par
+  // Use the fetch API to get the information\par
+  // fetch returns a promise\par
+  return fetch('users/' + \cf7\b username\b0  \cf0 + '.json')\par
+    .then(function(\ul result\ulnone ) \{\par
+      userCache[\cf7\b username\cf0\b0 ] = \ul result\ulnone ;\par
+      return \ul result\ulnone ;\par
+    \})\par
+    .catch(function() \{\par
+      throw new Error('Could not find user: ' + \cf7\b username\cf0\b0 );\par
+    \lang9226\});\par
+\}\par
+\par
+/////////////////////////////////\par
+\par
+Una promesa es un objeto que le da un resultado o un error en el futuro tan pronto como completa la tarea.\par
+Es un patr\'f3n de dise\'f1o popular que se utiliza para manejar tareas asincr\'f3nicas.\par
+\par
+\cf1\b\lang1033 Promise\cf0\b0 .resolve('Success')\par
+
+\pard\widctlpar\fi1418\li-1418\ri-1510 .then((\b value\b0 ) => \{\par
+
+\pard\widctlpar\li-1418\ri-1510   \tab\tab\tab\tab  \tab console.log(\b value\b0 ); // "Success"\par
+\}).catch((\ul error\ulnone ) => \{\par
+  \lang9226 console.log(\ul error\ulnone );\par
+\});\par
+\par
+El m\'e9todo .resolve () devuelve un objeto Promise resuelto con un valor dado. Dependiendo de un valor de promesa resuelto,\par
+1. devuelve la promesa si se cumple con la promesa\par
+2. devuelve un valor si se cumple con el valor\par
+3. devuelve la promesa posible adoptando su estado eventual si se cumple con la promesa posible\par
+\par
+Esta funci\'f3n aplana capas anidadas de objetos similares a promesas (por ejemplo, una promesa que se resuelve en una promesa que se resuelve en algo) en una sola capa\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 document.\cf1\b querySelector\cf0\b0 ("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) \{\par
+\lang9226 Devuelve el primer elemento del documento (utilizando un recorrido primero en profundidad pre ordenado de los nodos del documento) que coincida con el grupo especificado de selectores.\par
+\par
+\ul element\ulnone  = document.\cf1\b querySelector\cf0\b0 (\b selectores\b0 );\par
+Donde:\par
+\ul element\ulnone  objeto de tipo element.\par
+\b selectores\b0  cadena de caracteres que contiene uno o m\'e1s selectores CSS separados por coma.\par
+\par
+var el = document.\cf1\b querySelector\cf0\b0 (".miClase");\par
+\par
+var el = document.\cf1\b querySelector\cf0\b0 ("div.user-panel.main input[name='login']");\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\b\f1\lang1033 Make an array of multiple radio boxes\par
+\par
+\b0 I have 4 characters and to each of them the user can assign 0 to 3 points:\par
+\{"charakter1":"0","charakter2":"2","charakter3":"3","charakter4":"1"\}\par
+\par
+But i would like save this information as array, so what i want is:\par
+\{"charakter":[0,2,3,1]\}\par
+\par
+Using arrays for the variables, like this:\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[2]" value="0"/>0\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[2]" value="1" checked />1\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[2]" value="2"/>2\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[2]" value="3"/>3<br/>\par
+\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[3]" value="0"/>0\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[3]" value="1" checked />1\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[3]" value="2"/>2\par
+<input type="\cf1\b radio\cf0\b0 " name="charakter[3]" value="3"/>3<br/>\par
+\par
+Results in this:\par
+\{"charakter":["0","2","3","1"]\}\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang1033 returns a random number between 0 (inclusive),  and 1 (exclusive)\par
+\par
+Math.floor(Math.\cf1\b random\cf0\b0 () * 10);    \par
+S: a random integer from 0 to 9\par
+\par
+Math.floor(Math.\cf1\b random\cf0\b0 () * 11);     \par
+S: random integer from 0 to 10\par
+\par
+///////////////////////////////\par
+\par
+Math.floor(Math.\cf1\b random\cf0\b0 () * 10) + 1; \par
+S: random integer from 1 to 10\par
+\par
+function getRndInteger(min, max) \{\par
+  return Math.floor(Math.\cf1\b random\cf0\b0 () * (max - min) ) + min;\par
+\}\par
+Returns a random number between min (included) and max (excluded)\par
+\par
+function getRndInteger(min, max) \{\par
+  return Math.floor(Math.\cf1\b random\cf0\b0 () * (max - min + 1) ) + min;\par
+\}\par
+Both included\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang11274 Permite almacenar valores \'fanicos de cualquier tipo, incluso valores primitivos u referencias a objetos\par
+Los objetos Set son colecciones de valores\par
+\par
+Se puede iterar sus elementos en el orden de su inserci\'f3n. \par
+Un valor en un Set s\'f3lo puede estar una vez\par
+\par
+\lang1033 const \ul mySet\ulnone  = new \cf1\b Set\cf0\b0 ();\par
+\ul mySet\ulnone .add(1);\par
+\ul mySet\ulnone .add(5);\par
+\ul mySet\ulnone .add('some text');\par
+\par
+\lang11274 const o = \{a: 1, b: 2\};\par
+\ul mySet\ulnone .add(o);\par
+\par
+\ul mySet\ulnone .add(\{a: 1, b: 2\}); // La variable "o" referencia a otro objeto, por lo que agrega otro valor.\par
+\par
+\ul mySet\ulnone .has(1); // true\par
+\ul mySet\ulnone .has(3); // false, 3 no ha sido a\'f1adido al Set\par
+\ul\par
+mySet\ulnone .delete(5); // Elimina 5 del Set\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang11274 Devuelve una copia de una parte del array\par
+\par
+\lang1033 This in your ajax callback refers to the jqXHR object, not to the data. If you want to access the data, use the data argument that is passed-in.\par
+jQuery does not have a .replace() function! I guess you are trying to use the Javascript string .replace() function. it works on strings. A jqXHR object is not a string.\par
+\par
+I don't suggest you manipulate a JSON string to apply some regex\par
+Data (not this) is not a string. It's a javascript object, which jQuery parsed from the JSON string it received.\par
+You need to do your string manipulation INSIDE of your $.each() loop. On a string\par
+
+\pard\widctlpar\fi720\li-1418\ri-1510\par
+
+\pard\widctlpar\li-1418\ri-1510 //////////////////////////////////\par
+\par
+array.\cf1\b slice\cf0\b0 (start, end)\par
+\par
+////////////////////////////////\par
+\par
+Extract parts of a string:\par
+var str = "Hello world!";\par
+var res = str.\cf1\b slice\cf0\b0 (0, 5);\par
+\par
+The first character has the position 0\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx1755 ////////////////////////////////\tab\par
+\par
+\lang11274 var nombres = ['Rita', 'Pedro', 'Miguel', 'Ana', 'Vanesa'];\par
+var masculinos = nombres.\cf1\b slice\cf0\b0 (1, 3);\par
+\par
+Salida:\par
+masculinos contiene ['Pedro','Miguel']\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\lang1033 ////////////////////////////////\par
+\par
+\lang11274 El m\'e9todo slice puede ser usado para convertir objetos parecidos a arrays o colecciones a un nuevo Array. Simplemente debe enlazar el m\'e9todo al objeto. El  arguments dentro de una funci\'f3n es un ejemplo de un objeto parecido a arrays.\par
+\lang1033 function list() \{\par
+  return Array.prototype.\cf1\b slice\cf0\b0 .call(arguments, 0);\par
+\}\par
+\par
+var list1 = list(1, 2, 3); // [1, 2, 3]\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\b\f1\lang1033 Format\par
+\b0 I need to be:\par
+\{id:1, name:\ldblquote Football\rdblquote , duration:12, date:\ldblquote 02-07-2018\rdblquote , relationid:null\}\par
+\par
+No, you don\rquote t, the quotes around the keys are part of the notation\par
+Stringify will correctly handle numbers when it receives them\par
+\ldblquote 1,2,3\rdblquote  is not a number, it\rquote s a string of 5 characters.\par
+\par
+  var a = \{"athing":"quack","dohickey": 3\};\par
+  console.log(a.athing);\par
+\par
+I need to be:\par
+\{id:1, name:\ldblquote Football\rdblquote , duration:12, date:\ldblquote 02-07-2018\rdblquote , relationid:null\},\par
+Stringify will generate an array of objects.\par
+\par
+var \ul jdata\ulnone  = JSON.parse(JSON.\cf1\b stringify\cf0\b0 (yourdatabasearray));\par
+console.log(\ul jdata\ulnone );\par
+S:\par
+[\{"id":1, "name":"Football", "duration":12, "date":"02-07-2018", "relationid":null\},\par
+\{"id":2, "name":"France", "duration":4, "date":"08-07-2018", "relationid":1\},\par
+\{"id":3, "name":"Belgium", "duration":3, "date":"10-07-2018", "relationid":1\}]\par
+\par
+console.log(\ul jdata\ulnone [0]);\par
+S:\par
+\{"id":1, "name":"Football", "duration":12, "date":"02-07-2018", "relationid":null\}\par
+\par
+\lang9226 console.log(jdata[0].name);\par
+S:\par
+\lang1033 Football\par
+\par
+///////////////////\par
+\par
+\b To save only the id and text\par
+\b0 Remove the rest of the fields from the object, which would also remove clutter in the database:\par
+var \b selectedObjects\b0  = $('#GeoList').select2('data');\par
+var \ul dataToSave\ulnone  = []\par
+\par
+$.each(\b selectedObjects\b0 , function(index, \cf4\b obj\cf0\b0 ) \{\par
+    \ul dataToSave\ulnone .push(\{ "id" : \cf4\b obj\cf0\b0 .id, "text" : \cf4\b obj\cf0\b0 .text\});\par
+\});\par
+\par
+var result = JSON.\cf1\b stringify\cf0\b0 (\ul dataToSave\ulnone );\par
+\par
+The element field in your object appears to be an HTML element, which has a lot of extra state information that you don't need.\par
+\par
+/////////////////////////////////////////\par
+\par
+\b Circular structure error \par
+\b0 Occurs when you have a property of the object which is the object itself directly (a -> a) or indirectly (a -> b -> a).\par
+To avoid the error message, tell JSON.stringify what to do when it encounters a circular reference. \par
+\par
+For example, if you have a person pointing to another person ("parent"), which may (or may not) point to the original person:\par
+JSON.\cf1\b stringify\cf0\b0 ( that.person, function( key, value) \{\par
+  if( key == 'parent') \{ return value.id;\}\par
+  else \{return value;\}\par
+\})\par
+\par
+The second parameter to stringify is a filter function\par
+Here it simply converts the referred object to its ID, but you are free to do whatever you like to break the circular reference.\par
+\par
+You can test the above code with the following:\par
+function Person( params) \{\par
+  this.id = params['id'];\par
+  this.name = params['name']; \par
+  this.father = null;\par
+  this.fingers = [];\par
+  // etc.\par
+\}\par
+\par
+var \b me\b0  = new Person(\{ id: 1, name: 'Luke'\});\par
+var him = new Person( \{ id:2, name: 'Darth Vader'\});\par
+me.father = him; \par
+JSON.\cf1\b stringify\cf0\b0 (\b me\b0 ); // so far so good\par
+\par
+him.father = \b me\b0 ; // time travel assumed :-)\par
+JSON.stringify(\b me\b0 ); // "TypeError: Converting circular structure to JSON"\par
+// But this should do the job:\par
+JSON.\cf1\b stringify\cf0\b0 (\b me\b0 , function( key, value) \{\par
+  if(key == 'father') \{ \par
+    return value.id;\par
+  \} else \{\par
+    return value;\par
+  \};\par
+\});\par
+\par
+BTW, I'd choose a different attribute name to "parent" since it is a reserved word in many languages (and in DOM)\par
+This tends to cause confusion down the road...\par
+
+\pard\widctlpar\fi720\li-1418\ri-1510\par
+
+\pard\widctlpar\li-1418\ri-1510 //////////////////////////////////\par
+\par
+JSON.strigify() RETURNS a JSON string. It does not modify it's parameter\par
+var mainFilterJSON = JSON.stringify(mainFilter);\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\qj\b\f1\lang1033 Javascript this.form.submit() with radio button\par
+
+\pard\widctlpar\li-1418\ri-1510\b0 Send the form when someone clicks any of the stars\par
+<form method="POST" action="/rating" accept-charset="UTF-8">\par
+<input name="_token" type="hidden" value="vySkIFDPujcmxjfs83m3OwojcbPIaHuuMhKvVErx">\par
+\par
+  <input name="movie_id" type="hidden" value="2">\par
+\par
+  <label for="star5" class="full" title="Awesome">\par
+<input id="star5" name="rating" type="radio" value="5" onchange="this.form.\cf1\b submit\cf0\b0 ()">\par
+  </label>\par
+\par
+  <label for="star4" class="full" title="Good">\par
+<input id="star4" name="rating" type="radio" value="4" onchange="this.form.\cf1\b submit\cf0\b0 ()">\par
+  </label>\par
+\par
+  <label for="star3" class="full" title="Mediocre">\par
+<input id="star3" name="rating" type="radio" value="3" onchange="this.form.\cf1\b submit\cf0\b0 ()">\par
+  </label>\par
+\par
+  <label for="star2" class="full" title="Bad">\par
+<input id="star2" name="rating" type="radio" value="2" onchange="this.form.\cf1\b submit\cf0\b0 ()">\par
+  </label>\par
+\par
+  <label for="star1" class="full" title="Horrible">\par
+<input id="star1" name="rating" type="radio" value="1" onchange="this.form.\cf1\b submit\cf0\b0 ()">\par
+  </label>\par
+</form>\par
+\par
+//////////////\par
+\par
+Add a class or ID to form:\par
+class="\ul ajax\ulnone "\par
+\par
+onchange="$('.\ul ajax'\ulnone ).\cf1\b submit\cf0\b0 ();"\par
+\par
+//////////////\par
+\par
+Javascript this.form.submit() with radio button\par
+Javascript onchange=\ldblquote this.form.submit()\rdblquote  with e.preventDefault()\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx3043\f1\lang1033 var str = "Hello world!";\par
+var \ul res\ulnone  = str.\cf1\b substring\cf0\b0 (1, 4);\par
+\lang9226 S:\par
+ell\par
+\par
+No incluye el final, el caracter 4\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\f1\lang9226 El objeto contexto de JavaScript en el cual se est\'e1 ejecutando el c\'f3digo actual.\par
+El valor de this est\'e1 determinado por c\'f3mo se invoca a la funci\'f3n. \par
+\par
+No puede ser establecida mediante una asignaci\'f3n en tiempo de ejecuci\'f3n\par
+Puede ser diferente cada vez que la funci\'f3n es invocada. \par
+\par
+ES5 introdujo el m\'e9todo bind() para establecer el valor de la funci\'f3n this independientemente de como es llamada\par
+ES2015 introdujo las funciones flecha que no proporcionan su propio "binding" de this (se mantiene el valor de this del contexto l\'e9xico que envuelve a la funci\'f3n)\par
+\par
+\lang1033 //////////////////////////\par
+\par
+const \b test\b0  = \{\par
+  \ul prop\ulnone : 42,\par
+  func: function() \{\par
+    return this.\ul prop\ulnone ;\par
+  \},\par
+\};\par
+\par
+console.log(\b test\b0 .func());\par
+\lang9226 // expected output: 42\par
+\par
+//////////////////////////////\par
+\par
+En el contexto de ejecuci\'f3n global (fuera de cualquier funci\'f3n), this se refiere al objeto global, ya sea en modo estricto o no.\par
+\lang1033 console.log(this.document === document); \par
+S:\par
+true\par
+\par
+\lang9226 En los navegadores web, el objeto window tambi\'e9n es un objeto global:\par
+\lang1033 console.log(this === window); \par
+S:\par
+true\par
+\par
+this.\b a\b0  = 37;\par
+console.log(window.\b a\b0 ); \par
+\lang9226 S:\par
+37\par
+
+\pard\widctlpar\fi720\li-1418\ri-1510\par
+
+\pard\widctlpar\li-1418\ri-1510 //////////////////////////////////\par
+\par
+Dentro de una funci\'f3n, el valor de this depende de c\'f3mo la funci\'f3n es llamada.\par
+\lang1033 function f1()\{\par
+  return this;\par
+\}\par
+\par
+f1() === window; // objeto global\par
+\par
+function f2()\{\par
+  "use strict"; // consultar modo estricto\par
+  \lang9226 return this;\par
+\}\par
+\par
+El valor de this no est\'e1 establecido por la llamada. \par
+Dado que el c\'f3digo no est\'e1 en modo estricto, el valor de this debe ser siempre un objeto por lo que por defecto es el objeto global.\par
+\par
+En modo estricto, el valor de this se mantiene en lo que est\'e1 establecida al entrar en el contexto de ejecuci\'f3n.\par
+ Si no est\'e1 definido, permanece undefined. \par
+Tambi\'e9n se puede ajustar a cualquier valor, tales como null o 42 o "Yo no soy this".\par
+\par
+f2() === undefined;\par
+This deber\'eda ser undefined, porque f2 fue llamado sin proporcionar ninguna base (ej. window.f2()). \par
+Esta caracter\'edstica no fue implementada en algunos navegadores cuando se comenz\'f3 a dar soporte al modo estricto. Como resultado, retorna incorrectamente el objeto window.\par
+\par
+///////////////////////////////////////\par
+\par
+Como un m\'e9todo de un objeto\par
+Cuando una funci\'f3n es llamada como un m\'e9todo de un objeto, el this cambia por el metodo del objeto llamado.\par
+\par
+En el siguiente ejemplo, cuando o.f() es invocado, dentro de la funci\'f3n this es ligado al objeto o.\par
+\par
+\lang1033 var o = \{\par
+  prop: 37,\par
+  f: function() \{\par
+    return this.prop;\par
+  \}\par
+\};\par
+\par
+console.log(o.f()); // logs 37\par
+\lang9226 Note que el comportamiento no es del todo afectado por c\'f3mo o d\'f3nde la funci\'f3n fue definida. En el ejemplo anterior, nosotros definimos la funci\'f3n en l\'ednea como el elemento f durante la definici\'f3n de o.  Sin embargo, podriamos haber definido con la misma facilidad la primera funci\'f3n y luego  adjuntarlo a o.f. Hacerlo da como resultado el mismo comportamiento.\par
+\par
+\lang1033 var o = \{prop: 37\};\par
+\par
+function independent() \{\par
+  return this.prop;\par
+\}\par
+\par
+o.f = independent;\par
+\par
+console.log(o.f()); // logs 37\par
+\lang9226 Esto demuestra que s\'f3lo importa que la funci\'f3n fue invocada del elemento f de o.\par
+\par
+Asimismo, el enlace this s\'f3lo se ve afectado por la referencia del miembro m\'e1s inmediata. En el siguiente ejemplo, cuando invocamos a la funci\'f3n, lo llamamos como metodo g del objeto o.b. Esta vez durante la ejecuci\'f3n, this dentro de la funci\'f3n se referir\'e1 a o.b. El hecho de que el objeto es en s\'ed mismo un elemento de o no tiene ninguna consecuencia, la referencia m\'e1s inmediata es todo lo que importa.\par
+\par
+\lang1033 o.b = \{g: independent, prop: 42\};\par
+\lang9226 console.log(o.b.g()); // logs 42\par
+\par
+//////////////////////////////\par
+\par
+\lang1033 In a method, this refers to the owner object.\par
+Alone, this refers to the global object.\par
+\par
+In a function, this refers to the global object.\par
+In a function, in strict mode, this is undefined.\par
+\par
+In an event, this refers to the element that received the event.\par
+Methods like call(), and apply() can refer this to any object\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\qc\b\f1\fs24\lang1033 undefined\par
+
+\pard\widctlpar\li-1418\ri-1510\b0\fs22\par
+\par
+Is when it should be a value in the compiler\par
+Is a global value that represents the absence of an assigned value\par
+\par
+Es undefined:\par
+A variable when it is declared but not assigned a value\par
+Accessing the value of a property that doesn't exist\par
+The return value of a function that doesn't return a value\par
+\lang11274 Llamar una funci\'f3n sin darle el argumento\f0\lang10\par
+
+\pard\sl240\slmult1\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\qc\b\f1\fs24\lang1033 validaci\'f3n\par
+
+\pard\widctlpar\li-1418\ri-1510\b0\fs22\par
+\par
+\par
+<form action="" method="" id="" name="" onsubmit="return \ul validacion\ulnone ()">\par
+\par
+\lang11274 function \ul validacion\ulnone () \{\par
+\lang3082   if (condicion que debe cumplir el primer campo del formulario) \{\par
+     // Si no se cumple la condicion...\par
+     alert('[ERROR] El campo debe tener un valor de...');\par
+     return false;\par
+  \}  \par
+  // Si el script ha llegado a este punto, todas las condiciones\par
+  // se han cumplido, por lo que se devuelve el valor true\par
+  \lang1033 return true;\par
+\}\par
+\par
+///////////////////////////////\par
+\par
+\b valor\b0  = document.getElementById("campo").value;\par
+\par
+if( \b valor\b0  == \cf7 null \cf0 || \b valor\b0 .length == 0 || /^\\s+$/.test(\b valor\b0 ) ) \{\par
+  \lang3082 return false;\par
+\}\par
+\par
+\cf7 null \cf0 ning\'fan valor\lang11274\par
+\lang3082 la expresi\'f3n regular que no s\'f3lo est\'e9 formado por espacios en blanco\par
+\par
+/////////////////////////////////\par
+\par
+Con valores num\'e9ricos:\par
+if( isNaN(valor) ) \{\par
+  \lang1033 return false;\par
+\}\par
+\par
+isNaN(3);          // false\par
+isNaN("3");        // false\par
+\par
+isNaN(3.3545);     // false\par
+isNaN(32323.345);  // false\par
+\par
+isNaN(+23.2);      // false\par
+isNaN("-23.2");    // false\par
+\par
+isNaN("23a");      // true\par
+isNaN("23.43.54"); // true\par
+\par
+\lang11274 /////////////////////////////////\par
+\par
+\lang3082 Obligar al usuario a seleccionar un elemento de una lista desplegable:\par
+<select id="\ul opciones\ulnone " name="opciones">\par
+  <option value="">- Selecciona un valor -</option>\par
+\lang1033 </select>\par
+\par
+\cf3 indice \cf0 = document.getElementById("\ul opciones\ulnone ").selectedIndex;\par
+\par
+if( \cf3 indice \cf0 == null || \cf3 indice \cf0 == 0 ) \{\par
+  return false;\par
+\lang3082\}\par
+\par
+\lang11274 /////////////////////////////////\par
+\par
+Email\par
+\ul\lang3082 valor\ulnone  = document.getElementById("campo").value;\par
+\par
+\lang1033 if( !(/\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)/.test(\ul valor\ulnone )) ) \{\par
+  \lang11274 return false;\par
+\}\par
+\par
+\lang3082 /////////////////////////////////\par
+\par
+La validaci\'f3n consiste en intentar construir una fecha con los datos proporcionados por el usuario\par
+var ano = document.getElementById("ano").value;\par
+var mes = document.getElementById("mes").value;\par
+var dia = document.getElementById("dia").value;\par
+\ul\lang1033 valor\ulnone  = new Date(ano, mes, dia);\par
+\par
+if( !isNaN(\ul valor\ulnone ) ) \{\par
+  return false;\par
+\lang3082\}\par
+\par
+/////////////////////////////////\par
+\par
+8 n\'fameros seguidos y una letra, la segunda comprobaci\'f3n aplica el algoritmo de c\'e1lculo de la letra del DNI y la compara con la letra proporcionada por el usuario:\par
+\ul valor\ulnone  = document.getElementById("campo").value;\par
+var \cf2 letras \cf0 = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];\par
+\par
+\lang1033 if( !(/^\\d\{8\}[A-Z]$/.test(\ul valor\ulnone )) ) \{\par
+  return false;\par
+\}\par
+\par
+if(\ul valor\ulnone .charAt(8) != \cf2 letras\cf0 [(\ul valor\ulnone .substring(0, 8))%23]) \{\par
+  \lang3082 return false;\par
+\}\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx2085 /////////////////////////////////\tab\par
+\par
+Nueve n\'fameros consecutivos\par
+\ul valor\ulnone  = document.getElementById("campo").value;\par
+\par
+\lang1033 if( !(/^\\d\{9\}$/.test(\ul valor\ulnone )) ) \{\par
+  return false;\par
+\}\par
+\par
+/////////////////////////////////\tab\par
+\par
+function checkTextarea(\ul idText\ulnone ) \{\par
+  return $(\ul idText\ulnone ).val().length > 12 ? true : false;\tab\par
+\}\par
+
+\pard\widctlpar\fi720\li-1418\ri-1510\par
+
+\pard\widctlpar\li-1418\ri-1510 //////////////////////////////////\par
+\par
+function checkRadioBox(\ul nameRadioBox\ulnone ) \{\par
+  return $(\ul nameRadioBox\ulnone ).is(":checked") ? true : false;\par
+\lang11274\}\par
+\par
+//////////////////////////////////\par
+\par
+\lang1033 function checkSelect(\ul idSelect\ulnone ) \{\par
+  return $(\ul idSelect\ulnone ).val() ? true : false;\par
+\lang11274\}\par
+\par
+//////////////////////////////////\par
+\par
+\lang1033 <form name="myForm" action="/action_page.php" onsubmit="return \ul validateForm\ulnone ()" method="post">\par
+\par
+function \ul validateForm\ulnone () \{\par
+  var\b  x\b0  = document.forms["myForm"]["fname"].value;\par
+  if (\b x\b0  == "") \{\par
+    alert("Name must be filled out");\par
+    \lang11274 return false;\par
+  \}\par
+\}\par
+\lang1033 Returns false, to prevent the form from being submitted\par
+\par
+\lang11274 //////////////////////////////////\par
+\par
+\lang1033 <button type="button" onclick="\cf5 myFunction\cf0 ()">Submit</button>\par
+\par
+function \cf5 myFunction\cf0 () \{\par
+  var x, text;\par
+\par
+  // Get the value of the input field with id="numb"\par
+  x = document.getElementById("numb").value;\par
+\par
+  // If x is Not a Number or less than one or greater than 10\par
+  if (isNaN(x) || x < 1 || x > 10) \{\par
+    text = "Input not valid";\par
+  \} else \{\par
+    text = "Input OK";\par
+  \}\par
+  document.getElementById("demo").innerHTML = text;\par
+\}\par
+\par
+\lang11274 //////////////////////////////////\par
+\par
+\lang1033 <input type="text" name="fname" required>\par
+Automatic HTML form validation does not work in Internet Explorer 9 or earlier\par
+\par
+//////////////////////////////////\par
+\par
+HTML constraint validation is based on:\par
+HTML Input Attributes (disabled, min, max, pattern, required, type)\par
+CSS Pseudo Selectors (:disabled, :invalid, :optional, :required, :valid)\par
+DOM Properties and Methods (checkValidity()\tab Returns true if an input element contains valid data, \par
+setCustomValidity()\tab Sets the validationMessage property of an input element)\par
+\par
+<input id="id1" type="number" min="100" max="300" required>\par
+<button onclick="\ul myFunction\ulnone ()">OK</button>\par
+<p id="\cf6 demo\cf0 "></p>\par
+\par
+function \ul myFunction\ulnone () \{\par
+  var \b inpObj\b0  = document.getElementById("id1");\par
+  if (!\b inpObj\b0 .checkValidity()) \{\par
+    document.getElementById("\cf6 demo\cf0 ").innerHTML = \b inpObj\b0 .validationMessage;\par
+  \}\par
+\}\par
+\par
+//////////////////////////////////\par
+\par
+Validity:\par
+customError\par
+patternMismatch\par
+\par
+rangeOverflow\par
+rangeUnderflow\par
+\par
+stepMismatch\par
+tooLong\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\tx883 typeMismatch\par
+valueMissing\par
+\par
+valid\par
+\par
+if (document.getElementById("id1").validity.rangeOverflow) \{\par
+
+\pard\sl240\slmult1\}\f0\lang10\par
+\par
+///////////////////////////////////////////////////////\par
+\par
+
+\pard\widctlpar\li-1418\ri-1510\qc\b\f1\fs24\lang9226 var \par
+
+\pard\widctlpar\li-1418\ri-1510\b0\fs22\par
+\par
+\par
+Las  declaraciones de variables, donde sea que ocurran, son procesadas antes de que cualquier otro c\'f3digo sea ejecutado. \par
+El \'e1mbito de una variable declarada con la palabra reservada var es su contexto de ejecuci\'f3n en curso, que puede ser la funci\'f3n que la contiene o, para las variables declaradas afuera de cualquier funci\'f3n, un \'e1mbito global. \par
+\par
+Si re-declaras una variable Javascript, esta no perder\'e1 su valor.\par
+Asignar un valor a una variable no declarada implica crearla como variable global (se convierte en una propiedad del objeto global) cuando la asignaci\'f3n es ejecutada. \par
+\par
+Las diferencias entre una variable declarada y otra sin declarar son:\par
+1. Las variables declaradas se limitan al contexto de ejecuci\'f3n en el cual son declaradas. \par
+Las variables no declaradas siempre son globales.\par
+\par
+function \cf3\b x\cf0\b0 () \{\par
+  y = 1;   // Lanza un error de tipo "ReferenceError" en modo estricto ('use strict')\par
+  var z = 2;\par
+\}\par
+\par
+\cf3\b x\cf0\b0 ();\par
+\par
+console.log(y); // Imprime "1" \par
+console.log(z); // Lanza un error de tipo "ReferenceError": z no est\'e1 definida afuera de x\par
+\par
+2. Las variables declaradas son creadas antes de ejecutar cualquier otro c\'f3digo. \par
+Las variables sin declarar no existen hasta que el c\'f3digo que las asigna es ejecutado\par
+\par
+console.log(a);                // Lanza un error de tipo "ReferenceError".\par
+console.log('trabajando...'); // Nunca se ejecuta.\par
+\par
+var a;\par
+console.log(a);                // Imprime "undefined" o "" dependiendo del navegador.\par
+console.log('trabajando...'); // Imprime "trabajando...".\par
+\par
+3. Las variables declaradas son una propiedad no-configurable de su contexto de ejecuci\'f3n (de funci\'f3n o global). \par
+Las variables sin declarar son configurables (p. ej. pueden borrarse).\par
+var a = 1;\par
+b = 2;\par
+\par
+delete this.a; // Lanza un error de tipo "ReferenceError" en modo estricto ('use strict'), de lo contrario falla silenciosamente.\par
+delete this.b;\par
+\par
+console.log(a, b); // Lanza un error de tipo "ReferenceError". \par
+// La propiedad 'b' se elimin\'f3 y ya no existe.\par
+\par
+Debido a esas tres diferencias, fallar al declarar variables muy probablemente llevar\'e1 a resultados inesperados. \par
+Siempre declarar las variables, sin importar si est\'e1n en una funci\'f3n o un \'e1mbito global. \par
+En el modo estricto (strict mode) de ECMAScript 5, asignar valor a una variable sin declarar lanzar\'e1 un error\par
+\par
+\lang1033 /////////////////////////\par
+\par
+\b Difference between using \ldblquote let\rdblquote  and \ldblquote var\rdblquote\par
+\b0 Main difference is scoping (darle alcance) rules. \par
+Variables declared by var keyword are scoped to the immediate function body (hence the function scope) \par
+Let variables are scoped to the immediate enclosing block denoted by \{ \} (hence the block scope).\par
+\par
+function run() \{\par
+  var foo = "Foo";\par
+  let bar = "Bar";\par
+\par
+  console.log(foo, bar); // Foo Bar\par
+\par
+  \{\par
+    let baz = "Bazz";\par
+    console.log(baz); // Bazz\par
+  \}\par
+\par
+  console.log(baz); // ReferenceError\par
+\}\par
+\par
+run();\par
+\par
+The reason why let keyword was introduced to the language was function scope is confusing and was one of the main sources of bugs in JavaScript.\par
+var funcs = [];\par
+\par
+///////////////////////////////////////////\par
+\par
+// let's create 3 functions\par
+for (var i = 0; i < 3; i++) \{\par
+  // and store them in funcs\par
+  funcs[i] = function() \{\par
+    // each should log its value.\par
+    console.log("My value: " + i);\par
+  \};\par
+\}\par
+\par
+for (var j = 0; j < 3; j++) \{\par
+  // and now let's run each one to see\par
+  funcs[j]();\par
+\}\par
+\par
+My value: 3 was output to console each time funcs[j](); was invoked since anonymous functions were bound to the same variable.\par
+People had to create immediately invoked functions to capture correct value from the loops but that was also hairy.\par
+\par
+Hoisting\par
+While variables declared with var keyword are hoisted (initialized with undefined before the code is run) which means they are accessible in their enclosing scope even before they are declared:\par
+\par
+function run() \{\par
+  console.log(foo); // undefined\par
+  var foo = "Foo";\par
+  console.log(foo); // Foo\par
+\}\par
+\par
+run();\par
+let variables are not initialized until their definition is evaluated. Accessing them before the initialization results in a ReferenceError. Variable said to be in "temporal dead zone" from the start of the block until the initialization is processed.\par
+\par
+function checkHoisting() \{\par
+  console.log(foo); // ReferenceError\par
+  let foo = "Foo";\par
+  console.log(foo); // Foo\par
+\}\par
+\par
+checkHoisting();\par
+Creating global object property\par
+At the top level, let, unlike var, does not create a property on the global object:\par
+\par
+var foo = "Foo";  // globally scoped\par
+let bar = "Bar"; // globally scoped\par
+\par
+console.log(window.foo); // Foo\par
+console.log(window.bar); // undefined\par
+Redeclaration\par
+In strict mode, var will let you re-declare the same variable in the same scope while let raises a SyntaxError.\par
+\par
+'use strict';\par
+var foo = "foo1";\par
+var foo = "foo2"; // No problem, 'foo' is replaced.\par
+\par
+let bar = "bar1";\par
+let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared\par
+
+\pard\sl240\slmult1\f0\lang10\par
+\par
+///////////////////////////////////////////////////////\par
+///////////////////////////////////////////////////////\par
+\par
+///////////////////////////////////////////////////////\par
+///////////////////////////////////////////////////////\par
+\par
+\par
+\par
+}
+ 

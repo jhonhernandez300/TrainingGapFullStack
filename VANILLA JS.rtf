@@ -1,0 +1,3222 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}{\f2\fnil\fcharset0 Cambria Math;}{\f3\fnil Calibri;}{\f4\fnil\fcharset1 Segoe UI Symbol;}{\f5\fnil Cambria Math;}{\f6\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;\red128\green158\blue194;\red255\green0\blue0;\red255\green192\blue0;\red0\green176\blue80;\red155\green0\blue211;\red0\green77\blue187;\red192\green80\blue77;\red155\green187\blue89;\red247\green150\blue70;\red75\green172\blue198;\red128\green100\blue162;\red79\green129\blue189;\red209\green99\blue73;\red209\green144\blue73;\red204\green180\blue0;\red158\green124\blue124;\red243\green164\blue71;\red223\green206\blue4;\red165\green181\blue146;}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sl240\slmult1\qc\b\f0\fs24\lang10 VANILLA JS\par
+
+\pard\sl240\slmult1\b0\par
+\par
+\par
+/////////////////////////////////          +\par
+\par
+Complexity confuses programmers. Confused programmers, in turn, introduce mistakes (bugs)\par
+Summing a range of numbers isn\rquote t about loops and counters. It is about ranges and sums\par
+\par
+Abstractions hide details and give us the ability to talk about problems at a higher (or more abstract) level\par
+\par
+//////////////////////////////                      ? /\par
+\par
+return [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday' ][(new Date(dateString)).getDay()];\par
+\par
+dateString = 10/11/2009;\par
+//Sunday\par
+\par
+\par
+//////////////////////////////                    /\par
+\par
+new Promise((_, reject) => reject(new Error("Fail")))\par
+  .then(value => console.log("Handler 1"))\par
+  .catch(\b reason \b0 => \{\par
+    console.log("Caught failure " + \b reason\b0 );\par
+    return "nothing";\par
+  \})\par
+  .then(value => console.log("Handler 2", value));\par
+// \f1\u8594?\f0  Caught failure Error: Fail\par
+// \f1\u8594?\f0  Handler 2 nothing\par
+\par
+/////////////////////////////                    /\par
+\par
+WWW. Set\f2  \f0 of\f2  \f0 protocols\f2  \f0 and\f2  \f0 formats\f2  \f0 that\f2  \f0 allow\f2  \f0 us\f2  \f0 to\f2  \f0 visit\f2  \f0 web\f2  \f0 pages\f2  \f0 in\f2  \f0 a\f2  \f0 browser\par
+\par
+Uniform\f2  \f0 Resource\f2  \f0 Locator\f2  \f0 URL:\par
+{{\field{\*\fldinst{HYPERLINK http://eloquentjavascript.net/13_browser.html }}{\fldrslt{http\f2 ://\f0 eloquentjavascript\f2 .\f0 net\f2 /\f0 13\f2 _\f0 browser\f2 .\f0 html\ul0\cf0}}}}\f0\fs24\par
+\f2  |      |                      |               |                                                 |\f0\par
+\f2  \f0 protocol\f2        \f0 server\f2                \f0 path\par
+\par
+//////////////////////////                    /\par
+\par
+\b Counting instances of values in an object\b0\par
+let names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice']\par
+\par
+let countedNames = names.reduce(function (allNames, name) \{\par
+  if (name in allNames) \{\par
+    allNames[name]++\par
+  \}\par
+  else \{\par
+    allNames[name] = 1\par
+  \}\par
+  return allNames\par
+\}, \{\})\par
+// countedNames is:\par
+// \{ 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 \}\lang10\par
+\par
+////////////////////////////////////                               /\par
+\par
+input = input.split('\\n')\par
+line = line.split(' ')\par
+\par
+Sample Input:\par
+3\par
+sam 99912222\par
+tom 11122222\par
+harry 12299933\par
+sam\par
+edward\par
+harry\par
+Sample Output\par
+\par
+Sample output:\par
+sam=99912222\par
+Not found\par
+harry=12299933\par
+\par
+function processData(input) \{\par
+    const inputData = input.split('\\n');\par
+    /**[\par
+    '3',\par
+    'sam 99912222',\par
+    'tom 11122222',\par
+    'harry 12299933',\par
+    'sam',\par
+    'edward',\par
+    'harry'\par
+    ] */\par
+\par
+    const dataLength = Number(inputData.shift());\par
+    ///3\par
+    const phoneBook = new Map();\par
+    const queryData = inputData.reduce((\b target\b0 , item, index) => \{\par
+        index < dataLength ? phoneBook.set(item.split(' ')[0], item.split(' ')[1]) : \b target\b0 .push(item);\par
+\par
+        //console.log(target);\par
+        //[ 'sam', 'edward', 'harry' ]\par
+        return target;\par
+    \}, []);\par
+\par
+    //console.log(phoneBook);\par
+    /**[\par
+     '3',\par
+    'sam 99912222',\par
+    'tom 11122222',\par
+    'harry 12299933',\par
+    'sam',\par
+    'edward',\par
+    'harry'\par
+    ]\par
+    Map(3) \{\par
+    'sam' => '99912222',\par
+    'tom' => '11122222',\par
+    'harry' => '12299933'\par
+    \} */\par
+    \par
+    //console.log(queryData);\par
+    /**[ 'sam', 'edward', 'harry' ]\par
+        sam=99912222\par
+        Not found\par
+        harry=12299933 */\par
+    \par
+\par
+    queryData.forEach((val, index) => \{ \par
+        console.log(phoneBook.get(val) ? `$\{val\}=$\{phoneBook.get(val)\}` : 'Not found');\par
+    \})\par
+    /*[\par
+    '3',\par
+    'sam 99912222',\par
+    'tom 11122222',\par
+    'harry 12299933',\par
+    'sam',\par
+    \ul 'edward',\par
+\ulnone     'harry'\par
+    ]\par
+    sam=99912222\par
+    \ul Not found\ulnone\par
+    harry=12299933*/\par
+\} \par
+\par
+/////////////////////////////////          +\par
+\par
+Vanilla js It\'b4s a fast, lightweight, cross-platform framework for building JavaScript applications\par
+A programming language is an artificially constructed language used to instruct computers\par
+\par
+Without care, a program\rquote s size and complexity will grow out of control\par
+Lexical scoping. Each local scope can also see all the local scopes that contain it, and all scopes can see the global scope\par
+\par
+Las funciones son movidas autom\'e1ticamente arriba\par
+Js ignores the extra arguments on a function\par
+\par
+Higher-order functions. Those functions that use other functions as arguments or  return them\par
+Higher-order functions allow us to abstract over actions, not just values\par
+\par
+It is possible to emulate private methods using closures\par
+indexOf returns -1 when no such element is found.\par
+\par
+A string\rquote s indexOf can search for a string containing more than one character, whereas the corresponding array method looks only for a single element\par
+\par
+/////////////////////////////////////////              +\par
+\par
+\b\lang9226 Ver las propiedades\b0\par
+console.log(Object.keys(\{x: 0, y: 0, z: 2\}));\par
+// \f1\u8594?\f0  ["x", "y", "z"]\lang10\par
+\par
+//////////////////////////////////////////////           +\par
+\par
+console.log([1, 2, 3, 4].reduce((a, b) => a + b));\par
+// 3 + 3 + 4\par
+// 6 + 4\par
+//10\par
+\par
+/////////////////////////////////////////////                   /\par
+\par
+<script src="code/hello.js"></script>\par
+You can load ES modules in the browser by giving your script tag a type="module" attribute. Such modules can depend on other modules by using URLs relative to themselves as module names in import declarations\par
+\par
+<button onclick="alert('Boom!');">DO NOT PRESS</button>\par
+\par
+Sandboxing. Isolating a programming environment \par
+\par
+///////////////////////////////////                   /\par
+\par
+\b map\b0\par
+Si se indica un par\'e1metro thisArg a un map, se usar\'e1 como valor de this en la funci\'f3n callback. En otro caso, se pasar\'e1 undefined como su valor this\par
+\par
+map no modifica el array original en el que es llamado (aunque callback, si es llamada, puede modificarlo)\par
+\par
+var kvArray = [\{clave:1, valor:10\},\par
+               \{clave:2, valor:20\},\par
+               \{clave:3, valor: 30\}];\par
+\par
+var reformattedArray = kvArray.map(function(\ul obj\ulnone )\{\par
+   var rObj = \{\};\par
+   rObj[\ul obj\ulnone .clave] = \ul obj\ulnone .valor;\par
+   return rObj;\par
+\});\par
+\par
+// reformattedArray es ahora [\{1:10\}, \{2:20\}, \{3:30\}],\par
+\par
+// kvArray sigue siendo:\par
+// [\{clave:1, valor:10\},\par
+//  \{clave:2, valor:20\},\par
+//  \{clave:3, valor: 30\}]\par
+\par
+/////////////////////////////////////////             +\par
+\par
+const \b ingredient \b0 = function(amount, unit, name) \{\par
+  ...\par
+\}\par
+\par
+\b ingredient\b0 (1, "can", "chickpeas");\par
+\par
+////////////////////////////////////////        +\par
+\par
+const square1 = (x) => \{ return x * x; \};\par
+const square2 = x => x * x;\par
+\par
+function square(x) \{\par
+  ...\par
+\}\par
+\par
+////////////////////////////////////////////           +\par
+\par
+function minus(a, b) \{\par
+  if (b === undefined) return -a;\par
+  else return a - b;\par
+\}\par
+\par
+console.log(minus(10));\par
+// \f1\u8594?\f0  -10\par
+console.log(minus(10, 5));\par
+// \f1\u8594?\f0  5\par
+\par
+////////////////////////////////////////////                     +\par
+\par
+\b Un valor por defecto\b0\par
+function \cf2\b power\cf0\b0 (\ul base\ulnone , \b exponent \b0 = 2) \{\par
+  let result = 1;\par
+  for (let count = 0; count < \b exponent\b0 ; count++) \{\par
+    result *= \ul base\ulnone ;\par
+  \}\par
+  return result;\par
+\}\par
+\par
+console.log(\cf2\b power\cf0\b0 (4));\par
+// \f1\u8594?\f0  16\par
+console.log(\cf2\b power\cf0\b0 (2, 6));\par
+// \f1\u8594?\f0  64\lang10\par
+\par
+///////////////////////////////////////////                  /\par
+\par
+class Person \{\par
+    constructor(firstName, lastName, identification) \{\par
+        this.firstName = firstName;\par
+        this.lastName = lastName;\par
+        this.idNumber = identification;\par
+    \}\par
+    \par
+    printPerson() \{\par
+        console.log(\par
+            "Name: " + this.lastName + ", " + this.firstName \par
+            + "\\nID: " + this.idNumber\par
+        )\par
+    \}\par
+\}\par
+\par
+////////////////////////////////////////////             +\par
+\par
+\b Closure\par
+\b0 The inner function has access to all of the scope of the outer function\par
+\par
+function \ul init\ulnone () \{\par
+  var \cf3\b name \cf0\b0 = 'Mozilla'; // name is a local variable created by init\par
+  function \cf4\b displayName\cf0\b0 () \{ // displayName() is the inner function, a closure\par
+    alert(\cf3\b name\cf0\b0 ); // use variable declared in the parent function\par
+  \}\par
+  \cf4\b displayName\cf0\b0 ();\par
+\}\par
+\ul init\ulnone ();\par
+\par
+//////////////////////////////////////                    +\par
+\par
+function \cf5\b makeFunc\cf0\b0 () \{\par
+  var \cf6\b name \cf0\b0 = 'Mozilla';\par
+  function \cf7\b displayName\cf0\b0 () \{\par
+    alert(\cf6\b name\cf0\b0 );\par
+  \}\par
+  return \cf7\b displayName\cf0\b0 ;\par
+\}\par
+\par
+var myFunc = \cf5\b makeFunc\cf0\b0 ();\par
+myFunc();\par
+\par
+Mozilla sale solo una vez\par
+\par
+////////////////////////////////////////////            +\par
+  \par
+function \b makeSizer\b0 (size) \{\par
+  return function() \{\par
+    document.body.style.fontSize = size + 'px';\par
+  \};\par
+\}\par
+\par
+var \ul size12 \ulnone = \b makeSizer\b0 (12);\par
+var size14 = \b makeSizer\b0 (14);\par
+var size16 = \b makeSizer\b0 (16);\par
+\par
+document.getElementById('\cf8\b size-12\cf0\b0 ').onclick = \ul size12\ulnone ;\par
+document.getElementById('size-14').onclick = size14;\par
+document.getElementById('size-16').onclick = size16;\par
+\par
+<a href="#" id="\cf8\b size-12\cf0\b0 ">12</a>\par
+<a href="#" id="size-14">14</a>\par
+<a href="#" id="size-16">16</a>\par
+\par
+////////////////////////////////////////////          +\par
+\par
+var \b counter \b0 = (function() \{\par
+  var privateCounter = 0;\par
+\par
+  function \cf9\b changeBy\cf0\b0 (val) \{\par
+    privateCounter += val;\par
+  \}\par
+\par
+  return \{\par
+    \cf10\b increment\cf0\b0 : function() \{\par
+      \cf9\b changeBy\cf0\b0 (1);\par
+    \},\par
+    decrement: function() \{\par
+      \cf9\b changeBy\cf0\b0 (-1);\par
+    \},\par
+    \ul value\ulnone : function() \{\par
+      return privateCounter;\par
+    \}\par
+  \};\par
+\})();\par
+\par
+console.log(\b counter\b0 .\ul value\ulnone ());  // 0.\par
+\par
+\b counter\b0 .\cf10\b increment\cf0\b0 ();\par
+counter.increment();\par
+console.log(counter.value());  // 2\par
+\par
+////////////////////////////////////////////             +\par
+\par
+Every closure has three scopes:\par
+\cf5\b Local (Own scope)\par
+\cf7 Outer Functions \cf0\b0\par
+\cf6\b Global \cf0\b0\par
+\par
+\cf6\b // global scope\cf0\b0\par
+var e = 10;\par
+function \b sum\b0 (a)\{\par
+  return function(b)\{\par
+    return function(c)\{\par
+      \cf7\b // outer functions scope\cf0\b0\par
+      return function(d)\{\par
+        \cf5\b // local scope\cf0\b0\par
+        return a + b + c + d + e;\par
+      \}\par
+    \}\par
+  \}\par
+\}\par
+\par
+console.log(\b sum\b0 (1)(2)(3)(4)); // log 20\par
+\par
+You can also write without anonymous functions:\par
+// global scope\par
+var e = 10;\par
+function sum(a)\{\par
+  return function sum2(b)\{\par
+    return function sum3(c)\{\par
+      // outer functions scope\par
+      return function sum4(d)\{\par
+        // local scope\par
+        return a + b + c + d + e;\par
+      \}\par
+    \}\par
+  \}\par
+\}\par
+\par
+var sum2 = sum(1);\par
+var sum3 = sum2(2);\par
+var sum4 = sum3(3);\par
+var result = sum4(4);\par
+console.log(result) //log 20\par
+\par
+/////////////////////////////////////////              /\par
+\par
+There is no way to create a new node and immediately add children or attributes to it. Instead, you have to first create it and then add the children and attributes one by one\par
+\par
+Code that interacts heavily with the DOM tends to get long, repetitive, and ugly\par
+\par
+let link = document.body.getElementsByTagName("a")[0];\par
+\par
+Para crear nodos se usa:\par
+document.createElement\par
+\par
+<p data-classified="secret">The launch code is 00000000.</p>\par
+<p data-classified="unclassified">I have two feet.</p>\par
+\par
+<script>\par
+  let paras = document.body.getElementsByTagName("p");\par
+  for (let para of Array.from(paras)) \{\par
+    if (para.getAttribute("data-classified") == "secret") \{\par
+      para.remove();\par
+    \}\par
+  \}\par
+</script>\par
+\par
+///////////////////////////////////////////                      /\par
+\par
+\b map\b0\par
+var map = Array.prototype.map;\par
+var valores = map.call('Hello World', function(char) \{ return char.charCodeAt(0); \});\par
+// valores ahora tiene [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]\par
+\par
+//////////////////////////////////////                           /\par
+\par
+var elems = document.querySelectorAll('select option:checked');\par
+var values = [].map.call(elems, function(obj) \{\par
+  return obj.value;\par
+\});\par
+\par
+////////////////////////////////////////////           +\par
+\par
+Rather than the callbacks all sharing a single lexical environment, the \b makeHelpCallback \b0 function creates a new lexical environment for each callback, in which help refers to the corresponding string from the helpText array.\par
+<p id="help">Helpful notes will appear here</p>\par
+<p>E-mail: <input type="text" id="email" name="email"></p>\par
+<p>Name: <input type="text" id="name" name="name"></p>\par
+<p>Age: <input type="text" id="age" name="age"></p>\par
+\par
+function \cf11\b showHelp\cf0\b0 (help) \{\par
+  document.getElementById('help').textContent = help;\par
+\}\par
+\par
+function \b makeHelpCallback\b0 (help) \{\par
+  return function() \{\par
+    \cf11\b showHelp\cf0\b0 (help);\par
+  \};\par
+\}\par
+\par
+function \ul setupHelp\ulnone () \{\par
+  var helpText = [\par
+      \{'id': 'email', 'help': 'Your e-mail address'\},\par
+      \{'id': 'name', 'help': 'Your full name'\},\par
+      \{'id': 'age', 'help': 'Your age (you must be over 16)'\}\par
+    ];\par
+\par
+  for (var i = 0; i < helpText.length; i++) \{\par
+    var item = helpText[i];\par
+    document.getElementById(item.id).onfocus = \b makeHelpCallback\b0 (item.help);\par
+  \}\par
+\}\par
+\par
+\ul setupHelp\ulnone ();\par
+\par
+\b Solution 2\par
+\b0 function \b showHelp\b0 (help) \{\par
+  document.getElementById('help').textContent = help;\par
+\}\par
+\par
+function \ul setupHelp\ulnone () \{\par
+  var helpText = [\par
+      \{'id': 'email', 'help': 'Your e-mail address'\},\par
+      \{'id': 'name', 'help': 'Your full name'\},\par
+      \{'id': 'age', 'help': 'Your age (you must be over 16)'\}\par
+    ];\par
+\par
+  for (var i = 0; i < helpText.length; i++) \{\par
+    (function() \{\par
+       var item = helpText[i];\par
+       document.getElementById(item.id).onfocus = function() \{\par
+         \b showHelp\b0 (item.help);\par
+       \}\par
+    \})(); // Immediate event listener attachment with the current value of item (preserved until iteration).\par
+  \}\par
+\}\par
+\par
+\ul setupHelp\ulnone ();\par
+\par
+\b Solution 3\par
+\b0 function \cf12\b showHelp\cf0\b0 (help) \{\par
+  document.getElementById('help').textContent = help;\par
+\}\par
+\par
+function \cf13\b setupHelp\cf0\b0 () \{\par
+  var helpText = [\par
+      \{'id': 'email', 'help': 'Your e-mail address'\},\par
+      \{'id': 'name', 'help': 'Your full name'\},\par
+      \{'id': 'age', 'help': 'Your age (you must be over 16)'\}\par
+    ];\par
+\par
+  for (let i = 0; i < helpText.length; i++) \{\par
+    let item = helpText[i];\par
+    document.getElementById(item.id).onfocus = function() \{\par
+      \cf12\b showHelp\cf0\b0 (item.help);\par
+    \}\par
+  \}\par
+\}\par
+\par
+\cf13\b setupHelp\cf0\b0 ();\par
+\par
+\b Solution 4\par
+\b0 Use \cf14\b forEach\cf0\b0 () to iterate over the helpText array and attach a listener to each <input>\par
+function \b showHelp\b0 (help) \{\par
+  document.getElementById('help').textContent = help;\par
+\}\par
+\par
+function \ul setupHelp\ulnone () \{\par
+  var helpText = [\par
+      \{'id': 'email', 'help': 'Your e-mail address'\},\par
+      \{'id': 'name', 'help': 'Your full name'\},\par
+      \{'id': 'age', 'help': 'Your age (you must be over 16)'\}\par
+    ];\par
+\par
+  helpText.\cf14\b forEach\cf0\b0 (function(text) \{\par
+    document.getElementById(text.id).onfocus = function() \{\par
+      \b showHelp\b0 (text.help);\par
+    \}\par
+  \});\par
+\}\par
+\par
+\ul setupHelp\ulnone ();\par
+\par
+/////////////////////////////////////                       /\par
+\par
+class Timeout extends Error \{\}\par
+\par
+function request(\b nest\b0 , \ul target\ulnone , type, content) \{\par
+  return new Promise((resolve, reject) => \{\par
+    let done = false;\par
+    function attempt(n) \{\par
+      \b nest\b0 .send(\ul target\ulnone , type, content, (failed, value) => \{\par
+        done = true;\par
+        if (failed) reject(failed);\par
+        else resolve(value);\par
+      \});\par
+      setTimeout(() => \{\par
+        if (done) return;\par
+        else if (n < 3) attempt(n + 1);\par
+        else reject(new Timeout("Timed out"));\par
+      \}, 250);\par
+    \}\par
+    attempt(1);\par
+  \});\par
+\}\par
+\par
+//////////////////////////////             /\par
+\par
+function requestType(name, handler) \{\par
+  defineRequestType(name, (\ul nest\ulnone , content, source,\par
+                           callback) => \{\par
+    try \{\par
+      Promise.resolve(handler(\ul nest\ulnone , content, source))\par
+        .then(response => callback(null, response),\par
+              failure => callback(failure));\par
+    \} catch (exception) \{\par
+      callback(exception);\par
+    \}\par
+  \});\par
+\}\par
+\par
+////////////////////////////////////                        /\par
+\par
+offsetWidth and offsetHeight properties give you the space the element takes up in pixels\par
+clientWidth and clientHeight give you the size of the space inside the element, ignoring border width\par
+\par
+let para = document.body.getElementsByTagName("p")[0];\par
+console.log("clientHeight:", para.clientHeight);\par
+console.log("offsetHeight:", para.offsetHeight);\par
+\par
+//////////////////////////////////                     /\par
+\par
+Grouping objects by a property\par
+let \ul people \ulnone = [\par
+  \{ name: 'Alice', age: 21 \},\par
+  \{ name: 'Max', age: 20 \},\par
+  \{ name: 'Jane', age: 20 \}\par
+];\par
+\par
+function \b groupBy\b0 (objectArray, property) \{\par
+  return objectArray.reduce(function (acc, obj) \{\par
+    let key = obj[property]\par
+    if (!acc[key]) \{\par
+      acc[key] = []\par
+    \}\par
+    acc[key].push(obj)\par
+    return acc\par
+  \}, \{\})\par
+\}\par
+\par
+let groupedPeople = \b groupBy\b0 (\ul people\ulnone , 'age')\par
+// groupedPeople is:\par
+// \{\par
+//   20: [\par
+//     \{ name: 'Max', age: 20 \},\par
+//     \{ name: 'Jane', age: 20 \}\par
+//   ],\par
+//   21: [\{ name: 'Alice', age: 21 \}]\par
+// \}\par
+\par
+//////////////////////////////////                 /\par
+\par
+requestType("ping", () => "pong");\par
+\par
+function availableNeighbors(\b nest\b0 ) \{\par
+  let requests = \b nest\b0 .neighbors.map(neighbor => \{\par
+    return request(\b nest\b0 , neighbor, "ping")\par
+      .then(() => true, () => false);\par
+  \});\par
+  return Promise.all(requests).then(result => \{\par
+    return nest.neighbors.filter((_, i) => result[i]);\par
+  \});\par
+\}\par
+\par
+////////////////////////////////////                     /\par
+\par
+<p><a href="." style="color: green">Green link</a></p>\par
+\par
+No usar display: none, mejor quitar los elementos\par
+\par
+\par
+//////////////////////////////////////\par
+\par
+Bonding arrays contained in an array of objects using the spread operator and initialValue\par
+// friends - an array of objects\par
+// where object field "books" is a list of favorite books\par
+let friends = [\{\par
+  name: 'Anna',\par
+  books: ['Bible', 'Harry Potter'],\par
+  age: 21\par
+\}, \{\par
+  name: 'Bob',\par
+  books: ['War and peace', 'Romeo and Juliet'],\par
+  age: 26\par
+\}, \{\par
+  name: 'Alice',\par
+  books: ['The Lord of the Rings', 'The Shining'],\par
+  age: 18\par
+\}]\par
+\par
+// allbooks - list which will contain all friends' books +\par
+// additional list contained in initialValue\par
+let allbooks = friends.reduce(function(previousValue, currentValue) \{\par
+  return [...previousValue, ...currentValue.books]\par
+\}, ['Alphabet'])\par
+\par
+// allbooks = [\par
+//   'Alphabet', 'Bible', 'Harry Potter', 'War and peace',\par
+//   'Romeo and Juliet', 'The Lord of the Rings',\par
+//   'The Shining'\par
+// ]\par
+\par
+////////////////////////////////////////\par
+\par
+\b Remove duplicate items in an array\par
+\b0 let arrayWithNoDuplicates = Array.from(new Set(myArray))\par
+\par
+o\par
+\par
+let myArray = ['a', 'b', 'a', 'b', 'c', 'e', 'e', 'c', 'd', 'd', 'd', 'd']\par
+let myArrayWithNoDuplicates = myArray.reduce(function (previousValue, currentValue) \{\par
+  if (previousValue.indexOf(currentValue) === -1) \{\par
+    previousValue.push(currentValue)\par
+  \}\par
+  return previousValue\par
+\}, [])\par
+\par
+console.log(myArrayWithNoDuplicates)\par
+\par
+////////////////////////////////////\par
+\par
+requestType("connections", (nest, \{name, neighbors\},\par
+                            source) => \{\par
+  let connections = nest.state.connections;\par
+  if (JSON.stringify(connections.get(name)) ==\par
+      JSON.stringify(neighbors)) return;\par
+  connections.set(name, neighbors);\par
+  broadcastConnections(nest, name, source);\par
+\});\par
+\par
+function broadcastConnections(nest, name, exceptFor = null) \{\par
+  for (let neighbor of nest.neighbors) \{\par
+    if (neighbor == exceptFor) continue;\par
+    request(nest, neighbor, "connections", \{\par
+      name,\par
+      neighbors: nest.state.connections.get(name)\par
+    \});\par
+  \}\par
+\}\par
+\par
+everywhere(nest => \{\par
+  nest.state.connections = new Map();\par
+  nest.state.connections.set(nest.name, nest.neighbors);\par
+  broadcastConnections(nest, nest.name);\par
+\});\par
+\par
+////////////////////////////////////////\par
+\par
+function findRoute(from, to, connections) \{\par
+  let work = [\{at: from, via: null\}];\par
+  for (let i = 0; i < work.length; i++) \{\par
+    let \{at, via\} = work[i];\par
+    for (let next of connections.get(at) || []) \{\par
+      if (next == to) return via;\par
+      if (!work.some(w => w.at == next)) \{\par
+        work.push(\{at: next, via: via || next\});\par
+      \}\par
+    \}\par
+  \}\par
+  return null;\par
+\}\par
+\par
+////////////////////////////////////////\par
+\par
+function routeRequest(nest, target, type, content) \{\par
+  if (nest.neighbors.includes(target)) \{\par
+    return request(nest, target, type, content);\par
+  \} else \{\par
+    let via = findRoute(nest.name, target,\par
+                        nest.state.connections);\par
+    if (!via) throw new Error(`No route to $\{target\}`);\par
+    return request(nest, via, "route",\par
+                   \{target, type, content\});\par
+  \}\par
+\}\par
+\par
+requestType("route", (nest, \{target, type, content\}) => \{\par
+  return routeRequest(nest, target, type, content);\par
+\});\par
+\par
+routeRequest(bigOak, "Church Tower", "note", "Incoming jackdaws!");\par
+\par
+///////////////////////////////////\par
+\par
+requestType("storage", (nest, name) => storage(nest, name));\par
+\par
+function findInStorage(nest, name) \{\par
+  return storage(nest, name).then(found => \{\par
+    if (found != null) return found;\par
+    else return findInRemoteStorage(nest, name);\par
+  \});\par
+\}\par
+\par
+function network(nest) \{\par
+  return Array.from(nest.state.connections.keys());\par
+\}\par
+\par
+function findInRemoteStorage(nest, name) \{\par
+  let sources = network(nest).filter(n => n != nest.name);\par
+  function next() \{\par
+    if (sources.length == 0) \{\par
+      return Promise.reject(new Error("Not found"));\par
+    \} else \{\par
+      let source = sources[Math.floor(Math.random() *\par
+                                      sources.length)];\par
+      sources = sources.filter(n => n != source);\par
+      return routeRequest(nest, source, "storage", name)\par
+        .then(value => value != null ? value : next(),\par
+              next);\par
+    \}\par
+  \}\par
+  return next();\par
+\}\par
+\par
+/////////////////////////\par
+\par
+async function findInStorage(nest, name) \{\par
+  let local = await storage(nest, name);\par
+  if (local != null) return local;\par
+\par
+  let sources = network(nest).filter(n => n != nest.name);\par
+  while (sources.length > 0) \{\par
+    let source = sources[Math.floor(Math.random() *\par
+                                    sources.length)];\par
+    sources = sources.filter(n => n != source);\par
+    try \{\par
+      let found = await routeRequest(nest, source, "storage",\par
+                                     name);\par
+      if (found != null) return found;\par
+    \} catch (_) \{\}\par
+  \}\par
+  throw new Error("Not found");\par
+\}\par
+\par
+////////////////////////////////\par
+\par
+const numbers = [-5, 6, 2, 0,];\par
+\par
+const doubledPositiveNumbers = numbers.reduce((previousValue, currentValue) => \{\par
+  if (currentValue > 0) \{\par
+    const doubled = currentValue * 2;\par
+    previousValue.push(doubled);\par
+  \}\par
+  return previousValue;\par
+\}, []);\par
+\par
+console.log(doubledPositiveNumbers); // [12, 4]\par
+\par
+/////////////////////////////\par
+\par
+A generator:\par
+function*\par
+\par
+When you call a generator, it returns an iterator\par
+\par
+function* powers(n) \{\par
+  for (let current = n;; current *= n) \{\par
+    yield current;\par
+  \}\par
+\}\par
+\par
+for (let power of powers(3)) \{\par
+  if (power > 50) break;\par
+  console.log(power);\par
+\}\par
+// \f1\u8594?\f0  3\par
+// \f1\u8594?\f0  9\par
+// \f1\u8594?\f0  27\par
+\par
+\lang9226 ///////////////////////////////\par
+\par
+\lang10\par
+\par
+////////////////////////////////////////////             +\par
+\par
+\b Clase\b0\par
+When creating a new object/class, methods should normally be associated to the object's prototype rather than defined into the object constructor\par
+Whenever the constructor is called, the methods would get reassigned (that is, for every object creation)\par
+\par
+function \b MyObject\b0 (name, message) \{\par
+  this.\ul name \ulnone = name.toString();\par
+  this.\cf15\b message \cf0\b0 = message.toString();\par
+\}\par
+\par
+\b MyObject\b0 .prototype.getName = function() \{\par
+  return this.\ul name\ulnone ;\par
+\};\par
+\par
+\b MyObject\b0 .prototype.getMessage = function() \{\par
+  return this.\cf15\b message\cf0\b0 ;\par
+\};\par
+\par
+////////////////////////////////////////////             +\par
+\par
+function \cf16\b power\cf0\b0 (base, exponent) \{\par
+  if (exponent == 0) \{\par
+    return 1;\par
+  \} else \{\par
+    return base * \cf16\b power\cf0\b0 (base, exponent - 1);\par
+  \}\par
+\}\par
+\par
+console.log(\cf16\b power\cf0\b0 (2, 3));\par
+//2 * 2 * 2 * 1\par
+// \f1\u8594?\f0  8\lang10\par
+\par
+////////////////////////////////////////////                 +\par
+\par
+\b Object\b0\par
+let \b day1 \b0 = \{\par
+  squirrel: false,\par
+  events: ["work", "touched tree", "pizza", "running"]\par
+\};\par
+console.log(\b day1\b0 .squirrel);\par
+// \f1\u8594?\f0  false\par
+\par
+Reading a property that doesn\f3\rquote\f0 t exist will give you the value undefined\par
+\par
+\lang10 ////////////////////////////////////////////                  +\par
+\par
+\b Agregar y cambiar propiedades\par
+\b0 let objectA = \{\cf17 a: 1,\cf3\b  b: 2\cf0\b0\};\par
+\par
+Object.assign(objectA, \{\cf3\b b: 3\cf0\b0 , c: 4\});\par
+console.log(objectA);\par
+// \f1\u8594?\f0  \{\cf17\b a: 1\cf0\b0 , \cf3\b b: 3\cf0\b0 , c: 4\}\lang10\par
+\par
+With objects, there is a difference between having two references to the same object and having two different objects that contain the same properties\par
+\par
+let \ul journal \ulnone = [];\par
+\par
+function \b addEntry\b0 (events, squirrel) \{\par
+  \ul journal\ulnone .push(\{events, squirrel\});\par
+\}\par
+\par
+\b addEntry\b0 (["work", "touched tree", "pizza", "running", "television"], false);\par
+\par
+////////////////////////////////////////////              ?+\par
+\par
+function \ul tableFor\ulnone (\cf18\b event\cf0\b0 , journal) \{\par
+  let table = [0, 0, 0, 0];\par
+\par
+  for (let i = 0; i < journal.length; i++) \{\par
+    let entry = journal[i], index = 0;\par
+\par
+    if (entry.events.includes(\cf18\b event\cf0\b0 )) index += 1;\par
+    if (entry.squirrel) index += 2;\par
+    table[index] += 1;\par
+  \}\par
+  return table;\par
+\}\par
+\par
+console.log(\ul tableFor\ulnone ("pizza", JOURNAL));\par
+// \f1\u8594?\f0  [76, 9, 4, 1]\lang10\par
+\par
+////////////////////////////////////////////                +\par
+\par
+Cambiar\par
+for (let i = 0; i < JOURNAL.length; i++) \{\par
+  let entry = JOURNAL[i];\par
+  // Do something with entry\par
+\}\par
+\par
+Por\par
+for (let entry of JOURNAL) \{\par
+  console.log(`$\{entry.events.length\} events.`);\par
+\}\par
+\par
+////////////////////////////////////////////             ?+\par
+\par
+function journalEvents(\cf19\b journal\cf0\b0 ) \{\par
+  let \b events \b0 = [];\par
+\par
+  for (let \ul entry \ulnone of \cf19\b journal\cf0\b0 ) \{\par
+    for (let event of \ul entry\ulnone .events) \{\par
+      if (!\b events\b0 .includes(event)) \{\par
+        \b events\b0 .push(event);\par
+      \}\par
+    \}\par
+  \}\par
+  return events;\par
+\}\par
+\par
+//////////////////////////////////////////////           +     \par
+\par
+function \ul remove\ulnone (array, index) \{\par
+  return array.slice(0, index)\par
+    .concat(array.slice(index + 1));\par
+\}\par
+\par
+console.log(\ul remove\ulnone (["a", "b", "c", "d", "e"], 2));\par
+// \f1\u8594?\f0  ["a", "b", "d", "e"]\lang10\par
+\par
+////////////////////////////////////////////                +\par
+\par
+But if you try to add a new property, it doesn\rquote t stick.\par
+let \cf20\b kim \cf0\b0 = "Kim";\par
+\cf20\b kim\cf0\b0 .\b age \b0 = 88;\par
+\par
+console.log(\cf20\b kim\cf0\b0 .\b age\b0 );\par
+// \f1\u8594?\f0  undefined\lang10\par
+\par
+//////////////////////////////////////              +\par
+\par
+let string = "abc";\par
+console.log(string[1]);\par
+// \f1\u8594?\f0  b\lang10\par
+\par
+////////////////////////////////////////////            +\par
+\par
+function \ul max\ulnone (...numbers) \{\par
+  let \b result \b0 = -Infinity;\par
+\par
+  for (let number of numbers) \{\par
+    if (number > \b result\b0 ) \b result \b0 = number;\par
+  \}\par
+  return \b result\b0 ;\par
+\}\par
+console.log(\ul max\ulnone (4, 1, 9, -2));\par
+// \f1\u8594?\f0  9\par
+\lang10\par
+////////////////////////////////////////////                   +\par
+\par
+Json\par
+\{\par
+  "squirrel": false,\par
+  "events": ["work", "touched tree", "pizza", "running"]\par
+\}\par
+\par
+////////////////////////////////////////////            +\par
+\par
+let \b string \b0 = JSON.stringify(\{squirrel: false, events: ["weekend"]\});\par
+console.log(\b string\b0 );\par
+// \f1\u8594?\f0  \{"squirrel":false,"events":["weekend"]\}\par
+\par
+console.log(JSON.parse(\b string\b0 ).events);\par
+// \f1\u8594?\f0  ["weekend"]\lang10\par
+\par
+////////////////////////////////////////////             +\par
+\par
+0/0                         // => NaN\par
+Infinity/Infinity           // => NaN\par
+\par
+1/0                         // => Infinity\par
+Number.MAX_VALUE * 2        // => Infinity; overflow\par
+\par
+Number.MIN_VALUE/2          // => 0: underflow\par
+-Number.MIN_VALUE/2         // => -0: negative zero\par
+\par
+-1/Infinity                 // -> -0: also negative 0\par
+\par
+////////////////////////////////////////////            +\par
+\par
+function repeat(n, \cf3\b action\cf0\b0 ) \{\par
+  for (let i = 0; i < n; i++) \{\par
+    \cf3\b action\cf0\b0 (i);\par
+  \}\par
+\}\par
+\par
+repeat(3, \cf3\b console.log\cf0\b0 );\par
+// \f1\u8594?\f0  0\par
+// \f1\u8594?\f0  1\par
+// \f1\u8594?\f0  2\lang10\par
+\par
+//////////////////////////////////////////////              \par
+\par
+let \b labels \b0 = [];\par
+\par
+repeat(5, i => \{\par
+  \b labels\b0 .push(`Unit $\{i + 1\}`);\par
+\});\par
+// \f1\u8594?\f0  ["Unit 1", "Unit 2", "Unit 3", "Unit 4", "Unit 5"]\lang10\par
+\par
+////////////////////////////////////////////                              ?\par
+\par
+function \ul noisy\ulnone (f) \{\par
+  return (...args) => \{\par
+    console.log("calling with", args);\par
+    let result = f(...args);\par
+    console.log("called with", args, ", returned", result);\par
+    return result;\par
+  \};\par
+\}\par
+\par
+\ul noisy\ulnone (Math.min)(3, 2, 1);\par
+// \f1\u8594?\f0  calling with [3, 2, 1]\par
+// \f1\u8594?\f0  called with [3, 2, 1] , returned 1\lang10\par
+\par
+////////////////////////////////////////////              \par
+\par
+  switch (s[0]) \{\par
+        case ('a' || 'e' || 'o' || 'i' || 'u'):\par
+            letter = 'A';\par
+            break;\par
+\par
+///////////////////////////////////////////               \par
+\par
+["A", "B"].forEach(l => console.log(l));\par
+// \f1\u8594?\f0  A\par
+// \f1\u8594?\f0  B\lang10\par
+\par
+////////////////////////////////////////////                      \par
+\par
+function \b unless\b0 (test, then) \{\par
+  if (!test) then();\par
+\}\par
+\par
+repeat(3, n => \{\par
+  \b unless\b0 (n % 2 == 1, () => \{\par
+    console.log(n, "is even");\par
+  \});\par
+\});\par
+\par
+// \f1\u8594?\f0  0 is even\par
+// \f1\u8594?\f0  2 is even\lang10\par
+\par
+////////////////////////////////////////////                     \par
+\par
+function \ul filter\ulnone (array, \ul test\ulnone ) \{\par
+  let passed = [];\par
+\par
+  for (let element of array) \{\par
+    if (\ul test\ulnone (element)) \{\par
+      passed.push(element);\par
+    \}\par
+  \}\par
+  return passed;\par
+\}\par
+\par
+console.log(\ul filter\ulnone (SCRIPTS, script => script.living));\par
+// \f1\u8594?\f0  [\{name: "Adlam", \'85\}, \'85]\lang10\par
+\par
+////////////////////////////////////////////                    \par
+\par
+console.log(SCRIPTS.filter(s => s.direction == "ttb"));\par
+\par
+////////////////////////////////////////////                    \par
+\par
+function \cf5\b map\cf0\b0 (array, \b transform\b0 ) \{\par
+  let mapped = [];\par
+\par
+  for (let element of array) \{\par
+    mapped.push(\b transform\b0 (element));\par
+  \}\par
+  return mapped;\par
+\}\par
+\par
+let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");\par
+console.log(\cf5\b map\cf0\b0 (rtlScripts, s => s.name));\par
+// \f1\u8594?\f0  ["Adlam", "Arabic", "Imperial Aramaic", \'85]\lang10\par
+\par
+////////////////////////////////////////////                   \par
+\par
+function \b reduce\b0 (array, \ul combine\ulnone , start) \{\par
+  let current = start;\par
+\par
+  for (let element of array) \{\par
+    current = \ul combine\ulnone (current, element);\par
+  \}\par
+  return current;\par
+\}\par
+\par
+console.log(\b reduce\b0 ([1, 2, 3, 4], (a, b) => a + b, 0));\par
+// \f1\u8594?\f0  10\lang10\par
+\par
+////////////////////////////////////////////                   \par
+\par
+Higher-order functions start to shine when you need to compose operations\par
+JavaScript strings are encoded as a sequence of 16-bit numbers. These are called code units\par
+\par
+UTF-16 is the format used by JavaScript strings\par
+\par
+Two emoji characters, horse and shoe:\par
+let horseShoe = "\f4\u-10179?\u-9164?\u-10179?\u-9121?\f0 ";\par
+console.log(horseShoe.length);\par
+// \f1\u8594?\f0  4\par
+\par
+console.log(horseShoe[0]);\par
+// \f1\u8594?\f0  (Invalid half-character)\par
+console.log(horseShoe.charCodeAt(0));\par
+// \f1\u8594?\f0  55357 (Code of the half-character)\par
+\par
+console.log(horseShoe.codePointAt(0));\par
+// \f1\u8594?\f0  128052 (Actual code for horse emoji)\lang10\par
+\par
+////////////////////////////////////////////                    \par
+\par
+let roseDragon = "\f4\u-10180?\u-8391?\u-10179?\u-9207?\f0 ";\par
+\par
+for (let char of roseDragon) \{\par
+  console.log(char);\par
+\}\par
+\par
+// \f1\u8594?\f0  \f4\u-10180?\u-8391?\f0\par
+// \f1\u8594?\f0  \f4\u-10179?\u-9207?\f0\lang10\par
+\par
+////////////////////////////////////////////\par
+\par
+s = s.split('').reverse().join('');\par
+\par
+let sum = [0, 1, 2, 3].reduce(function (previousValue, currentValue) \{\par
+  return previousValue + currentValue\par
+\}, 0)\par
+// sum is 6\par
+\par
+With an arrow function:\par
+let total = [ 0, 1, 2, 3 ].reduce(\par
+  ( previousValue, currentValue ) => previousValue + currentValue,\par
+  0\par
+)\par
+\par
+let initialValue = 0\par
+let sum = [\{x: 1\}, \{x: 2\}, \{x: 3\}].reduce(function (previousValue, currentValue) \{\par
+    return previousValue + currentValue.x\par
+\}, initialValue)\par
+\par
+console.log(sum) // logs 6\par
+\par
+////////////////////////////////////////////                       \par
+\par
+Only a finite number of them (18,437,736,874,454,810,627, to be exact) can be represented exactly by the JavaScript floating-point format\par
+When you\rquote re working with real numbers in JavaScript, the representation of the number will often be an approximation of the actual number\par
+\par
+JavaScript numbers have plenty of precision and can approximate 0.1 very closely\par
+But that number cannot be represented exactly and that can lead to problems\par
+\par
+The problem only arises when we attempt to compare values for equality\par
+If these floating-point approximations are problematic for your programs, consider using scaled integers\par
+\par
+You might manipulate monetary values as integer cents rather than fractional dollars\par
+\par
+//////////////////////////////////////                          \par
+\par
+\b BigInt \par
+\b0 Added to JavaScript mainly to allow the representation of 64-bit integers, which are required for compatibility with many other programming languages and APIs\par
+\par
+The implementations are not suitable for cryptography because they do not attempt to prevent timing attacks\par
+It is written as a string + n: 1234n\par
+\par
+////////////////////////////////////////////                    \par
+\par
+\b BigInt\b0\par
+0b111111n            // A binary BigInt\par
+0o7777n              // An octal BigInt\par
+\par
+0x8000000000000000n  // => 2n**63n: A 64-bit integer\par
+BigInt() for converting regular JavaScript numbers or strings to BigInt values\par
+\par
+Division drops any remainder and rounds down (toward zero)\par
+Do not mix operands of type BigInt with regular number operands\par
+\par
+0 == 0n    // => true\par
+0 === 0n   // => false: the === checks for type equality as well\par
+\par
+////////////////////////////////////////////                   \par
+\par
+Properties that are part of the interface are called public\par
+Properties outside code should not be touching, are called private\par
+\par
+Put an underscore (_) character at the start of property names to indicate that those properties are private\par
+Encapsulation. Separating interface from implementation\par
+\par
+////////////////////////////////////////////                  +\par
+\par
+let rabbit = \{\};\par
+\b rabbit.speak \b0 = function(line) \{\par
+  console.log(`The rabbit says '$\{line\}'`);\par
+\};\par
+\par
+\b rabbit.speak\b0 ("I'm alive.");\par
+// \f1\u8594?\f0  The rabbit says 'I'm alive.'\par
+\par
+//////////////////////////////////////////////           /\par
+\par
+if (a < 0) \{\par
+        throw (\{ message: 'Negative Error' \});\par
+\}\lang10\par
+\par
+////////////////////////////////////////////                 \par
+\par
+function \ul speak\ulnone (line) \{\par
+  console.log(`The $\{this.\cf8\b type\cf0\b0\} rabbit says '$\{line\}'`);\par
+\}\par
+\par
+let \cf7\b whiteRabbit \cf0\b0 = \{\cf8\b type\cf0\b0 : "white", \ul speak\ulnone\};\par
+let \cf6\b hungryRabbit \cf0\b0 = \{\cf8\b type\cf0\b0 : "hungry", \ul speak\ulnone\};\par
+\par
+\cf7\b whiteRabbit\cf0\b0 .\ul speak\ulnone ("Oh my ears and whiskers, " + "how late it's getting!");\par
+// \f1\u8594?\f0  The white rabbit says 'Oh my ears and whiskers, how late it's getting!'\par
+\par
+\cf6\b hungryRabbit\cf0\b0 .\ul speak\ulnone ("I could use a carrot right now.");\par
+// \f1\u8594?\f0  The hungry rabbit says 'I could use a carrot right now.'\lang10\par
+\par
+\ul speak\ulnone .call(\cf6\b hungryRabbit\cf0\b0 , "Burp!");\par
+\par
+////////////////////////////////////////////               / \par
+\par
+function normalize() \{\par
+  console.log(this.coords.map(n => n / this.length));\par
+\}\par
+\par
+normalize.call(\{coords: [0, 2, 3], length: 5\});\par
+// \f1\u8594?\f0  [0, 0.4, 0.6]\lang10\par
+\par
+////////////////////////////////////////////                     /\par
+\par
+A prototype is another object that is used as a fallback source (fuente de reserva) of properties\par
+When an object gets a request for a property that it does not have, its prototype will be searched for the property, then the prototype\rquote s prototype, and so on\par
+\par
+Prototypes are useful for defining properties for which all instances of a class share the same value, such as methods\par
+Properties that differ per instance, need to be stored directly in the objects themselves\par
+\par
+let \b protoRabbit \b0 = \{\par
+  \cf11\b speak\cf0\b0 (line) \{\par
+    console.log(`The $\{this.type\} rabbit says '$\{line\}'`);\par
+  \}\par
+\};\par
+\par
+let killerRabbit = Object.create(\b protoRabbit\b0 );\par
+killerRabbit.type = "killer";\par
+killerRabbit.\cf11\b speak\cf0\b0 ("SKREEEE!");\par
+// \f1\u8594?\f0  The killer rabbit says 'SKREEEE!'\par
+\par
+\lang9226 A constructor:\par
+function makeRabbit(type) \{\par
+  let rabbit = Object.create(\b protoRabbit\b0 );\par
+  rabbit.type = type;\par
+  return rabbit;\par
+\}\par
+\par
+/////////////////////////////////////                   /\par
+\par
+\lang10 If you put the keyword \ul new \ulnone in front of a function call, the function is treated as a constructor\par
+function \cf6\b Rabbit\cf0\b0 (type) \{\par
+  this.type = type;\par
+\}\par
+\par
+\cf6\b Rabbit\cf0\b0 .prototype.speak = function(line) \{\par
+  console.log(`The $\{this.type\} rabbit says '$\{line\}'`);\par
+\};\par
+\par
+let weirdRabbit = \ul new \cf6\ulnone\b Rabbit\cf0\b0 ("weird");\par
+\par
+///////////////////////////////////////////                      /\par
+\par
+let flattened = [[0, 1], [2, 3], [4, 5]].reduce(\par
+  function(previousValue, currentValue) \{\par
+    return previousValue.concat(currentValue)\par
+  \},\par
+  []\par
+)\par
+// flattened is [0, 1, 2, 3, 4, 5]\par
+\par
+ With an arrow function:\par
+\par
+let flattened = [[0, 1], [2, 3], [4, 5]].reduce(\par
+  ( previousValue, currentValue ) => previousValue.concat(currentValue),\par
+  []\par
+)\par
+\par
+////////////////////////////////////////////                      /\par
+\par
+Actively notify our code when an event occurs\par
+Register functions as handlers for specific events:\par
+\par
+<p>Click this document to activate the handler.</p>\par
+<script>\par
+  window.addEventListener("click", () => \{\par
+    console.log("You knocked?");\par
+  \});\par
+</script>\par
+\par
+////////////////////////////////////////////                      /\par
+\par
+let \cf8\b GenerateSumOutOfPrices \cf0\b0 = function (products)\{\par
+  let prices = [];\par
+\par
+  products.forEach(element => prices.push(element.price));\par
+  const \b reducer \b0 = (accumulator, currentValue) => accumulator + currentValue; \par
+  const sum = prices.reduce(\b reducer\b0 ); \par
+  let result = \{"sum": sum, "prices": prices\};\tab\par
+  return result;\par
+\}\par
+\par
+let array = [\{name:'Product 1', price: 200\}, \{name:'Product 2', price: 300\}];\par
+console.log(\cf8\b GenerateSumOutOfPrices\cf0\b0 (array));\par
+\par
+////////////////////////////////////////////                  /\par
+\par
+let \ul GenerateSumOutOfPrices \ulnone = function (products)\{\par
+    return products.map(p => p.price).reduce(\b calculate\b0 );   \par
+\}\par
+\par
+function \b calculate\b0 (sum, price, index, prices) \{\par
+  sum += price;\par
+  prices[index] = price;\par
+  return \{"sum": sum, "prices": prices\}  \par
+\}\par
+\par
+let array = [\{name:'Product 1', price: 200\}, \{name:'Product 2', price: 300\}];\par
+console.log(\ul GenerateSumOutOfPrices\ulnone (array));\par
+\par
+////////////////////////////////////////////                    /\par
+\par
+array.reduce((accumulator, \b current\b0 ) => (\{\par
+  sum: accumulator.sum + \b current\b0 .price,\par
+  prices: accumulator.prices.concat(\b current\b0 .price)\par
+\}), \{sum: 0, prices: []\});\par
+\par
+////////////////////////////////////////////////                /\par
+\par
+Each browser event handler is registered in a context\par
+\par
+<button>Click me</button>\par
+<p>No handler here.</p>\par
+<script>\par
+  let button = document.querySelector("button");\par
+  button.addEventListener("click", () => \{\par
+    console.log("Button clicked.");\par
+  \});\par
+</script>\par
+\par
+//////////////////////////////////////////////           /\par
+\par
+button.removeEventListener("click", once);\par
+\par
+s.charAt(s.length-1)    // => "d": the last character\par
+\par
+let name = "Bill";\par
+let greeting = `Hello $\{ name \}.`;  // greeting == "Hello Bill."\par
+\par
+////////////////////////////////////////////                +\par
+\par
+class \ul Rabbit \ulnone\{\par
+  constructor(type) \{\par
+    this.type = type;\par
+  \}\par
+  speak(line) \{\par
+    console.log(`The $\{this.type\} rabbit says '$\{line\}'`);\par
+  \}\par
+\}\par
+\par
+let killerRabbit = new \ul Rabbit\ulnone ("killer");\par
+let blackRabbit = new \ul Rabbit\ulnone ("black");\par
+\par
+////////////////////////////////////////////                 /\par
+\par
+When class is used as an expression, it doesn\rquote t define a binding but just produces the constructor as a value\par
+When you add a property to an object, whether it is present in the prototype or not, the property is added to the object itself\par
+\par
+If there was already a property with the same name in the prototype, this property will no longer affect the object, as it is now hidden behind the object\rquote s own property\par
+\par
+//////////////////////////////////////////               /\par
+\par
+ button.addEventListener("mousedown", event => \{\par
+    if (event.button == 0) \{\par
+      console.log("Left button");\par
+    \} else if (event.button == 1) \{\par
+      console.log("Middle button");\par
+    \} else if (event.button == 2) \{\par
+      console.log("Right button");\par
+    \}\par
+  \});\par
+\par
+//////////////////////////////////////////                  /\par
+\par
+For most event types, handlers registered on nodes with children will also receive events that happen in the children\par
+If both the paragraph and the button have a handler, the more specific handler\f3\emdash the one on the button\emdash gets to go first\par
+\par
+<p>A paragraph with a <button>button</button>.</p>\par
+<script>\par
+  let para = document.querySelector("p");\par
+  let button = document.querySelector("button");\par
+  para.addEventListener("mousedown", () => \{\par
+    console.log("Handler for paragraph.");\par
+  \});\par
+  button.addEventListener("mousedown", event => \{\par
+    console.log("Handler for button.");\par
+    if (event.button == 2) event.stopPropagation();\par
+  \});\par
+</script>\par
+\par
+\f0\lang9226 ////////////////////////////////////////                /\lang10\par
+\par
+Most event objects have a target property that refers to the node where they originated\par
+If you have a node containing a long list of buttons, it may be more convenient to register a single click handler on the outer node and have it use the target property to figure out whether a button was clicked, rather than register individual handlers on all of the buttons.\par
+\par
+<button>A</button>\par
+<button>B</button>\par
+<button>C</button>\par
+<script>\par
+  document.body.addEventListener("click", event => \{\par
+    if (event.target.nodeName == "BUTTON") \{\par
+      console.log("Clicked", event.target.textContent);\par
+    \}\par
+  \});\par
+</script>\par
+\par
+//////////////////////////////////////////                 /\par
+\par
+Rabbit.prototype.\b teeth \b0 = "small";\par
+\par
+console.log(killerRabbit.\b teeth\b0 );\par
+// \f1\u8594?\f0  small\par
+\par
+killerRabbit.\b teeth \b0 = "long, sharp, and bloody";\par
+console.log(killerRabbit.\b teeth\b0 );\par
+// \f1\u8594?\f0  long, sharp, and bloody\par
+\par
+console.log(blackRabbit.\b teeth\b0 );\par
+// \f1\u8594?\f0  small\par
+\par
+console.log(Rabbit.prototype.\b teeth\b0 );\par
+// \f1\u8594?\f0  small\lang10\par
+\par
+////////////////////////////////////////////                /\par
+\par
+console.log(\b Array\b0 .prototype.toString == \ul Object\ulnone .prototype.toString);\par
+// \f1\u8594?\f0  false\par
+\par
+console.log([1, 2].toString());\par
+// \f1\u8594?\f0  1,2\par
+\par
+Calling toString on an array gives a result similar to calling .join(",") on it\f3\emdash\f0 it puts commas between the values in the array\par
+\par
+Directly calling Object.prototype.toString with an array produces a different string. That function doesn\f3\rquote\f0 t know about arrays, so it simply puts the word object and the name of the type between square brackets.\par
+\par
+console.log(Object.prototype.toString.call([1, 2]));\par
+// \f1\u8594?\f0  [object Array]\par
+\par
+\lang10 ////////////////////////////////////////////            /\par
+\par
+You can use JavaScript functions to create local scopes and objects to represent module interfaces\par
+\par
+const \b weekDay \b0 = function() \{\par
+  const names = ["Sunday", "Monday", "Tuesday", "Wednesday",\par
+                 "Thursday", "Friday", "Saturday"];\par
+  return \{\par
+    name(number) \{ return names[number]; \},\par
+    number(name) \{ return names.indexOf(name); \}\par
+  \};\par
+\}();\par
+\par
+console.log(\b weekDay\b0 .name(\b weekDay\b0 .number("Sunday")));\par
+// \f1\u8594?\f0  Sunday\par
+\par
+\lang9226 /////////////////////////////////////             /\par
+\par
+For most types of events, the JavaScript event handlers are called before the default behavior takes place. If the handler doesn\rquote t want this normal behavior to happen, typically because it has already taken care of handling the event, it can call the preventDefault method on the event object\par
+\par
+<p>This page turns violet when you hold the V key.</p>\par
+<script>\par
+  window.addEventListener("keydown", event => \{\par
+    if (event.key == "v") \{\par
+      document.body.style.background = "violet";\par
+    \}\par
+  \});\par
+  window.addEventListener("keyup", event => \{\par
+    if (event.key == "v") \{\par
+      document.body.style.background = "";\par
+    \}\par
+  \});\par
+</script>\par
+\par
+////////////////////////////////////////               /\par
+\par
+Despite its name, "keydown" fires not only when the key is physically pushed down. When a key is pressed and held, the event fires again every time the key repeats. \par
+\par
+<p>Press Control-Space to continue.</p>\par
+<script>\par
+  window.addEventListener("keydown", event => \{\par
+    if (event.key == " " && event.ctrlKey) \{\par
+      console.log("Continuing!");\par
+    \}\par
+  \});\par
+</script>\par
+\par
+//////////////////////////////////                       /\par
+\par
+The DOM node where a key event originates depends on the element that has focus when the key is pressed. Most nodes cannot have focus unless you give them a tabindex attribute\par
+\par
+When nothing in particular has focus, document.body acts as the target node of key events\par
+When the user is typing text, using key events to figure out what is being typed is problematic\par
+\par
+To notice when something was typed, elements that you can type into, such as the <input> and <textarea> tags, fire "input" events whenever the user changes their content. To get the actual content that was typed, it is best to directly read it from the focused field\par
+\par
+////////////////////////////////////                 /\par
+\par
+A "click" event fires on the most specific node that contained both the press and the release of the button\par
+Every time the mouse pointer moves, a "mousemove" event is fired. This event can be used to track the position of the mouse\par
+\par
+The left button has code 1, the right button 2, and the middle one 4\par
+Note that the order of these codes is different from the one used by button, where the middle button came before the right one\par
+\par
+If you tap your screen, you\rquote ll get "mousedown", "mouseup", and "click" events\par
+\par
+When a finger starts touching the screen, you get a "touchstart" event. When it is moved while touching, "touchmove" events fire. Finally, when it stops touching the screen, you\rquote ll see a "touchend" event\par
+\par
+//////////////////////////////////////                /\par
+\par
+On a touch screen the event objects have a touches property, which holds an array-like object of points, each of which has its own clientX, clientY, pageX, and pageY properties\par
+\par
+Show red circles around every touching finger:\par
+\par
+<style>\par
+  dot \{ position: absolute; display: block;\par
+        border: 2px solid red; border-radius: 50px;\par
+        height: 100px; width: 100px; \}\par
+</style>\par
+<p>Touch this page</p>\par
+<script>\par
+  function update(event) \{\par
+    for (let dot; dot = document.querySelector("dot");) \{\par
+      dot.remove();\par
+    \}\par
+    for (let i = 0; i < event.touches.length; i++) \{\par
+      let \{pageX, pageY\} = event.touches[i];\par
+      let dot = document.createElement("dot");\par
+      dot.style.left = (pageX - 50) + "px";\par
+      dot.style.top = (pageY - 50) + "px";\par
+      document.body.appendChild(dot);\par
+    \}\par
+  \}\par
+  window.addEventListener("touchstart", update);\par
+  window.addEventListener("touchmove", update);\par
+  window.addEventListener("touchend", update);\par
+</script> \par
+\par
+///////////////////////////////////          /\par
+\par
+You\rquote ll often want to call preventDefault in touch event handlers to override the browser\rquote s default behavior (which may include scrolling the page on swiping) and to prevent the mouse events from being fired, for which you may also have a handler\par
+\par
+/////////////////////////////////////           /\par
+\par
+let plusOne = Function("n", "return n + 1;");\par
+console.log(plusOne(4));\par
+// \f1\u8594?\f0\lang9226  5\par
+\par
+We can wrap the module\rquote s code in a function and use that function\rquote s scope as module scope\lang10\par
+\par
+////////////////////////////////////////          /\par
+\par
+It draws a progress bar above the document and updates it to fill up as you scroll down:\par
+\par
+<style>\par
+  #progress \{\par
+    border-bottom: 2px solid blue;\par
+    width: 0;\par
+    position: fixed;\par
+    top: 0; left: 0;\par
+  \}\par
+</style>\par
+<div id="progress"></div>\par
+<script>\par
+  // Create some content\par
+  document.body.appendChild(document.createTextNode(\par
+    "supercalifragilisticexpialidocious ".repeat(1000)));\par
+\par
+  let bar = document.querySelector("#progress");\par
+  window.addEventListener("scroll", () => \{\par
+    let max = document.body.scrollHeight - innerHeight;\par
+    bar.style.width = `$\{(pageYOffset / max) * 100\}%`;\par
+  \});\par
+</script>\par
+\par
+////////////////////////////////////////            /\par
+\par
+Calling preventDefault on a scroll event does not prevent the scrolling from happening\par
+\par
+////////////////////////////////////////////                /\par
+\par
+Plain objects derive from Object.prototype\par
+Object property names must be strings. If you need a map whose keys can\rquote t easily be converted to strings\f3\emdash\f0 such as objects\f3\emdash\f0 you cannot use an object as your map\par
+\par
+let ages = new Map();\par
+ages.set("Boris", 39);\par
+ages.set("Liang", 22);\par
+ages.set("J\'falia", 62);\par
+\par
+console.log(`J\'falia is $\{ages.get("J\'falia")\}`);\par
+// \f1\u8594?\f0  J\'falia is 62\lang10\par
+\par
+////////////////////////////////////////////             /\par
+\par
+When an element loses focus, the element gets a "blur" event\par
+Focus and blur do not propagate\par
+\par
+A handler on a parent element is not notified when a child element gains or loses focus\par
+It displays help text for the text field that currently has focus:\par
+\par
+<p>Name: <input type="text" data-help="Your full name"></p>\par
+<p>Age: <input type="text" data-help="Your age in years"></p>\par
+<p id="help"></p>\par
+\par
+<script>\par
+  let help = document.querySelector("#help");\par
+  let fields = document.querySelectorAll("input");\par
+  for (let field of Array.from(fields)) \{\par
+    field.addEventListener("focus", event => \{\par
+      let text = event.target.getAttribute("data-help");\par
+      help.textContent = text;\par
+    \});\par
+    field.addEventListener("blur", event => \{\par
+      help.textContent = "";\par
+    \});\par
+  \}\par
+</script>\par
+\par
+////////////////////////////////////////////               /\par
+\par
+If you do have a plain object that you need to treat as a map for some reason, it is useful to know that Object.keys returns only an object\rquote s own keys, not those in the prototype\par
+\par
+As an alternative to the in operator, you can use the \b hasOwnProperty \b0 method, which ignores the object\rquote s prototype\par
+\par
+console.log(\{x: 1\}.\b hasOwnProperty\b0 ("x"));\par
+// \f1\u8594?\f0  true\par
+\par
+console.log(\{x: 1\}.\b hasOwnProperty\b0 ("toString"));\par
+// \f1\u8594?\f0  false\lang10\par
+\par
+/////////////////////////////////////////////               /\par
+\par
+When a page finishes loading, the "load" event fires on the window and the document body objects\par
+The content of <script> tags is run immediately when the tag is encountered\par
+\par
+Elements such as images and script tags that load an external file also have a "load" event\par
+Loading events do not propagate\par
+\par
+"beforeunload" is to prevent the user from accidentally losing work by closing a document\par
+If you prevent the default behavior on this event and set the returnValue property on the event object to a string, the browser will show the user a dialog asking if they really want to leave the page \par
+\par
+////////////////////////////////////////////              /\par
+\par
+\b Your own implementation of toString\par
+\b0 Rabbit.prototype.toString = function() \{\par
+  return `a $\{this.type\} rabbit`;\par
+\};\par
+\par
+console.log(String(blackRabbit));\par
+// \f1\u8594?\f0  a black rabbit\lang10\par
+\par
+////////////////////////////////////////////          /\par
+\par
+In the context of the event loop, browser event handlers behave like other asynchronous notifications. They are scheduled when the event occurs but must wait for other scripts that are running to finish before they get a chance to run\par
+\par
+The fact that events can be processed only when nothing else is running means that, if the event loop is tied up with other work, any interaction with the page (which happens through events) will be delayed until there\rquote s time to process it. So if you schedule too much work, either with long-running event handlers or with lots of short-running ones, the page will become slow\par
+\par
+Web worker is a JavaScript process that runs alongside the main script, on its own timeline\par
+\par
+To avoid the problems of having multiple threads touching the same data, workers do not share their global scope or any other data with the main script\rquote s environment. Instead, you have to communicate with them by sending messages back and forth\par
+\par
+////////////////////////////////////////            /\par
+\par
+addEventListener("message", event => \{\par
+  postMessage(event.data * event.data);\par
+\});\par
+\par
+let squareWorker = new Worker("code/squareworker.js");\par
+squareWorker.addEventListener("message", event => \{\par
+  console.log("The worker responded:", event.data);\par
+\});\par
+squareWorker.postMessage(10);\par
+squareWorker.postMessage(24);\par
+\par
+Only values that can be represented as JSON can be sent as messages\f3\emdash the other side will receive a copy of them, rather than the value itself\f0\par
+\par
+///////////////////////////////////                   /\par
+\par
+Sometimes you need to cancel a function you have scheduled:\par
+\par
+let bombTimer = setTimeout(() => \{\par
+  console.log("BOOM!");\par
+\}, 500);\par
+\par
+if (Math.random() < 0.5) \{ // 50% chance\par
+  console.log("Defused.");\par
+  clearTimeout(bombTimer);\par
+\}\par
+\par
+//////////////////////////////////                /\par
+\par
+Some types of events have the potential to fire rapidly, many times in a row (the "mousemove" and "scroll" events, for example). When handling such events, you must be careful not to do anything too time-consuming or your handler will take up so much time that interaction with the document starts to feel slow\par
+\par
+If you do need to do something nontrivial in such a handler, you can use setTimeout to make sure you are not doing it too often. This is usually called debouncing the event\par
+\par
+When they are typing quickly, we just want to wait until a pause occurs. Instead of immediately performing an action in the event handler, we set a timeout. We also clear the previous timeout (if any) so that when events occur close together (closer than our timeout delay), the timeout from the previous event will be canceled.\par
+\par
+<textarea>Type something here...</textarea>\par
+<script>\par
+  let textarea = document.querySelector("textarea");\par
+  let timeout;\par
+  textarea.addEventListener("input", () => \{\par
+    clearTimeout(timeout);\par
+    timeout = setTimeout(() => console.log("Typed!"), 500);\par
+  \});\par
+</script>\par
+\par
+//////////////////////////////                /\par
+\par
+We can use a slightly different pattern if we want to space responses so that they\rquote re separated by at least a certain length of time but want to fire them during a series of events, not just afterward. For example, we might want to respond to "mousemove" events by showing the current coordinates of the mouse but only every 250 milliseconds.\par
+\par
+<script>\par
+  let scheduled = null;\par
+  window.addEventListener("mousemove", event => \{\par
+    if (!scheduled) \{\par
+      setTimeout(() => \{\par
+        document.body.textContent =\par
+          `Mouse at $\{scheduled.pageX\}, $\{scheduled.pageY\}`;\par
+        scheduled = null;\par
+      \}, 250);\par
+    \}\par
+    scheduled = event;\par
+  \});\par
+</script>\par
+\par
+////////////////////////////////////////////                            /\par
+\par
+fetch("example/data.txt").then(response => \{\par
+  console.log(response.status);\par
+  // \f1\u8594? 200\par
+  console.log(response.headers.get("Content-Type"));\par
+  // \u8594? text/plain\par
+\});\par
+\par
+\f0\lang10 ////////////////////////////////////////////                            /\f5\par
+\par
+fetch("example/data.txt", \{method: "DELETE"\}).then(resp => \{\par
+  console.log(resp.status);\par
+  // \f1\u8594? 405\par
+\});\par
+\par
+\f0\lang10 ////////////////////////////////////////////                            /\par
+\par
+fetch("example/data.txt", \{headers: \{Range: "bytes=8-19"\}\})\par
+  .then(resp => resp.text())\par
+  .then(console.log);\par
+// \f1\u8594? the content\f0\lang10\par
+\par
+////////////////////////////////////////////                            /\par
+\f5\par
+\f2\lang9226 B\f5 rowsers protect us by disallowing scripts to make HTTP requests to other domains\par
+\f2 S\f5 ervers can include a header like this in their response to explicitly indicate to the browser that it is okay for the request to come from another domain:\par
+Access-Control-Allow-Origin: *\par
+\par
+\f2 R\f5 emote procedure calls. In this model, communication follows the patterns of normal function calls, except that the function is actually running on another machine. Calling it involves making a request to the server that includes the function\rquote s name and arguments. The response to that request contains the returned value.\par
+\par
+\f2 Https the client verifies that the server is who it claims to be by asking it to prove that it has a cryptographic certificate issued by a certificate authority that the browser recognizes\par
+\par
+//////////////////////////////////////                          /\par
+\par
+ document.querySelector("input").focus();\par
+  console.log(document.activeElement.tagName);\par
+  // \f1\u8594? INPUT\par
+\par
+  document.querySelector("input").blur();\par
+  console.log(document.activeElement.tagName);\par
+  // \u8594? BODY\f5\par
+\par
+<input type="text" tabindex=1> <a href=".">(help)</a>\par
+<button onclick="console.log('ok')" tabindex=2>OK</button>\par
+\par
+\f2\lang9226 ///////////////////////////////////                    /\par
+\par
+<button disabled>I'm out</button>\par
+\par
+  let form = document.querySelector("form");\par
+  console.log(form.elements[1].type);\par
+  // \f1\u8594? password\par
+\par
+<form action="example/submit.html">\par
+\par
+ let form = document.querySelector("form");\par
+  form.addEventListener("submit", event => \{\par
+    console.log("Saving value", form.elements.value.value);\par
+    event.preventDefault();\par
+  \});\par
+\par
+//////////////////////////////////                               /\par
+\par
+  let textarea = document.querySelector("textarea");\par
+  textarea.addEventListener("keydown", event => \{\par
+    // The key code for F2 happens to be 113\par
+    if (event.keyCode == 113) \{\par
+      replaceSelection(textarea, "Khasekhemwy");\par
+      event.preventDefault();\par
+    \}\par
+  \});\par
+  function replaceSelection(field, word) \{\par
+    let from = field.selectionStart, to = field.selectionEnd;\par
+    field.value = field.value.slice(0, from) + word +\par
+                  field.value.slice(to);\par
+    // Put the cursor after the word\par
+    field.selectionStart = from + word.length;\par
+    field.selectionEnd = from + word.length;\par
+  \}\par
+\par
+////////////////////////////////                             /\par
+\par
+<input type="text"> length:\par
+ <span id="length">0</span>\par
+\par
+<script>\par
+  let text = document.querySelector("input");\par
+  let output = document.querySelector("#length");\par
+  text.addEventListener("input", () => \{\par
+    output.textContent = text.value.length;\par
+  \});\par
+</script>\par
+\par
+////////////////////////////////                             /\par
+\par
+Color:\par
+<label>\par
+  <input type="radio" name="color" value="orange"> Orange\par
+</label>\par
+<label>\par
+  <input type="radio" name="color" value="lightgreen"> Green\par
+</label>\par
+<label>\par
+  <input type="radio" name="color" value="lightblue"> Blue\par
+</label>\par
+<script>\par
+  let buttons = document.querySelectorAll("[name=color]");\par
+  for (let button of Array.from(buttons)) \{\par
+    button.addEventListener("change", () => \{\par
+      document.body.style.background = button.value;\par
+    \});\par
+  \}\par
+</script>\par
+\par
+//////////////////////////                             /\par
+\par
+<select multiple>\par
+  <option value="1">0001</option>\par
+  <option value="2">0010</option>\par
+  <option value="4">0100</option>\par
+  <option value="8">1000</option>\par
+</select> = <span id="output">0</span>\par
+<script>\par
+  let select = document.querySelector("select");\par
+  let output = document.querySelector("#output");\par
+  select.addEventListener("change", () => \{\par
+    let number = 0;\par
+    for (let option of Array.from(select.options)) \{\par
+      if (option.selected) \{\par
+        number += Number(option.value);\par
+      \}\par
+    \}\par
+    output.textContent = number;\par
+  \});\par
+</script>\par
+\par
+///////////////////////////                                /\par
+\par
+<input type="file">\par
+<script>\par
+  let input = document.querySelector("input");\par
+  input.addEventListener("change", () => \{\par
+    if (input.files.length > 0) \{\par
+      let file = input.files[0];\par
+      console.log("You chose", file.name);\par
+      if (file.type) console.log("It has type", file.type);\par
+    \}\par
+  \});\par
+</script>\par
+\par
+//////////////////////////                               /\par
+\par
+\f5 <input type="file" multiple>\par
+<script>\par
+  let input = document.querySelector("input");\par
+  input.addEventListener("change", () => \{\par
+    for (let file of Array.from(input.files)) \{\par
+      let reader = new FileReader();\par
+      reader.addEventListener("load", () => \{\par
+        console.log("File", file.name, "starts with",\par
+                    reader.result.slice(0, 20));\par
+      \});\par
+      reader.readAsText(file);\par
+    \}\par
+  \});\par
+</script>\par
+\par
+\f0\lang10 ////////////////////////////////////////////                            /\par
+\par
+let names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice']\par
+\par
+let countedNames = names.reduce(function (allNames, name) \{\par
+  if (name in allNames) \{\par
+    allNames[name]++\par
+  \}\par
+  else \{\par
+    allNames[name] = 1\par
+  \}\par
+  return allNames\par
+\}, \{\})\par
+// countedNames is:\par
+// \{ 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 \}\par
+\par
+////////////////////////////////////////////                            /\par
+\par
+function readFileText(file) \{\par
+  return new Promise((resolve, reject) => \{\par
+    let reader = new FileReader();\par
+    reader.addEventListener(\par
+      "load", () => resolve(reader.result));\par
+    reader.addEventListener(\par
+      "error", () => reject(reader.error));\par
+    reader.readAsText(file);\par
+  \});\par
+\}\par
+\par
+////////////////////////////////////////////                            /\par
+\par
+When application needs to remember something between sessions, you cannot use JavaScript bindings\f3\emdash those are thrown away every time the page is closed\par
+\par
+localStorage.setItem("username", "marijn");\par
+console.log(localStorage.getItem("username"));\par
+// \f1\u8594? marijn\par
+localStorage.removeItem("username");\f0\lang10\par
+\par
+////////////////////////////////////////////                            /\par
+\par
+A crude note-taking application. It keeps a set of named notes and allows the user to edit notes and create new ones:\par
+\par
+Notes: <select></select> <button>Add</button><br>\par
+<textarea style="width: 100%"></textarea>\par
+\par
+<script>\par
+  let list = document.querySelector("select");\par
+  let note = document.querySelector("textarea");\par
+\par
+  let state;\par
+  function setState(newState) \{\par
+    list.textContent = "";\par
+    for (let name of Object.keys(newState.notes)) \{\par
+      let option = document.createElement("option");\par
+      option.textContent = name;\par
+      if (newState.selected == name) option.selected = true;\par
+      list.appendChild(option);\par
+    \}\par
+    note.value = newState.notes[newState.selected];\par
+\par
+    localStorage.setItem("Notes", JSON.stringify(newState));\par
+    state = newState;\par
+  \}\par
+\par
+  setState(JSON.parse(localStorage.getItem("Notes")) || \{\par
+    notes: \{"shopping list": "Carrots\\nRaisins"\},\par
+    selected: "shopping list"\par
+  \});\par
+\par
+  list.addEventListener("change", () => \{\par
+    setState(\{notes: state.notes, selected: list.value\});\par
+  \});\par
+\par
+  note.addEventListener("change", () => \{\par
+    setState(\{\par
+      notes: Object.assign(\{\}, state.notes,\par
+                           \{[state.selected]: note.value\}),\par
+      selected: state.selected\par
+    \});\par
+  \});\par
+\par
+  document.querySelector("button")\par
+    .addEventListener("click", () => \{\par
+      let name = prompt("Note name");\par
+      if (name) setState(\{\par
+        notes: Object.assign(\{\}, state.notes, \{[name]: ""\}),\par
+        selected: name\par
+      \});\par
+    \});\par
+</script>\par
+\par
+///////////////////////////////////////////                    /\par
+\par
+let \b people \b0 = [\par
+  \{ name: 'Alice', age: 21 \},\par
+  \{ name: 'Max', age: 20 \},\par
+  \{ name: 'Jane', age: 20 \}\par
+];\par
+\par
+function \ul groupBy\ulnone (objectArray, property) \{\par
+  return objectArray.reduce(function (acc, obj) \{\par
+    let key = obj[property]\par
+    if (!acc[key]) \{\par
+      acc[key] = []\par
+    \}\par
+    acc[key].push(obj)\par
+    return acc\par
+  \}, \{\})\par
+\}\par
+\par
+let groupedPeople = \ul groupBy\ulnone (\b people\b0 , 'age')\par
+// groupedPeople is:\par
+// \{\par
+//   20: [\par
+//     \{ name: 'Max', age: 20 \},\par
+//     \{ name: 'Jane', age: 20 \}\par
+//   ],\par
+//   21: [\{ name: 'Alice', age: 21 \}]\par
+// \}\par
+\par
+////////////////////////////////////////////                      /\par
+\par
+Polymorphic code can work with values of different shapes, as long as they support the interface it expects\par
+You cannot create the same symbol twice\par
+\par
+const \b toStringSymbol \b0 = Symbol("toString");\par
+\par
+Array.prototype[\b toStringSymbol\b0 ] = function() \{\par
+  return `$\{this.length\} cm of blue yarn`;\par
+\};\par
+\par
+console.log([1, 2][\b toStringSymbol\b0 ]());\par
+// \f1\u8594?\f0  2 cm of blue yarn\par
+\par
+\lang9226 Property name to be evaluated, much like the square bracket property access notation, which allows us to refer to a binding that holds the symbol\par
+\par
+let \ul stringObject \ulnone = \{\par
+  [\b toStringSymbol\b0 ]() \{ return "a jute rope"; \}\par
+\};\par
+\par
+console.log(\ul stringObject\ulnone [\b toStringSymbol\b0 ]());\par
+// \f1\u8594?\f0  a jute rope\par
+\par
+\lang10 console.log([1, 2].toString());\par
+// \f1\u8594?\f0  1,2\par
+\lang10\par
+////////////////////////////////////////////             /\par
+\par
+let \ul okIterator \ulnone = "OK"[Symbol.iterator]();\par
+\ul okIterator\ulnone .next();\par
+// \f1\u8594?\f0  \{value: "O", done: false\}\par
+\par
+\ul okIterator\ulnone .next();\par
+// \f1\u8594?\f0  \{value: "K", done: false\}\par
+\par
+\ul okIterator\ulnone .next();\par
+// \f1\u8594?\f0  \{value: undefined, done: true\}\lang10\par
+\par
+////////////////////////////////////////////             /\par
+\par
+class \b Temperature \b0\{\par
+\par
+  constructor(celsius) \{\par
+      this.\cf9\b celsius \cf0\b0 = celsius;\par
+  \}\par
+\par
+  get \ul fahrenheit\ulnone () \{\par
+      return this.celsius * 1.8 + 32;\par
+  \}\par
+\par
+  set \cf10\b fahrenheit\cf0\b0 (value) \{\par
+      this.celsius = (value - 32) / 1.8;\par
+  \}\par
+\par
+  static fromFahrenheit(value) \{\par
+      return new Temperature((value - 32) / 1.8);\par
+  \}\par
+\}\par
+\par
+let temp = new \b Temperature\b0 (22);\par
+temp.\ul fahrenheit\ulnone ;\par
+// \f1\u8594?\f0  71.6\par
+\par
+temp.\cf10\b fahrenheit \cf0\b0 = 86;\par
+temp.\cf9\b celsius\cf0\b0 ;\par
+// \f1\u8594?\f0  30\lang10\par
+\par
+////////////////////////////////////////////                       /\par
+\par
+The most widely used approach to bolted-on JavaScript modules is called CommonJS modules. Node.js uses it and is the system used by most packages on NPM\par
+\par
+require. When you call this with the module name of a dependency, it makes sure the module is loaded and returns its interface\par
+\par
+Because the loader wraps the module code in a function, modules automatically get their own local scope. All they have to do is call require to access their dependencies and put their interface in the object bound to exports\par
+\par
+///////////////////////////////////////////                         /\par
+\par
+const \b ordinal \b0 = require("ordinal");\par
+const \{days, months\} = require("date-names");\par
+\par
+exports.\ul formatDate \ulnone = function(date, format) \{\par
+  return format.replace(/YYYY|M(MMM)?|Do?|dddd/g, tag => \{\par
+    if (tag == "YYYY") return date.getFullYear();\par
+    if (tag == "M") return date.getMonth();\par
+    if (tag == "MMMM") return months[date.getMonth()];\par
+    if (tag == "D") return date.getDate();\par
+    if (tag == "Do") return \b ordinal\b0 (date.getDate());\par
+    if (tag == "dddd") return days[date.getDay()];\par
+  \});\par
+\};\par
+\par
+"MMMM Do YYYY" to get output like \ldblquote November 22nd 2017\rdblquote\par
+\par
+const \{formatDate\} = require("./format-date");\par
+\par
+\ul formatDate\ulnone (new Date(2017, 9, 13), "dddd the Do");\par
+// \f1\u8594?\f0  Friday the 13th\par
+\par
+\lang9226 ////////////////////////////////////                    /\par
+\par
+\ul require\ulnone .cache = Object.create(null);\par
+\par
+function \ul require\ulnone (name) \{\par
+  if (!(name in require.cache)) \{\par
+    let code = readFile(name);\par
+    let module = \{exports: \{\}\};\par
+    require.cache[name] = module;\par
+    let wrapper = Function("require, exports, module", code);\par
+    wrapper(require, module.exports, module);\par
+  \}\par
+  return require.cache[name].exports;\par
+\}\par
+\par
+/////////////////////////////////////                   /\par
+\par
+To avoid loading the same module multiple times, require keeps a store (cache) of already loaded modules\par
+\par
+A quirk of the CommonJS modules is that, though the module system will create an empty interface object for you (bound to exports), you can replace that with any value by overwriting module.exports. This is done by many modules to export a single value instead of an interface object\par
+\par
+By defining require, exports, and module as parameters for the generated wrapper function (and passing the appropriate values when calling it), the loader makes sure that these bindings are available in the module\rquote s scope\par
+\par
+const \{parse\} = require("ini");\par
+\par
+parse("x = 10\\ny = 20");\par
+// \f1\u8594?\f0\lang9226  \{x: "10", y: "20"\}\lang10\par
+\par
+////////////////////////////////////////////                           /\par
+\par
+Inside a class declaration, methods that have static written before their name are stored on the constructor\par
+\par
+class SymmetricMatrix \ul extends \ulnone Matrix \{ \}\par
+\par
+Know whether an object was derived from a specific class:\par
+new SymmetricMatrix(2) \b instanceof \b0 SymmetricMatrix;\par
+// \f1\u8594?\f0  true\lang10\par
+\par
+////////////////////////////////////////////                      /\par
+\par
+let vowels = s.replace(/[bcdfghjklmnpqrstvwxyz]/g, '');\par
+let vowelsArray = vowels.split('');\par
+\par
+vowelsArray.forEach((item)=>\{        \par
+        console.log(item);\par
+\}) \par
+\par
+////////////////////////////////////////////                     /\par
+\par
+\b Dates \par
+\b0 Are objects\par
+They also have a numeric representation as a timestamp that specifies the number of elapsed milliseconds since January 1, 1970:\par
+\par
+let timestamp = Date.now();  // The current time as a timestamp (a number).\par
+\par
+let now = new Date();        // The current time as a Date object\par
+let ms = now.getTime();      // Convert to a millisecond timestamp.\par
+let iso = now.toISOString(); // Convert to a string in standard format.\par
+\par
+/////////////////////////////////////////////                       /\par
+\par
+import ordinal from "ordinal";\par
+import \{days, months\} from "date-names";\par
+\par
+export function formatDate(date, format) \{ /* ... */ \}\par
+\par
+An ES module\rquote s interface is a set of named bindings\par
+ES module imports happen before a module\rquote s script starts running. That means import declarations may not appear inside functions or blocks, and the names of dependencies must be quoted strings, not arbitrary expressions\par
+\par
+////////////////////////////////////////////               +\par
+\par
+\lang9226 D\lang10 ebugging\lang9226 . P\lang10 rocess of finding mistakes\f3\emdash\f0 bugs\f3\emdash\f0 in programs \par
+\par
+function canYouSpotTheProblem() \{\par
+  "\b use strict\b0 ";\par
+\lang9226    ...\lang10\par
+\lang9226\}\par
+\par
+\lang10 The more external objects that the code interacts with, the harder it is to set up the context in which to test it\par
+Regular expressions are also objects\par
+\par
+ let re = new RegExp('ab+c');\par
+\par
+let re = /ab+c/;\par
+\par
+ab seguido de 0 o muchas c:\par
+/ab*c/\par
+\par
+////////////////////////////////////////////                   +\par
+\par
+.  \par
+Un caracter\par
+Excepto \\n\par
+Inside a character class, the dot loses its special meaning and matches a literal dot\par
+\par
+\\d\par
+Any digit\par
+\par
+\\D\par
+Any character that is not a digit  \par
+\par
+\\w\par
+Digit or character\par
+\par
+\\W\par
+Any character that is not a word character\par
+\par
+////////////////////////////////////////////                  +\par
+\par
+\\s\par
+space, tab, form feed, line feed\par
+\par
+\\t\par
+horizontal tab\par
+\par
+\\r\par
+carriage return\par
+\par
+\\n\par
+linefeed\par
+\par
+////////////////////////////////////////////                         /\par
+\par
+Fetching a single big file tends to be faster than fetching a lot of tiny ones\par
+Bundler. Roll the programs into a single big file\par
+\par
+Minifier. Take a JavaScript program and make it smaller\par
+\par
+////////////////////////////////////////////                /\par
+\par
+const \b chessStory \b0 = 'He played the King in a8 and she moved her Queen in c2.';\par
+const regexpCoordinates = /\\w\\d/g;\par
+\par
+\b chessStory\b0 .match(regexpCoordinates);\par
+// expected output: Array [ 'a8', 'c2']\par
+\par
+////////////////////////////////////////////                      /\par
+\par
+Exceptions jump out of not just the current function but also its callers, all the way down to the first call that started the current execution (unwinding desenrollando the stack)\par
+\par
+function \ul promptDirection\ulnone (question) \{\par
+  let result = prompt(question);\par
+  if (result.toLowerCase() == "left") return "L";\par
+  if (result.toLowerCase() == "right") return "R";\par
+  throw new Error("Invalid direction: " + result);\par
+\}\par
+\par
+function \b look\b0 () \{\par
+  if (\ul promptDirection\ulnone ("Which way?") == "L") \{\par
+    return "a house";\par
+  \} else \{\par
+    return "two angry bears";\par
+  \}\par
+\}\par
+\par
+try \{\par
+  console.log("You see", \b look\b0 ());\par
+\} catch (error) \{\par
+  console.log("Something went wrong: " + error);\par
+\} \par
+\par
+////////////////////////////////////////////               /\par
+\par
+function transfer(from, \b amount\b0 ) \{\par
+  if (accounts[from] < \b amount\b0 ) return;\par
+  let \ul progress \ulnone = 0;\par
+\par
+  try \{\par
+    accounts[from] -= \b amount\b0 ;\par
+    \ul progress \ulnone = 1;\par
+    accounts[getAccount()] += \b amount\b0 ;\par
+    \ul progress \ulnone = 2;\par
+  \} finally \{\par
+    if (\ul progress \ulnone == 1) \{\par
+      accounts[from] += \b amount\b0 ;\par
+    \}\par
+  \}\par
+\}\par
+\par
+////////////////////////////////////////\par
+\par
+Interfaces simple and predictable\par
+Notice what works and what doesn\rquote t. Don\rquote t assume that a painful mess is \ldblquote just the way it is"\par
+\par
+If an interface is well designed, after you\rquote ve worked with it once, you\rquote re likely to remember how to use it\par
+Keep your modules predictable by using simple data structures and doing a single, focused thing\par
+\par
+Many of the INI-file parsing modules on NPM provide a function that directly reads such a file from the hard disk and parses it, for example. This makes it impossible to use such modules in the browser, where we don\rquote t have direct file system access, and adds complexity that would have been better addressed by composing the module with some file-reading function\par
+\par
+No se complique con poo, use una funci\'f3n y ya. No cree dependencias innecesarias\par
+When an array suffices, use an array\par
+\par
+When various packages are using different data structures to describe similar things, combining them is difficult\par
+\par
+Fnd out what data structures other people are using and, when possible, follow their example\par
+\par
+////////////////////////////////////////////                   +\par
+\par
+For programmer mistakes, just letting the error go through is often the best you can do\par
+For problems that are expected to happen during routine use, crashing with an unhandled exception is a terrible strategy\par
+\par
+Js doesn\rquote t provide direct support for selectively catching exceptions: either you catch them all or you don\rquote t catch any\par
+\par
+for (;;) \{\par
+  try \{\par
+    let dir = promptDirection("Where?");\par
+    console.log("You chose ", dir);\par
+    break;\par
+  \} catch (e) \{\par
+\b     if (e instanceof InputError) \{\par
+      console.log("Not a valid direction. Try again.");\par
+    \} else \{\par
+      throw e;\par
+    \}\par
+\b0   \}\par
+\}\par
+\par
+////////////////////////////////////////                          /\par
+\par
+return (nums || []).map(num => num * (num % 2 === 0 ? 2 : 3));\par
+\par
+////////////////////////////////////////                          /\par
+\par
+import \{everywhere\} from "./crow-tech";\par
+\par
+everywhere(nest => \{\par
+  nest.state.gossip = [];\par
+\});\par
+\par
+function sendGossip(nest, message, exceptFor = null) \{\par
+  nest.state.gossip.push(message);\par
+  for (let neighbor of nest.neighbors) \{\par
+    if (neighbor == exceptFor) continue;\par
+    request(nest, neighbor, "gossip", message);\par
+  \}\par
+\}\par
+\par
+requestType("gossip", (nest, message, source) => \{\par
+  if (nest.state.gossip.includes(message)) return;\par
+  console.log(`$\{nest.name\} received gossip '$\{\par
+               message\}' from $\{source\}`);\par
+  sendGossip(nest, message, source);\par
+\});\par
+\par
+sendGossip(bigOak, "Kids with airgun in the park");\par
+\par
+To avoid sending the same message around the network forever, each nest keeps an array of gossip strings that it has already seen. To define this array, we use the everywhere function\f3\emdash which runs code on every nest\emdash to add a property to the nest\rquote s state object, which is where we\rquote ll keep nest-local state.\par
+\par
+When a nest receives a duplicate gossip message, which is very likely to happen with everybody blindly resending them, it ignores it. But when it receives a new message, it excitedly tells all its neighbors except for the one who sent it the message.\f0\par
+\par
+////////////////////////////////////////////                 /\par
+\par
+Assertions are checks inside a program that verify that something is the way it is supposed to be\par
+\par
+function firstElement(array) \{\par
+\ul   if (array.length == 0) \{\ulnone\par
+    throw new Error("firstElement called with []");\par
+  \}\par
+  return array[0];\par
+\}\par
+\par
+For mistakes that are easy to make \par
+\par
+////////////////////////////////////////////                      /\par
+\par
+You shouldn't be using map if You\'b4re not:\par
+
+\pard{\pntext\f6\'B7\tab}{\*\pn\pnlvlblt\pnf6\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl240\slmult1 Using the array it returns; and/or\par
+{\pntext\f6\'B7\tab}Returning a value from the callback\par
+
+\pard\sl240\slmult1\par
+let elems = document.querySelectorAll('select option:checked')\par
+let values = Array.prototype.map.call(elems, function(obj) \{\par
+  return obj.value\par
+\})\par
+\par
+////////////////////////////////////////////                       /\par
+\par
+/abc/\tab A sequence of characters\par
+/[abc]/\tab Any character from a set of characters\par
+\par
+/[^abc]/\tab Any character not in a set of characters\par
+/[0-9]/\tab Any character in a range of characters\par
+\par
+/x+/\tab One or more occurrences of the pattern x\par
+/x+?/\tab One or more occurrences, nongreedy\par
+\par
+/x*/\tab Zero or more occurrences\par
+/x?/\tab Zero or one occurrence\par
+\par
+/x\{2,4\}/\tab Two to four occurrences\par
+/(abc)/\tab     A group\par
+\par
+/a|b|c/\tab Any one of several patterns\par
+/\\d/\tab Any digit character\par
+\par
+/\\w/\tab An alphanumeric character (\ldblquote word character\rdblquote )\par
+/\\s/\tab Any whitespace character\par
+\par
+/./\tab Any character except newlines\par
+/\\b/\tab A word boundary\par
+\par
+/^/\tab Start of input\par
+/$/\tab End of input\par
+\par
+///////////////////////////////////////////                        /\par
+\par
+// Same as above, but using the concise arrow function syntax\par
+['1', '2', '3'].map( str => parseInt(str) )\par
+\par
+////////////////////////////////////////////                       /\par
+\par
+In a synchronous programming model, things happen one at a time\par
+It returns only when the action has finished \par
+\par
+An asynchronous model allows multiple things to happen at the same time\par
+Since most modern computers contain multiple processors, multiple threads may even run at the same time, on different processors\par
+\par
+A second thread could start the second request, and then both threads wait for their results to come back, after which they resynchronize to combine their results\par
+\par
+///////////////////////////////////////////////               /\par
+\par
+const elements = ['Sun', 'Earth', 'Moon'];\par
+elements.join();\par
+// output: "Sun,Earth,Moon"\par
+\par
+elements.join('');\par
+// output: "SunEarthMoon"\par
+\par
+elements.join('-');\par
+// output: "Sun-Earth-Moon"\par
+\par
+///////////////////////////////////////////////               /\par
+\par
+Assertions include boundaries, which indicate the beginnings and endings of lines and words\par
+\par
+const text = 'A quick fox';\par
+const regexpLastWord = /\\w+$/;\par
+\par
+text.match(regexpLastWord);\par
+// Array ["fox"]\par
+\par
+const regexpWords = /\\b\\w+\\b/g;\par
+\par
+text.match(regexpWords);\par
+// Array ["A", "quick", "fox"]\par
+\par
+const regexpFoxQuality = /\\w+(?= fox)/;\par
+\par
+text.match(regexpFoxQuality);\par
+// Array ["quick"]\par
+\par
+//////////////////////////////////////////                      /\par
+\par
+for (i of range(1, 5)) \{\par
+    console.log(i);\par
+\}\par
+// 1 2 3 4 5 \par
+\par
+//////////////////////////////////////////                      /\par
+\par
+let vegetables = ['parsnip', 'potato']\par
+let moreVegs = ['celery', 'beetroot']\par
+\par
+// Merge the second array into the first one\par
+vegetables.push(...moreVegs);\par
+//vegetables content ['parsnip', 'potato', 'celery', 'beetroot']\par
+\par
+////////////////////////////////////////////                 /\par
+\par
+The beginning and end of a string are considered non-words\par
+\\B  non-word boundary\par
+\par
+x(?=y) followed by "y\par
+x(?!y)  not followed by "y"\par
+\par
+(?<=y)x Matches "x" only if "x" is preceded by "y"\par
+(?<!y)x  not preceded by "y"\par
+\par
+////////////////////////////////////////////              /\par
+\par
+var words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];\par
+const result = words.filter(word => word.length > 6);\par
+// expected output: Array ["exuberant", "destruction", "present"]\par
+\par
+N\'fameros primos\par
+const array = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];\par
+\par
+function isPrime(num) \{\par
+  for (let i = 2; num > i; i++) \{\par
+    if (num % i == 0) \{\par
+      return false;\par
+    \}\par
+  \}\par
+  return num > 1;\par
+\}\par
+\par
+console.log(array.filter(isPrime)); // [2, 3, 5, 7, 11, 13]\par
+\par
+/////////////////////////////////////////               /\par
+\par
+Searching in array\par
+let fruits = ['apple', 'banana', 'grapes', 'mango', 'orange']\par
+\par
+/**\par
+ * Filter array items based on search criteria (query)\par
+ */\par
+function filterItems(arr, query) \{\par
+  return arr.filter(function(el) \{\par
+    return el.toLowerCase().indexOf(query.toLowerCase()) !== -1\par
+  \})\par
+\}\par
+\par
+console.log(filterItems(fruits, 'ap'))  // ['apple', 'grapes']s\par
+\par
+///////////////////////////////////////////            /\par
+\par
+function round(num, places) \{\par
+    num = parseFloat(num);\par
+    places = (places ? parseInt(places, 10) : 0)\par
+    if (places > 0) \{\par
+        let length = places;\par
+        places = "1";\par
+        for (let i = 0; i < length; i++) \{\par
+            places += "0";\par
+            places = parseInt(places, 10);\par
+        \}\par
+    \} else \{\par
+        places = 1;\par
+    \}\par
+    return Math.round((num + Number.EPSILON) * (1 * places)) / (1 * places)\par
+\}\par
+\par
+round(1.005, 2); // 1.01\par
+round(1.005, "1"); // 1\par
+round("1.23", 1); // 1.2\par
+\par
+////////////////////////////////////////////              /\par
+\par
+let fruits = ["Apple", "Watermelon", "Orange", "Avocado", "Strawberry"];\par
+\par
+let fruitsStartsWithA = fruits.filter(fruit => /^A/.test(fruit));\par
+// [ 'Apple', 'Avocado' ]\par
+// Select fruits started with 'A' by /^A/ Regex\par
+// Here '^' control symbol used only in one role: Matching beginning of an input\par
+\par
+\par
+let fruitsStartsWithNotA = fruits.filter(fruit => /^[^A]/.test(fruit));\par
+// [ 'Watermelon', 'Orange', 'Strawberry' ]\par
+\par
+let fruitsWithDescription = ["Red apple", "Orange orange", "Green Avocado"];\par
+\par
+let enEdSelection = fruitsWithDescription.filter(descr => /(en|ed)\\b/.test(descr));\par
+// [ 'Red apple', 'Green Avocado' ]\par
+// Select descriptions that contains 'en' or 'ed' words endings\par
+\par
+////////////////////////////////////////////////                /\par
+\par
+function round(num, places) \{\par
+    num = parseFloat(num);\par
+    places = (places ? parseInt(places, 10) : 0)\par
+    if (places > 0) \{\par
+        let length = places;\par
+        places = "1";\par
+        for (let i = 0; i < length; i++) \{\par
+            places += "0";\par
+            places = parseInt(places, 10);\par
+        \}\par
+    \} else \{\par
+        places = 1;\par
+    \}\par
+    return Math.round((num + Number.EPSILON) * (1 * places)) / (1 * places)\par
+\}\par
+\par
+round(1.005, 2); // 1.01\par
+round(1.005, "1"); // 1\par
+round("1.23", 1); // 1.2\par
+\par
+//////////////////////////////////////////////                          /\par
+\par
+function \b getCount\b0 (objects) \{\par
+    return objects.reduce((target, item) => \{\par
+        (item.x === item.y) && (target += 1);        \par
+        return target;\par
+    \}, 0);\par
+\}\par
+\par
+function main() \{\par
+    const n = +(readLine());\par
+    let objects = [];\par
+    \par
+    for (let i = 0; i < n; i++) \{\par
+        const [a, b] = readLine().split(' ');\par
+        \par
+        objects.push(\{x: +(a), y: +(b)\});\par
+    \}\par
+    \par
+    console.log(\b getCount\b0 (objects));\par
+\}\par
+\par
+//////////////////////////////////////////////                          /\par
+\par
+'ABC'.charCodeAt(0)  // returns 65\par
+\par
+///////////////////////////////////////////                /\par
+\par
+When a functions finishes, the callback function is called with the result\par
+\par
+Nests have a \ul send \ulnone method that sends off a request. It expects the name of the target nest, the type of the request, and the content of the request as its first three arguments, and it expects a function to call when a response comes in as its fourth and last argument:\par
+\par
+bigOak.\ul send\ulnone ("Cow Pasture", \par
+                   "note", \par
+                  "Let's caw loudly at 7PM",\par
+                () => console.log("Note delivered."));\par
+\par
+A function doing asynchronous work typically returns before the work is done\par
+\par
+///////////////////////////////////////////             /\par
+\par
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];\par
+console.log(animals.slice(2, 4));\par
+// expected output: Array ["camel", "duck"]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+Convert Array-like objects/collections to a new Array\par
+function list() \{\par
+  return Array.prototype.slice.call(arguments)\par
+\}\par
+\par
+let list1 = list(1, 2, 3) // [1, 2, 3]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+splice\par
+It changes the contents of an array by removing or replacing existing elements\par
+0 insertar\par
+1 cantidad de elementos a reemplazar\par
+\par
+const months = ['Jan', 'March', 'April', 'June'];\par
+months.splice(1, 0, 'Feb');\par
+// inserts at index 1\par
+console.log(months);\par
+// expected output: Array ["Jan", "Feb", "March", "April", "June"]\par
+\par
+months.splice(4, 1, 'May');\par
+// replaces 1 element at index 4\par
+console.log(months);\par
+// expected output: Array ["Jan", "Feb", "March", "April", "May"]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+let myFish = ['angel', 'clown', 'drum', 'mandarin', 'sturgeon']\par
+let removed = myFish.splice(3, 1)\par
+\par
+// myFish is ["angel", "clown", "drum", "sturgeon"]\par
+// removed is ["mandarin"]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+let myFish = ['angel', 'clown', 'trumpet', 'sturgeon']\par
+let removed = myFish.splice(0, 2, 'parrot', 'anemone', 'blue')\par
+\par
+// myFish is ["parrot", "anemone", "blue", "trumpet", "sturgeon"]\par
+// removed is ["angel", "clown"]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+let myFish = ['angel', 'clown', 'mandarin', 'sturgeon']\par
+let removed = myFish.splice(-2, 1)\par
+\par
+// myFish is ["angel", "clown", "sturgeon"]\par
+// removed is ["mandarin"]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+let myFish = ['angel', 'clown', 'mandarin', 'sturgeon']\par
+let removed = myFish.splice(2)\par
+\par
+// myFish is ["angel", "clown"]\par
+// removed is ["mandarin", "sturgeon"]\par
+\par
+///////////////////////////////////////////             /\par
+\par
+const array1 = ['a', 'b', 'c'];\par
+\par
+array1.forEach(element => console.log(element));\par
+\par
+// expected output: "a"\par
+// expected output: "b"\par
+// expected output: "c"\par
+\par
+///////////////////////////////////////////             /\par
+\par
+perimeter() \{\par
+        return this.sides.reduce(function add(a,b)\{return a+b;\})\par
+\} \par
+\par
+///////////////////////////////////////////             /\par
+\par
+Working with abstract concepts is often easier when those concepts can be represented by values. In the case of asynchronous actions, you could, instead of arranging for a function to be called at some point in the future, return an object that represents this future event\par
+\par
+///////////////////////////////////////////             /\par
+\par
+let fifteen = Promise.resolve(15);\par
+fifteen.then(value => console.log(`Got $\{value\}`));\par
+// \f1\u8594?\f0  Got 15\par
+\par
+\lang10 ///////////////////////////////////////////             /\par
+\par
+function\f2  \f0 logArrayElements\f2 (\f0 element\f2 , \f0 index\f2 , \f0 array\f2 ) \{\f0\par
+\f2   \f0 console\f2 .\f0 log\f2 (\f0 'a\f2 [\f0 '\f2  + \f0 index\f2  + \f0 '\f2 ] = \f0 '\f2  + \f0 element\f2 )\f0\par
+\f2\}\f0\par
+\par
+\f2 // \f0 Notice\f2  \f0 that\f2  \f0 index\f2  \f0 2\f2  \f0 is\f2  \f0 skipped\f2 , \f0 since\f2  \f0 there\f2  \f0 is\f2  \f0 no\f2  \f0 item\f2  \f0 at\par
+\f2 // \f0 that\f2  \f0 position\f2  \f0 in\f2  \f0 the\f2  \f0 array\f2 ...\f0\par
+\f2 [\f0 2\f2 , \f0 5\f2 , , \f0 9\f2 ].\f0 forEach\f2 (\f0 logArrayElements\f2 )\f0\par
+\f2 // \f0 logs\f2 :\f0\par
+\f2 // \f0 a\f2 [\f0 0\f2 ] = \f0 2\par
+\f2 // \f0 a\f2 [\f0 1\f2 ] = \f0 5\par
+\f2 // \f0 a\f2 [\f0 3\f2 ] = \f0 9\par
+\par
+\lang10 ///////////////////////////////////////////             /\par
+\par
+\par
+\par
+\lang10 ///////////////////////////////////////////             /\par
+\par
+let\f2  \f0 words\f2  = [\f0 'one'\f2 , \f0 'two'\f2 , \f0 'three'\f2 , \f0 'four'\f2 ]\f0\par
+words\f2 .\f0 forEach\f2 (\f0 function\f2 (\f0 word\f2 ) \{\f0\par
+\f2   \f0 console\f2 .\f0 log\f2 (\f0 word\f2 )\f0\par
+\f2   \f0 if\f2  (\f0 word\f2  === \f0 'two'\f2 ) \{\f0\par
+\f2     \f0 words\f2 .\f0 shift\f2 () //\f0 'one'\f2  \f0 will\f2  \f0 delete\f2  \f0 from\f2  \f0 array\par
+\f2   \}\f0\par
+\f2\}) // \f0 one\f2  // \f0 two\f2  // \f0 four\par
+\par
+console\f2 .\f0 log\f2 (\f0 words\f2 );  //[\f0 'two'\f2 , \f0 'three'\f2 , \f0 'four'\f2 ]\f0\par
+\par
+\lang10 ///////////////////////////////////////////             /\par
+\par
+\b\lang9226 A promise \par
+\b0 Is as a device to move values into an asynchronous reality\lang10\par
+The constructor expects a function as argument, which it immediately calls, passing it a function that it can use to resolve the promise\par
+\par
+function storage(nest, name) \{\par
+  return new Promise(resolve => \{\par
+    nest.readStorage(name, result => resolve(result));\par
+  \});\par
+\}\par
+\par
+storage(bigOak, "enemies")\par
+  .then(value => console.log("Got", value));\par
+\par
+/////////////////////////////////////////\par
+\par
+class \b Rectangle \b0\{\par
+    constructor(w, h) \{\par
+        this.w = w;\par
+        this.h = h;\par
+    \}\par
+\}\par
+\par
+area = function () \{\par
+    return (this.w * this.h);\par
+\}\par
+\par
+class Square extends \b Rectangle \b0\{\par
+    constructor(s) \{\par
+        super(s, s);\par
+    \}\par
+\}\par
+\par
+////////////////////////////////////////////            \par
+\par
+/abc/.test("abcde");\par
+// \f1\u8594?\f0  true\par
+\par
+\lang10\{2,4\} at least twice and at most four times\par
+\par
+let neighbor = /neighbou?r/;\par
+\par
+neighbor.test("neighbour");\par
+// \f1\u8594?\f0  true\par
+\par
+neighbor.test("neighbor");\par
+// \f1\u8594?\f0  true\lang10\par
+\par
+////////////////////////////////////////////                \par
+\par
+let dateTime = /\\d\{1,2\}-\\d\{1,2\}-\\d\{4\} \\d\{1,2\}:\\d\{2\}/;\par
+dateTime.test("1-30-2003 8:45");\par
+// \f1\u8594?\f0  true\par
+\par
+\cf3\b\lang9226 i\cf0\b0  case insensitive\par
+\par
+let cartoonCrying = /\b boo\b0 +(hoo+)+/\cf3\b i\cf0\b0 ;\par
+console.log(cartoonCrying.test("\b Boo\b0 hoooohoohooo"));\par
+// \f1\u8594?\f0  true\lang10\par
+\par
+////////////////////////////////////////////            /\par
+\par
+const aliceExcerpt = 'The Caterpillar and Alice looked at each other';\par
+const regexpWithoutE = /\\b[a-df-z]+\\b/ig;\par
+console.log(aliceExcerpt.match(regexpWithoutE));\par
+// expected output: Array ["and", "at"]\par
+\par
+const imageDescription = 'This image has a resolution of 1440\'d7900 pixels.';\par
+const regexpSize = /([0-9]+)\'d7([0-9]+)/;\par
+const match = imageDescription.match(regexpSize);\par
+console.log(`Width: $\{match[1]\} / Height: $\{match[2]\}.`);\par
+// expected output: "Width: 1440 / Height: 900."\par
+\par
+////////////////////////////////////////////             /\par
+\par
+x|y \par
+either\par
+\par
+[xyz]\par
+[a-c]\par
+one of\par
+\par
+[^xyz]\par
+[^a-c]\par
+negated\par
+\par
+(foo)\par
+Matches and remembers\par
+\par
+\\k<Name>\par
+Back reference to the last substring matching the Named capture group specified\par
+\par
+////////////////////////////////////////////                  /\par
+\par
+var aliceExcerpt = "There was a long silence after this, and Alice could only hear whispers now and then.";\par
+var regexpVowels = /[aeiouy]/g;\par
+console.log("Number of vowels:", aliceExcerpt.match(regexpVowels).length);\par
+// Number of vowels: 25\par
+\par
+////////////////////////////////////////////                  /\par
+\par
+let \b personList \b0 = `First_Name: John, Last_Name: Doe\par
+First_Name: Jane, Last_Name: Smith`;\par
+let regexpNames =  /First_Name: (\\w+), Last_Name: (\\w+)/mg;\par
+let match = regexpNames.exec(\b personList\b0 );\par
+\par
+do \{\par
+  console.log(`Hello $\{match[1]\} $\{match[2]\}`);\par
+\} while((match = regexpNames.exec(\b personList\b0 )) !== null);\par
+\par
+////////////////////////////////////////////             /\par
+\par
+function regexVar() \{\par
+  // Declare a RegExp object variable named 're'\par
+  // It must match a string that starts and ends with the same vowel (i.e., \{a, e, i, o, u\})\par
+  let re = /^([aeiou]).+\\1$/;\par
+  return re;\par
+\}\par
+\par
+////////////////////////////////////////////              /\par
+\par
+let \ul personList \ulnone = `First_Name: John, Last_Name: Doe\par
+First_Name: Jane, Last_Name: Smith`;\par
+let regexpNames =  /First_Name: (?<firstname>\\w+), Last_Name: (?<lastname>\\w+)/mg;\par
+let match = regexpNames.exec(\ul personList\ulnone );\par
+\par
+do \{\par
+  console.log(`Hello $\{match.groups.firstname\} $\{match.groups.lastname\}`);\par
+\} while((match = regexpNames.exec(\ul personList\ulnone )) !== null);\par
+\par
+////////////////////////////////////////////           /\par
+\par
+\b exec \b0 return null if no match was found and return an object with information about the match otherwise\par
+\par
+let match = /\\d+/.\b exec\b0 ("one two 100");\par
+console.log(match);\par
+// \f1\u8594?\f0  ["100"]\par
+\par
+console.log(match.index);\par
+// \f1\u8594?\f0  8\lang10\par
+\par
+////////////////////////////////////////////            /\par
+\par
+When a group is matched multiple times, only the last match ends up in the array\par
+console.log(/(\\d)+/.exec("123"));\par
+// \f1\u8594?\f0  ["123", "3"]\par
+\par
+When a group does not end up being matched at all (for example, when followed by a question mark), its position in the output array will hold undefined\par
+console.log(/bad(ly)?/.exec("bad"));\par
+// \f1\u8594?\f0  ["bad", undefined]\par
+\lang10\par
+////////////////////////////////////////////                   /\par
+\par
+Running Promises in Sequence\par
+/**\par
+ * Runs promises from array of functions that can return promises\par
+ * in chained manner\par
+ *\par
+ * @param \{array\} arr - promise arr\par
+ * @return \{Object\} promise object\par
+ */\par
+function \b runPromiseInSequence\b0 (arr, \ul input\ulnone ) \{\par
+  return arr.reduce(\par
+    (promiseChain, currentFunction) => promiseChain.then(currentFunction),\par
+    Promise.resolve(\ul input\ulnone )\par
+  )\par
+\}\par
+\par
+// promise function 1\par
+function p1(a) \{\par
+  return new Promise((resolve, reject) => \{\par
+    resolve(a * 5)\par
+  \})\par
+\}\par
+\par
+// promise function 2\par
+function p2(a) \{\par
+  return new Promise((resolve, reject) => \{\par
+    resolve(a * 2)\par
+  \})\par
+\}\par
+\par
+// function 3  - will be wrapped in a resolved promise by .then()\par
+function f3(a) \{\par
+ return a * 3\par
+\}\par
+\par
+// promise function 4\par
+function p4(a) \{\par
+  return new Promise((resolve, reject) => \{\par
+    resolve(a * 4)\par
+  \})\par
+\}\par
+\par
+const promiseArr = [p1, p2, f3, p4]\par
+\b runPromiseInSequence\b0 (promiseArr, 10)\par
+  .then(console.log)   // 1200\par
+\par
+////////////////////////////////////////////                /\par
+\par
+console.log(new Date(2009, 11, 9));\par
+// \f1\u8594?\f0  Wed Dec 09 2009 00:00:00 GMT+0100 (CET)\par
+\par
+\lang9226 Month numbers start at zero (so December is 11)\par
+\lang10\par
+const ghostSpeak = 'booh boooooooh';\par
+const regexpSpooky = /bo\{3,\}h/;\par
+console.log(ghostSpeak.match(regexpSpooky));\par
+// expected output: Array ["boooooooh"]\par
+\par
+const modifiedQuote = '[He] ha[s] to go read this novel [Alice in Wonderland].';\par
+const regexpModifications = /\\[.*?\\]/g;\par
+console.log(modifiedQuote.match(regexpModifications));\par
+// expected output: Array ["[He]", "[s]", "[Alice in Wonderland]"]\par
+\par
+////////////////////////////////////////////           /\par
+\par
+*\par
+0 or more times\par
+\par
++\par
+1 or more times\par
+\par
+?\par
+0 or 1 times\par
+\par
+\{n\}\par
+"n" occurrences\par
+\par
+\{n,\}\par
+ at least "n" occurrences\par
+\par
+x\{n,m\}\par
+"n" is 0 or a positive integer, "m" is a positive integer, and m > n\par
+\par
+////////////////////////////////////////////             /\par
+\par
+var wordEndingWithAs = /\\w+a+\\b/;\par
+var delicateMessage = "This is Spartaaaaaaa";\par
+console.table(delicateMessage.match(wordEndingWithAs)); // [ "Spartaaaaaaa" ]\par
+\par
+var singleLetterWord = /\\b\\w\\b/g;\par
+var notSoLongWord = /\\b\\w\{1,6\}\\b/g;\par
+var loooongWord = /\\b\\w\{13,\}\\b/g;\par
+\par
+var sentence = "Why do I have to learn multiplication table?";\par
+\par
+console.table(sentence.match(singleLetterWord)); // ["I"]\par
+console.table(sentence.match(notSoLongWord));    // [ "Why", "do", "I", "have", "to", "learn", "table" ]\par
+console.table(sentence.match(loooongWord));      // ["multiplication"]\par
+\par
+////////////////////////////////////////////                     ? /\par
+\par
+Resolves to an array of the values that these promises produced (in the same order as the original array)\par
+\par
+requestType("ping", () => "pong");\par
+\par
+function availableNeighbors(nest) \{\par
+  let requests = nest.neighbors.map(neighbor => \{\par
+    return request(nest, neighbor, "ping")\par
+      .then(() => true, () => false);\par
+  \});\par
+  return Promise.all(requests).then(result => \{\par
+    return nest.neighbors.filter((_, i) => result[i]);\par
+  \});\par
+\}\par
+\par
+When a neighbor isn\rquote t available, we don\rquote t want the entire combined promise to fail since then we still wouldn\rquote t know anything. So the function that is mapped over the set of neighbors to turn them into request promises attaches handlers that make successful requests produce true and rejected ones produce false.\par
+\par
+In the handler for the combined promise, filter is used to remove those elements from the neighbors array whose corresponding value is false. This makes use of the fact that filter passes the array index of the current element as a second argument to its filtering function\par
+\par
+////////////////////////////////////////////                      /\par
+\par
+* It must match a string that starts with 'Mr.', 'Mrs.', 'Ms.', 'Dr.', or 'Er.', \par
+* followed by one or more letters.\par
+\par
+let re = /^(Mr|Mrs|Ms|Dr|Er)(\\.)([a-zA-Z])+$/;  \par
+\par
+///////////////////////////////////////////                   /\par
+\par
+var \b britishText \b0 = "He asked his neighbour a favour.";\par
+var \ul americanText \ulnone = "He asked his neighbor a favor.";\par
+\par
+var regexpEnding = /\\w+ou?r/g;\par
+// \\w+ One or several letters\par
+// o   followed by an "o",\par
+// u?  optionally followed by a "u"\par
+// r   followed by an "r"\par
+\par
+console.table(\b britishText\b0 .match(regexpEnding));\par
+// ["neighbour", "favour"]\par
+\par
+console.table(\ul americanText\ulnone .match(regexpEnding));\par
+// ["neighbor", "favor"]\par
+\par
+////////////////////////////////////////////                 \par
+\par
+let animalCount = /\\b\\d+ (pig|cow|chicken)s?\\b/;\par
+animalCount.test("15 pigs");\par
+// \f1\u8594?\f0  true\par
+\par
+animalCount.test("15 pigchickens");\par
+// \f1\u8594?\f0  false\lang10\par
+\par
+////////////////////////////////////////////                 \par
+\par
+exec()\tab Executes a search for a match in a string. It returns an array of information or null on a mismatch.\par
+test()\tab Tests for a match in a string. It returns true or false\par
+\par
+match()\tab Returns an array containing all of the matches, including capturing groups, or null if no match is found.\par
+matchAll()\tab Returns an iterator containing all of the matches, including capturing groups\par
+\par
+search()\tab Tests for a match in a string. It returns the index of the match, or -1 if the search fails.\par
+replace()\tab Executes a search for a match in a string, and replaces the matched substring with a replacement substring\par
+\par
+replaceAll()\tab Executes a search for all matches in a string, and replaces the matched substrings with a replacement substring.\par
+split()\tab Uses a regular expression or a fixed string to break a string into an array of substrings\par
+\par
+////////////////////////////////////////////               \par
+\par
+d\tab Generate indices for substring matches.\tab RegExp.prototype.hasIndices\par
+g\tab Global \tab\tab\tab\tab\tab search.\tab RegExp.prototype.global\par
+\par
+i\tab Case-insensitive search.\tab\tab\tab RegExp.prototype.ignoreCase\par
+m\tab Multi-line search.\tab\tab\tab\tab RegExp.prototype.multiline\par
+\par
+s\tab Allows . to match newline characters.\tab RegExp.prototype.dotAll\par
+u\tab "unicode"; treat a pattern as a sequence of unicode code points.\tab\tab\tab\tab\tab\tab\tab\tab\tab RegExp.prototype.unicode\par
+\par
+y\tab Perform a "sticky" search that matches starting at the current position in the target string. See sticky.\tab\tab\tab\tab RegExp.prototype.sticky\par
+\par
+///////////////////////////////////////                    \par
+\par
+let radius = readLine();\par
+\par
+"papa".replace("p", "m");\par
+// \f1\u8594?\f0  mapa\par
+\par
+let s = "the cia and fbi";\par
+s.replace(/\\b(fbi|cia)\\b/g,\par
+            str => str.toUpperCase()));\par
+// \f1\u8594?\f0  the CIA and FBI\par
+\par
+\lang10 ////////////////////////////////////////////           \par
+\par
+The period character does not match newline characters\par
+\par
+\b Repetition operators (+, *, ?, and \{\}) \par
+\b0 Are greedy, meaning they match as much as they can and backtrack (retractarse) from there\par
+\par
+If you put a question mark after them (+?, *?, ??, \{\}?), they become nongreedy and start by matching as little as possible, matching more only when the remaining pattern does not fit the smaller match\par
+\par
+let name = "harry";\par
+let text = "Harry is a suspicious character.";\par
+\par
+let regexp = new RegExp("{{\field{\*\fldinst{HYPERLINK "\\\\\\\\b"}}{\fldrslt{\\\\b\ul0\cf0}}}}\f0\fs24 (" + name + "){{\field{\*\fldinst{HYPERLINK "\\\\\\\\b"}}{\fldrslt{\\\\b\ul0\cf0}}}}\f0\fs24 ", "gi");\par
+text.replace(regexp, "_$1_");\par
+// \f1\u8594?\f0  _Harry_ is a suspicious character.\lang10\par
+\par
+We have to use two backslashes because we are writing them in a normal string\par
+\par
+////////////////////////////////////////////\par
+\par
+const array1 = [1, 2, 3, 4];\par
+const reducer = (previousValue, currentValue) => previousValue + currentValue;\par
+\par
+// 1 + 2 + 3 + 4\par
+array1.reduce(reducer);\par
+// expected output: 10\par
+\par
+// 5 + 1 + 2 + 3 + 4\par
+array1.reduce(reducer, 5);\par
+// expected output: 15\par
+\par
+////////////////////////////////////////////\par
+\par
+LastIndex, which controls, in some limited circumstances, where the next match will start\par
+\par
+The difference between the global and the sticky options is that, when sticky is enabled, the match will succeed only if it starts directly at lastIndex, whereas with global, it will search ahead for a position where a match can start\par
+\par
+////////////////////////////////////////////\par
+\par
+let input = "A string with 3 numbers in it... 42 and 88.";\par
+let number = /\\b\\d+\\b/g;\par
+let match;\par
+\par
+while (match = number.exec(input)) \{\par
+  console.log("Found", match[0], "at", match.index);\par
+\}\par
+// \f1\u8594?\f0  Found 3 at 14\par
+//   Found 42 at 33\par
+//   Found 88 at 40\lang10\par
+\par
+////////////////////////////////////////////\par
+\par
+^ and $ to make sure the expression matches the whole line, not just part of it\par
+When Everything sticks together, and when you try to pick out a piece, the whole thing comes apart, and your hands get dirty\par
+\par
+A module is a piece of program that specifies which other pieces it relies on and which functionality it provides for other modules to use (its interface)\par
+\par
+By restricting the ways in which modules interact with each other, the system becomes more like LEGO\par
+\par
+To separate modules, each needs its own private scope\par
+Once you start duplicating code, you\rquote ll quickly find yourself wasting time and energy moving copies around and keeping them up-to-date\par
+\par
+\b Package\par
+\b0 Is a chunk of code that can be distributed (copied and installed)\par
+It may contain one or more modules and has information about which other packages it depends on\par
+Usually comes with documentation explaining what it does\par
+\par
+/////////////////////////////////////////////\par
+\par
+Transmission Control Protocol TCP\par
+\par
+Npm provides a place to store and find packages and a convenient way to install and upgrade them\par
+{{\field{\*\fldinst{HYPERLINK https://npmjs.org }}{\fldrslt{https://npmjs.org\ul0\cf0}}}}\f0\fs24\par
+\par
+When using other people\rquote s packages, make sure you are aware of their license\par
+\par
+\par
+////////////////////////////////////////////\par
+\par
+\par
+}
+ 

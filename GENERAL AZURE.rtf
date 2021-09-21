@@ -1,0 +1,312 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs22\lang10\par
+\par
+
+\pard\sl240\slmult1\qc\b\fs24 GENERAL AZURE\b0\fs22\par
+
+\pard\sl240\slmult1\par
+\par
+\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+//////////////////////////////////////\par
+\par
+\b SECURITY THREATS\par
+\b0\par
+\b Azure Security Center\par
+\b0 Provides visibility of your security posture\par
+Atomatically apply required security settings to new resources\par
+Has security recomendations\par
+Constant monitoring\par
+Machine learning to detect and block malware\par
+Adaptive application controls to define rules so only certain applications can run\par
+Analyze potential inbound attacks \par
+Investigate threats \par
+Just-in-time access control for network ports\par
+\par
+Payment Card Industry's Data Security Standard PCI DSS\par
+\par
+Secure score helps you:\par
+Report on the current state\par
+Improve your security posture\par
+Compare with benchmarks \par
+Establish key performance indicators (KPIs)\par
+\par
+\ul Just-in-time VM access\ulnone\b\par
+\b0 Blocks traffic by default to specific network ports of VMs\par
+Allows traffic for a specified time when an admin requests and approves it.\par
+\par
+\ul Adaptive application controls\par
+\ulnone Control which applications are allowed to run on its VMs\par
+Machine learning to look at the processes running \par
+Exception rules \par
+Alerts \par
+\par
+\ul Adaptive network hardening\ulnone\b\par
+\b0 Monitor internet traffic patterns and compare those patterns with the company's current network security group (NSG) settings\par
+\par
+\ul File integrity monitoring\par
+\ulnone Configure the monitoring of changes to important files \par
+\par
+\b Azure Sentinel\par
+\b0 SIEM dedicated security information and event management \par
+Aggregates security data from many different sources\par
+Provides capabilities for threat detection and response\par
+\par
+Capabilities:\par
+Collect cloud data at scale. Across all users, devices, applications, and infrastructure, both on-premises and from multiple clouds.\par
+Detect previously undetected threats. Using Microsoft's comprehensive analytics and threat intelligence.\par
+Investigate threats with artificial intelligence\par
+Respond to incidents rapidly. Built-in orchestration and automation of common tasks\par
+\par
+Connect your data sources:\par
+Tailwind Traders decides to explore the capabilities of Azure Sentinel. First, the company identifies and connects its data sources.\par
+\par
+Azure Sentinel supports a number of data sources, which it can analyze for security events. These connections are handled by built-in connectors or industry-standard log formats and APIs.\par
+\par
+Connect Microsoft solutions\par
+\par
+Connectors provide real-time integration for services like Microsoft Threat Protection solutions, Microsoft 365 sources (including Office 365), Azure Active Directory, and Windows Defender Firewall.\par
+\par
+Connect other services and solutions\par
+\par
+Connectors are available for common non-Microsoft services and solutions, including AWS CloudTrail, Citrix Analytics (Security), Sophos XG Firewall, VMware Carbon Black Cloud, and Okta SSO.\par
+\par
+Connect industry-standard data sources\par
+\par
+Azure Sentinel supports data from other sources that use the Common Event Format (CEF) messaging standard, Syslog, or REST API.\par
+\par
+\par
+//////////////////////////////////////\par
+\par
+\b MONITORING\par
+\par
+Azure Advisor\par
+\b0 Makes recommendations to help improve reliability, security, and performance, achieve operational excellence, and reduce costs\par
+Save time on cloud optimization\par
+\par
+Personalized recommendations for all your subscriptions, and you can use filters to select recommendations for specific subscriptions, resource groups, or services\par
+\par
+Recommendations:\par
+Reliability\par
+Security\par
+Performance\par
+Cost\par
+Operational excellence\par
+\par
+\b Azure Monitor\par
+\b0 Collect, analyze, visualize,and potentially take action based on the metric and logging data \par
+Keep track of the performance or issues related to your specific VM or container instances, databases\par
+\par
+\b Azure Service Health\par
+\b0 Personalized view of the health of the Azure services, regions, and resources \par
+status.azure.com website displays only major issues \par
+\par
+Service Health displays both major and smaller, localized issues \par
+Set up alerts\par
+\par
+Official incident reports called root cause analyses RCAs\par
+\par
+Keep an eye on:\par
+Service issues are problems. Outages, affected services, regions, updates, find ways to share and track the latest information\par
+\par
+Planned maintenance events can affect your availability. Drill down to the affected services, regions, and details to show how an event will affect you and what you need to do. Choose when to perform the maintenance to minimize the downtime.\par
+\par
+Health advisories are issues that require you to act to avoid service interruption, including service retirements and breaking changes\par
+\par
+//////////////////////////////////////\par
+\par
+\b MANAGING AND CONFIGURING AZURE ENVIRONMENT\par
+\par
+\b0 When you're attempting to quickly set up and configure Azure resources, a code-based tool is usually the better choice\par
+Commands can be saved into files and used repeatedly as needed\par
+\par
+The code that performs setup and configuration can be stored, versioned, and maintained along with application source code in a source code-management tool \par
+Two approaches to infrastructure as code: imperative code and declarative code\par
+\par
+Imperative code details each individual step that should be performed to achieve a desired outcome\par
+Declarative code details only a desired outcome, and it allows an interpreter to decide how to best achieve that outcome\par
+\par
+\b Azure portal\par
+\b0 This is the first experience in Azure\par
+One-off scenarios\par
+\par
+\b Azure mobile app\par
+\b0 Provides iOS and Android access to your Azure resources when you're away from your computer.\par
+Monitor the health and status of your Azure resources.\par
+\par
+Check for alerts, quickly diagnose and fix issues, and restart a web app or virtual machine (VM).\par
+Run the Azure CLI or Azure PowerShell commands to manage your Azure resources\par
+\par
+\b Azure PowerShell\par
+\b0 Execute commands called cmdlets \par
+These commands call the Azure Rest API to perform every possible management task\par
+\par
+Can be executed into a script file \par
+One-off scenarios (escenarios \'fanicos)\par
+\par
+Orchestrate:\par
+The routine setup, teardown, and maintenance of a single resource or multiple connected resources.\par
+The deployment of an entire infrastructure, which might contain dozens or hundreds of resources, from imperative code.\par
+\par
+\b Azure CLI\par
+\b0 Execute commands in Bash\par
+For repeatable deployments\par
+\par
+One-off scenarios\par
+\par
+\b ARM templates\par
+\b0 ARM Azure Resource Manager templates \par
+describe the resources you want to use in a declarative JSON format\par
+\par
+The entire ARM template is verified before any code is executed to ensure that the resources will be created and connected correctly \par
+\par
+//////////////////////////////////////\par
+\par
+\b DEVELOPMENT PROCESS TOOLS\par
+\par
+\b0 Practices and processes seek to automate the ongoing development, maintenance, and deployment\par
+\par
+\b DevOps services\par
+\b0 Repos\par
+Boards\par
+Pipelines\par
+Artifacts.  A repository for hosting artifacts, such as compiled source code, which can be fed into testing or deployment pipeline steps\par
+Test plans \par
+\par
+\b Github & github actions\par
+\b0 Facilitates project management, including Kanban boards\par
+Issue reporting, discussion, and tracking\par
+CI/CD pipeline automation tooling.\par
+Includes a wiki for collaborative documentation\par
+Can be run from the cloud or on-premises\par
+\par
+\b Dev Test labs\par
+\b0 Automated means of managing the process of building, setting up, and tearing down virtual machines (VMs) that contain builds of your software projects\par
+Developers and testers can perform tests across a variety of environments and builds\par
+\par
+\par
+//////////////////////////////////////\par
+\par
+OLTP Online Transactional Processing\par
+OLAP Online Analytical Processing\par
+\par
+ Azure es un servicio de inform\'e1tica en la nube dise\'f1ado para construir y gestionar varias aplicaciones\par
+\par
+\b VPN gateway \par
+\b0 Specify the VPN type: either policy-based or route-based\par
+The main difference is how traffic to be encrypted is specified\par
+\par
+IKE Internet Key Exchange \par
+IPSec Internet Protocol Security \par
+\par
+//////////////////////////////////////////\par
+\par
+\b Roles\par
+\b0 Son servidores espec\'edficos, designados y orientados a objetos\par
+Tres roles principales: web, worker y VM\par
+\par
+IPVPN any-to-any network\par
+\par
+\b ExpressRoute \par
+\b0 Enables direct access to the following services in all regions:\par
+Office 365\par
+Dynamics 365\par
+Compute services, such as Azure Virtual Machines\par
+Cloud services, such as Azure Cosmos DB and Azure Storage\par
+\par
+When security is a critical consideration in your product's design, the best product option is Azure Sphere, which provides a comprehensive end-to-end solution for IoT devices\par
+Receive telemetry and occasionally push updates, no reports then use IoT Hub, still you can create management tools and reports using IoT Hub RESTful API\par
+\par
+//////////////////////////////////////\par
+\par
+Preb-built a customizable user interface then IoT Central, set up alerts for centarin conditions\par
+Los diagn\'f3sticos se usan para habilitar los roles, recolectan info y diagnostican probls\par
+Serverless computing is a cloud-hosted execution environment that runs your code but abstracts the underlying hosting environment\par
+\par
+\b Menciona algunos de los beneficios que proporcionan los servicios en la nube\par
+\b0 La computaci\'f3n en la nube es muy vers\'e1til, altamente disponible y le permite al usuario (cliente) pagar solamente cuando est\'e1 usando el servicio. Es una excelente manera no s\'f3lo de crear proyectos basados en equipo pero tambi\'e9n gestionar y desplegarlos sin necesidad de un proyecto espec\'edfico dependiente de la infraestructura\par
+\par
+//////////////////////////////////////\par
+\par
+\b Cognitive Services \par
+\b0 General purpose tasks\par
+Speech to text, integrating with search \par
+\par
+Identifying the objects in an image\par
+Predict clients behavior and provide relevant experiences as it identifies usage patterns\par
+\par
+Analyze text for emotional sentiment \par
+Recognize faces\par
+\par
+Provides pretrained models so that you can bring in your live data to get predictions on\par
+\par
+Categories:\par
+Language\par
+Speech\par
+Vision\par
+Decision. Personalized recommendations for each user \par
+\par
+\b Bot service\par
+\b0 Virtual agents\par
+Used to shift simple, repetitive tasks, such as taking a dinner reservation \par
+\par
+\par
+\b Machine Learning \par
+\b0 Analyze data to predict future outcomes\par
+Build a model by using your own data\par
+\par
+//////////////////////////////////////\par
+\par
+\b SERVERLESS COMPUTING\b0\par
+You create an instance of the service, and you then add your code\par
+You configure your serverless apps to respond to events\par
+\par
+An event could be a REST endpoint, a periodic timer, or even a message received from another Azure service\par
+\par
+Used to handle back-end scenarios\par
+A solid choice when demand is variable\par
+\par
+\ul Functions\ulnone\par
+It\'b4s a stateless environment\par
+If state is required, the function can be connected to an Azure storage account\par
+\par
+Azure Functions can perform orchestration tasks by using an extension called Durable Functions, which allow developers to chain functions together while maintaining state.\par
+The Azure Functions solution is ideal when you're concerned only with the code that's running your service and not the underlying platform or infrastructure\par
+\par
+To execute custom algorithms or perform specialized data parsing and data lookups\par
+When you have existing automated tasks written in an imperative programming language\par
+\par
+Developers who have expertise in an imperative programming language might prefer to think about automation and orchestration from an imperative mindset\par
+\par
+\ul Logic apps\par
+\ulnone Low-code/no-code development platform hosted as a cloud service\par
+Link triggers to actions with connectors\par
+\par
+You can call Azure Functions from Azure Logic Apps, and vice versa\par
+To perform an orchestration across well-known APIs\par
+\par
+//////////////////////////////////////\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+}
+ 

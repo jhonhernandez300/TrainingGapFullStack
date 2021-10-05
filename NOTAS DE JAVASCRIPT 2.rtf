@@ -20,6 +20,52 @@ in this code\par
 \par
 ///////////////////////////////////////////////         /\par
 \par
+ const person =\{ name: "John" \par
+  address:\{\par
+    country: "USA",\par
+    city: "San Francisco"\par
+\};\par
+\par
+cons updated = \{...person, name: "Bob"\};\par
+cons updated = \{...person, \par
+  city: "New York"\par
+  \},\par
+  name: "Bob"\par
+\};\par
+unpdated.address.city= "New York";\par
+// \{name: "Bob"\}\par
+\par
+///////////////////////////////////////////////         /\par
+\par
+\par
+const numbers = [1, 2, 3];\par
+const added = [..numbers, 4]; //adiciona 4 al final\par
+\par
+\b Ingresar en una posici\'f3n particular\b0\par
+const index = numbers.indexOf(2);\par
+const addedInPosition = [...numbers.slcice(0, index),\par
+                                           4,\par
+                                           ...numbers.slice(index)\par
+];\par
+//[1, 4, 2, 3]\par
+\par
+\b Quitar los pares\par
+\b0 const removed = numbers.filter(n => n !==2);\par
+//[1, 3]\par
+\par
+\b Poner 20 donde haya un n\'famero par\b0\par
+const upadated = numbers.map(n => n === 2 ? 20: n);\par
+//[1, 20, 3]\par
+\par
+///////////////////////////////////////////////         /\par
+\par
+Librer\'edas: immutable, immer o mori\par
+npm i redux@4.o\par
+\par
+\par
+\par
+///////////////////////////////////////////////         /\par
+\par
 \b IIFE\b0\par
 Immediately Invoked Function Expression\par
 \par
@@ -36,6 +82,16 @@ Without that semicolon, the last function is interpreted as an argument to a fun
 \par
 ///////////////////////////////////////////////            /\par
 \par
+\b Simplificar par\'e9ntesis\b0\par
+import \{ compose, pipe \} from "lodash/fp";\par
+const result = wrapInDiv(toLowerCase(trim(input)));\par
+\par
+const transform = compose(wrapInDiv, otLowerCase, trim);\par
+const transform = pipe(trim, toLowerCase, wrapInDiv);\par
+transform(input);\par
+\par
+///////////////////////////////////////////             /\par
+\par
 \b ===\b0\par
 function addIfEven(num)\{\par
     if(num % 2 = 0)\{\par
@@ -51,6 +107,32 @@ function addIfEven(num)\{\par
     \}\par
     return num;\par
 \}\par
+\par
+///////////////////////////////////////////////             /\par
+\par
+const trim = str => str.trim();\par
+const wrapInDiv = => \'b4<div>$\{str\}</div>\'b4;\par
+const wrap = (type, str) => \'b4<$\{type\}>$\{str\}</$\{type\}>\}\'b4 //da error\par
+const wrap = type => str => \'b4<$\{type\}>$\{str\}</$\{type\}>\}\'b4\par
+const toLowerCase = str => str.toLowerCase();\par
+\par
+const transform = pipe(trim, toLowerCase, wrapInDiv);\par
+const transform = pipe(trim, toLowerCase, wrap);  //undefined\par
+const transform = pipe(trim, toLowerCase, wrap("div"));   //expected a function\par
+console.log(transform(intput));\par
+\par
+function add(a, b) \{\par
+  return a + b;\par
+\}\par
+se cambia a:\par
+function add(a, b) \{\par
+  return function(b) \{\par
+     a + b;\par
+  \};\par
+\}\par
+\par
+add1(1)(5);\par
+const add2 = a => b => a + b;\par
 \par
 ///////////////////////////////////////////////             /\par
 \par
@@ -77,7 +159,7 @@ person;\par
 Type of error - ReferenceError\par
 Because we are accessing a variable that has not been defined\par
 \par
-///////////////////////////////////////////              /\par
+//////////////////////////////////////////              /\par
 \par
 var data = \{\};\par
 data.displayInfo();\par
